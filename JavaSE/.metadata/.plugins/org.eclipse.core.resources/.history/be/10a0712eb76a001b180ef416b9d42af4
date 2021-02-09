@@ -1,0 +1,37 @@
+package com.cg.tsw.ui;
+
+import java.util.Scanner;
+
+public class BigSmall {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		
+		System.out.print("Enter number [0 to stop] : ");
+		int num = scan.nextInt();
+		int big = num;
+		int small = num;
+		
+		while (true) {
+			System.out.print("Enter number [0 to stop] : ");
+			num = scan.nextInt();
+			if (num == 0) {
+				break;
+			}
+			
+			if (num > big) {
+				big = num;
+			}
+			
+			if (num < small) {
+				small = num;
+			}
+		}
+		
+		System.out.println("Big : = " + big + "\t" + "Small : " + small);
+		scan.close();
+
+	}
+
+}

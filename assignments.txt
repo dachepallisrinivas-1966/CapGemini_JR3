@@ -1,0 +1,76 @@
+1) roots of quadratic equation
+2) accept marks in 3 subjects of a student. calculate the grade as per the
+    following conditions.
+
+    m1          m2          m3
+
+    each subject must have >= 35 marks
+    if average is more than 70, grade is "E"
+    if average is >= 60 but < 70, grade is "A"
+    if average is >= 50 but < 60, grade is "B"
+    if average is >= 35 but < 50, grade is "C"
+    otherwise "F"
+
+3) accept a number. check whether it is palindrome or not.
+    eg: input : 121
+        output : palindrome
+4) accept a number. check whether it is armstrong or not.
+    eg: input : 153
+        3 * 3 * 3 = 27
+        5 * 5 * 5 = 125
+        1 * 1 * 1 = 1
+                    -----
+                    153
+                    -----
+        output: armstrong
+5) accept a number. check whether it is strong number or not.
+    eg: input : 145
+
+        5! = 120
+        4! = 24
+        1! = 1
+            ------
+            145
+            ------
+        output : strong
+6) accept a number. print the digits in words.
+    eg: input : 648
+        output : SIX FOUR EIGHT
+7) accept two numbers. check whether they are amicable numbers or not.
+    num1 = factors sum start from 1 exclude num1 = result1
+    num2 = factors sum start from 1 exclude num2 = result2
+
+    if result2 == num1 and result1 == num2 then they are amicable.
+8) accept a number. print whether it is UNIQUE number or not.
+    eg: input : 1089
+
+            1089
+        x      9   (unit digit)
+        ----------------------
+            9801
+        ----------------------
+
+        output : unique
+9) accept two numbers. print the LCM and GCD.
+10) print the following floyd triangle upto n rows.
+        *   *   *   *
+        *   *   *
+        *   *
+        *
+11) print the following floyd triangle upto n rows.
+        1
+        0   1
+        1   0   1
+        0   1   0   1
+12) print the following pyramid upto n rows.
+                    1
+                1   2   1
+            1   2   3   2   1
+        1   2   3   4   3   2   1
+
+13) labelled break statement.
+    write an example program using this.
+
+14) what is the difference between for loop and enhanced for loop?
+
+

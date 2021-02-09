@@ -1,0 +1,12 @@
+package com.cg.tsw.ui;
+
+public class WeekDay {
+
+	public static void main(String[] args) {
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		
+		
+
+	}
+
+}

@@ -1,0 +1,983 @@
+Srinivas Dachepalli | 6305 730 633 | dachepallisrinivas@gmail.com
+
+Abhishek Kumar - 9384526411
+Aksheya -        9840129171
+
+----------------------------------------------------------------------------
+
+What is Java?
+    is a high level strictly but partially object oriented progrmming.
+
+    + Strictly object oriented, as there is no way possible to implement any java application 
+      without using OOP.,
+    + Partially object oriented, as java supports native variables and native types which are
+      not objects and classes
+
+Who developed Java?
+    Sun microsystems - James Gosling
+    Oracle corp. is the present owner of Java language.
+    (www.oracle.com)
+
+Histroy And Evolution
+----------------------------------------
+    JDK Alpha and Beta (1995)
+    JDK 1.0 (23rd Jan 1996)
+    JDK 1.1 (19th Feb 1997)
+    J2SE 1.2 (8th Dec 1998)                             Stable  
+    J2SE 1.3 (8th May 2000)
+    J2SE 1.4 (6th Feb 2002)                             Stable and Prominent
+    J2SE 5.0 (30th Sep 2004)                            Stable, Prominent and Revolutionary
+    Java SE 6 (11th Dec 2006)
+    Java SE 7 (28th July 2011)
+    Java SE 8 (18th Mar 2014)   (LTS)                   Stable and Most used on current day 
+    Java SE 9 (21st Sep 2017)
+    Java SE 10 (20th Mar 2018)
+    Java SE 11 (Sep 2018)       (LTS)                   Stable and being adopted 
+    Java SE 12 (Mar 2019)
+    Java SE 13 (Sep 2019)
+    Java SE 14 (Mar 2020)
+    Java SE 15 (Sep 2020)
+
+Java Distributions
+-------------------------------------
+        JRE                 Java Runtime Environment         
+                                {Java Libraries,GC,JVM,Interpreter,ClassLoader,ByteCodeVerifeir,...}
+        
+        JDK                 Java (Standard) Development Kit    
+                                {JRE, Development Tools, IDE Support}
+
+Java Editions
+-------------------------------------
+
+        Java Standard Edition 
+        ==================================
+                Core Language                
+                Java Core Libraries
+                -------------------------
+                    java.lang               Math, String, System, Exceptions, Multi-Threading
+                    (it is imported automatically)
+                    java.time               Date and Time API
+                    java.util               Generics and Collections
+                    java.util.stream        Streams API and Lambda Expressions
+                    java.util.regex         Regular Expressions
+                    java.io                 IO Streams
+                    java.nio                New IO Streams
+                    java.sql                JDBC
+
+        Java Enterprise Edition
+        ==================================
+            App                 Specifications            Implementations         Frameworks
+            ----                -----------------------  ----------------        -------------
+            Dynamic Web Apps    Servlets and JSP         WebServers like Tomcat     Struts
+                                                                                    Spring
+
+            ORM                 JPA, JTA                 Hibernate,TopLink,
+                                                         EclipseLink...
+                    
+            WebServices         JAX-WS, JAX-RS           Axis2,Apache CXF
+                                          
+            Microservices ...and more
+
+        Java Micro Edition
+        ==================================
+
+                supports smart device / smart card based application development.
+
+C/C++ program execution process:
+---------------------------------
+text editor     -   source program  -                   sample.c / sample.cpp
+compiler        -   object program  -                   sample.obj / sample.o
+                    (intermeditate program)
+linker          -   header files (.h)   -               sample.exe 
+                    all the header files are linked 
+                    to the object program and create
+                    an executable program.
+loader          -   to supply the executable code to
+                    the  O/S for execution.
+
+C/C++ languages are platform dependent languages. (here platform means o/s)
+
+Java program excution process:
+------------------------------
+text editor             -   source code     -   sample.java
+compiler   (javac)      -   byte code       -   sample.class   
+                    (byte code is not in the form of 0's & 1's)
+
+is this sample.class is targeted to one particular O/S ?
+NO.
+
+sample.class is not an executable program.
+
+byte code   --> JVM (Java Virtual Machine) -> JVM will convert the byte code 
+        into native machine code (sequence of 0's & 1's understood by that particular
+        O/S in which the program is executed)
+        the program is executed.
+
+        machine code is generated ON-THE-FLY.
+
+Java is platform (means o/s) independent language.
+
+is JDK  common for all O/S? -   (platform dependent)
+    NO
+is JRE  common for all O/S? -   (platform dependent)
+    No
+is JVM  common for all O/S? -   (platform dependent)
+    NO
+
+BYTE CODE is the only one component which is platform independent.
+
+is Native machine code common for all O/S?
+    NO
+
+JDK   (Java Development Kit)  
+    for developers.
+    lot of tools to develop java applications.
+    
+    javac   -   java compiler
+    java    -   interpreter
+    javadoc
+    javap
+    jdb
+    appletviewer
+
+JRE   (Java Runtime Environment)
+    JRE provide JVM + other libraries
+
+Features of Java:
+-----------------
+1. platform independent
+2. object oriented 
+3. secured
+        no explicit pointers in java.
+        java programs run inside a special environment i.e. JVM.
+        JVM will talk to O/S.
+        (JVM is a collection of programs - class-loader, byte-code-verifier, garbage-collector)
+4. robust
+        means fault-tolerant, strong, vigour and healthy.
+        a. exception handling
+        b. automatic garbage collection
+        c. strong type checking.
+5. self-documented (open source)
+    source code is visible to anyone.
+
+
+CODING STANDARDS / BEST PRACTICES
+1. maintain proper indentation.
+2. naming conventions
+
+
+
+                            Java Tokens
+                            -----------
+smallest element in the program.
+
+1. identifier
+        it is a name given to variables, class, method names, package etc.,
+
+        variable, method names must follow camel notation 
+            first letter is lowercase.
+            from the second word onwards use first letter of each word is in uppercase
+            and rest in lower case.
+
+            eg:
+                length
+                lengthOfRectangle
+                circleArea
+
+                acceptData()
+                showMinMaxInArray()
+        
+        class names must follow pascal notation.
+        (first letter of each word in uppercase and the rest in lowercase).
+            eg:
+                ArrayIndexOutOfBoundsException
+                RuntimeException
+                String
+
+        package name
+            always in lowercase
+            there are often abbreviated.
+            eg:
+                io
+                lang
+                awt
+                util
+                
+        constants
+            always be in uppercase.
+            it is a name given to literal.
+            it is immutable.
+            it is qualified with "final" keyword.
+            they can be separated with an underscore.
+
+            final double PIE = 3.14;
+                    PIE is a constant.
+                    3.14 is literal
+
+            final int PASS_MARKS = 35;
+            final int MAX_MARKS = 100;
+            final int BATCH_CAPACITY = 40;
+            
+            double circumference = 2 * PIE * radius;
+
+            keyword         double
+            indentifier     circumference
+            operator        =
+            literal         2
+            operator        *
+            constant        PIE
+            operator        *
+            identifier      radius
+            operator        ;
+
+
+2. keywords
+        these are also reserved words.
+        eg: if, switch, for, while
+            int, float, double
+
+3. operators
+        unary operators
+           which takes only one operand.
+           ++   --  !    
+        binary operators
+            it takes two operands
+            all the remaining 
+        ternary operator
+            which takes three operands.
+            conditional operator
+
+
+        a) arithmetic operators :   +   -   *   /   %
+        b) relational operator  :   >   <   ==  >=  <=  !=
+        c) logical operators    :   &&  ||  !
+        d) conditional operator :   (condition) ? true-statment : false-statement;
+        e) assignment operator  :   =   +=  -=  *=  /=  %=
+        f) increment / decrement :  ++, --
+        g) bitwise operators    :   refer your self.
+        h) misc. operators      :
+                []
+                ()
+                <>
+                ,
+                .
+                ;
+                instanceof
+4. literals
+        any hard coded value.
+
+        doule area = 3.14*radius*radius;
+
+        3.14 is literal.
+
+        a) integer literals
+                i) decimal literal      (0-9)
+                    30, -5
+
+                ii) binary literal      (0,1)
+                    0b101011
+                    int a = 0b101;
+
+                    observe the 0b prefix here.
+
+                iii) octal literal      (0-7)
+                    int a = 0234;
+
+                    observe 0 prefix.
+
+                iv) hexadecimal literal (0-9, A-F)
+                    int a = 0xABC;
+
+                    observe 0x prefix
+                
+        b) floating point literals
+                3.14
+        c) character literals
+                character is a single alphabet, single digit or single special symbol.
+                it the charcater is enclosed within single quotes, it is character constantt.
+
+                'A'
+                '7'
+                '?'
+                'AB'        invalid
+
+                escape sequence characters:
+                '\n'        new line character
+                '\t'        tab
+
+
+        d) string literals
+                group of characters enclosed within double quotes.
+
+                "srinivas"
+                "49-53-20/25"
+                "9247175823"
+                "a"             
+                ""              empty string
+
+        e) boolean literals
+                true, false
+
+5. comments
+        ignored by the compiler.
+
+        end-of-line comment             //
+        block comment                   /*  and */
+        documentation comment           /** and */
+
+Eclipse IDE:
+------------
+    1. change the perspective to "Java Perspective"
+        (window -> perspective -> open perspective)
+    2. change the Installed JRE : JDK1.8
+        (windows -> preferences -> java -> installed jre)
+
+    3. Create a java project : ToStartWith
+        choose "default JRE as jdk1.8 ..." radio button
+
+    Workspace, project are nothing folders in the o/s.
+
+
+What is a package?
+    It is a group of classes, interfaces and sub-packages.
+    package is also a folder in o/s.
+
+
+    www.capgemini.com
+
+    com.cg.tsw.ui
+    com.cg.tsw.model
+    com.cg.tsw.view
+    com.cg.tsw.controller
+
+
+                                data types   
+                                ----------
+    primitve types
+        numeric 
+            integral
+                byte        1
+                short       2
+                int         4
+                long        8
+            floating-point
+                float       4
+                double      8
+        non-numeric
+                char        2
+                boolean     1 bit   -   true, false
+                
+                in java, true means not 1 and
+                false means not 0.
+                true, false are literals.
+
+                void    
+                generally used to specify the return type of a function.
+    
+    user-defined types
+        class
+        interface
+        enum
+
+                                            Control Structures
+                                            ==================
+if, if..else, switch, break, continue, 
+while, do..while, for
+
+we can use control structures to alter the program execution sequence.
+
+if:
+----
+    it is a bi-directional decision making statement.
+
+if (condition)
+    st-1;           /* true statement */
+[else
+    st-2;]           /* false statement */
+
+if (condition) {
+    st-1;
+    st-2;           /* true block */
+    ...
+} [ else {
+    st-1;
+    st-2;           /* false block */
+    ...
+} ]
+
+what is a condition?
+    condition means comparision.
+
+what is the result of a condition?
+    true / false
+
+int a = 10, b = 15;
+if (a > b);
+    System.out.println(a);
+System.out.println(b);
+
+if (a > b)
+    ;
+
+System.out.println(a);
+System.out.println(b);
+
+just semi-colon indicates null statement.
+
+output:
+-------
+10
+15
+
+
+int m = 10, n = 15;
+if (m > n);
+    System.out.println(m);
+else
+    System.out.println(n);
+
+if (m > n)
+    ;
+System.out.println(m);
+
+else
+    System.out.println(n);
+
+output:
+-------
+error : else without if.
+
+types:
+------
+    simple if       (if without else)
+    if .. else
+    nested if       (if within if)
+    ladder if       (if..else ladder)
+
++   string concatenation (joining) operator
+
+1) write a java program to print whether a given year is leap or not.
+
+nested if:
+-----------
+if (condition) {
+    if (condition) {
+        st-1;
+        st-2;
+        ...
+    } else {
+        st-1;
+        st-2;
+        ....
+    }
+}  else {
+    if (condition) {
+        st-1;
+        st-2;
+        ....
+    } else {
+        st-1;
+        st-2;
+        ...
+    }
+}
+
+ladder if:
+----------
+if (condition) {
+    st-1;
+    st-2;
+    ... 
+} else if (condition) {
+    st-1;
+    st-2;
+    ...
+} else if (condition) {
+    st-1;
+    st-2;
+    ...
+} else {
+    st-1;
+    st-2;
+    ...
+}
+
+
+2) switch:
+
+    it is a multi-directional making statement.
+
+syntax:
+-------
+    switch (var/expr) {
+        case label-1 :  st-1;
+                        st-2;
+                        ...
+                        [break;]
+        case label-2 :  st-1;
+                        st-2;
+                        ...
+                        [break;]
+        ..  ..  ..  ..  ..  ..
+        default:        st-1;
+                        st-2;
+                        ....
+                        [break;]
+    }
+
+
+How do you accept data from the user?
+--------------------------------------
+    Scanner scan = new Scanner(System.in);
+
+    nextInt()
+    nextDouble()
+    next()
+    nextLine()
+
+    Scanner class is available in java.util package.
+
+    import java.util.Scanner;
+
+    (or)
+
+    type the fully qualified name.
+    java.util.Scanner scan = new java.util.Scanner(System.in);
+
+
+
+2) accept a day number. print the corresponding week day name.
+
+0 - sunday
+1 - monday
+2 - tuesday
+
+6  - saturday
+invalid day number.
+
+    System.in   refer to standard input device i.e., keyboard
+    System.out  refer to standard output device i.e., VDU   (monitor)
+
+
+class Test {
+    public static void main(String [] args) {
+        double height = 153.5;
+
+        switch (height) {
+            case 150 : System.out.println("Not accepted");
+                       break;
+            case 153 : System.out.println("considered");
+                       break;
+            case 153.5 : System.out.println("selected");
+                        break;
+        }
+    }
+}
+
+switch will allow only certain datatypes.
+1) byte, short, int, char, String, enum.
+2) long, double, float, boolean are not allowed.
+
+byte : 1 bytes
+-128 to 127
+
+byte b = 100;
+int a = b;          // allowed.
+
+3) accept two numbers and an arithmetic operator. perform the operation and print the result.
+
+    10
+    5
+    /
+    result : 2
+
+15 minutes.
+
+
+4) accept consumer number, last month reading, current month reading.
+    calculate the electricity bill as per the following way ...
+
+    no. of units                slab rate
+    -------------------------------------------------------------------
+        <= 100                  2.50 per unit
+        
+        > 100                   for first 100 units, 2.50 per unit
+        <= 200                  next remaining units 3.00 per unit
+
+        > 200                   for first 100 units, 2.50 per unit
+                                for next 100 units, 3.00 per unit
+                                for all remaining units, 3.50 per unit
+
+    add Rs. 50 as fixed charges for each bill.
+
+    print relevant details.
+
+    20 minutes.
+
+    jan 1       :   150  meter reading
+    feb 1       :   250 meter reading
+
+    feb bill : 250 - 150 = 100 units
+
+    
+Day - 2:
+=============================================================================
+
+int a = 10;
+int b = a;
+int c = 15;
+
+switch (a) {
+    case b : System.out.println("10");
+             break;
+    case c : System.out.println("15");
+             break;
+}
+
+output:
+--------
+error : case expressions must be constant only, cannot be variables.
+
+
+                                    loops
+                                    ======
+set of statements that are executed repeatedly.                                    -----
+
+1) for
+2) while
+3) do..while
+4) enhanced for loop
+
+for:
+----
+statements are executed as long as the condition is true.
+this is called as entry-tested or top-tested loop.
+
+        [1]            [2]          [4]
+for(initialization; condition; update expr) {
+   statement(s);           [3]
+   [break;] 
+}
+
+
+class Test {
+    public static void main(String [] args) {
+        for(int i = 1; i >= 10; i++) {
+            System.out.println(i);
+        }
+
+    }
+}
+
+output:
+-------
+no output
+
+is initilization is compulsory?
+NO
+
+int i = 1;
+for( ; i >= 10; i++) {
+    System.out.println(i);
+}
+
+is update expression is mandatory?
+No
+
+int i = 1;
+for( ; i >= 10 ; ) {
+    System.out.println(i);
+}
+
+is condition is mandatory?
+No
+
+for( ;  ; ) {
+    System.out.println(i);
+}
+
+it will fall into an infinite loop. 
+
+int i = 1;
+for( ;  ; ) {
+    System.out.println(i);
+    if ( i == 10)
+        break;
+    i++;
+}
+
+
+5) Write a program to print all the factors of a given number.
+eg: input : 12
+    output : 
+    1
+    2
+    3
+    4
+    6
+    12
+
+6) Write a program to print whether a given number is prime or not.
+eg: input : 17
+    output : prime
+
+    input : 10
+    output : composite
+
+10 minutes.
+
+7) write a program to print the following FLOYD triangles upto n rows.
+eg: input : Enter no. of rows : 5
+    output:
+
+    1   2   3   4   5
+        1   2   3   4
+            1   2   3
+                1   2
+                    1
+
+i => 1 to n
+
+    s => 1 to i-1
+
+    n   i       s
+    --  --  -------
+    5   1       0
+        2       1
+        3       2
+        4       3
+        5       4
+
+                s = i - 1
+
+
+        j =>    1 to n-i+1
+
+        n   i       end of j
+        --  --      ---------
+        5   1           5
+            2           4
+            3           3
+            4           2
+            1           1
+
+                    end of j = n - i + 1
+                            5 - 2 + 1
+
+for i = 1 to n {
+    for s = 1 to i-1 {
+        // print spaces
+    }
+    for j = 1 to n-i+1 {
+        // print numbers
+
+    }
+}
+
+8) write a program to accept numbers continuously till 0 is entered. findout the sum, average
+of all these numbers.
+
+int / int = int
+
+10 / 2 = 5
+10 / 3 = 3  
+
+int / double = double
+double / int = double
+double / double  = double
+
+10.0 / 3    =   3.3
+10 / 3.0    =   3.3
+10.0 / 3.0  =   3.3
+
+type casting:
+-------------
+changing value from one type to other temporarily.
+syntax:
+-------
+(datatype) var;
+
+(double) sum / count
+sum / (double) count
+
+
+while:
+------
+    statements are executed repeatedly as long as the condition is true.
+    this is called as entry-tested or top-tested loop.
+
+syntax:
+-------
+    while (condition) {
+        st-1;
+        st-2;
+        ....
+        [break;]
+    }
+
+Factorial program:
+    5! = 1 * 2 * 3 * 4 * 5 = 120
+
+class Test {
+    public static void main(String [] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter number : ");
+        int num = scan.nextInt();
+        int fact = 1;
+        for(int i = 2; i <= num; i++) {
+            fact *= i;
+        }
+        System.out.println("Factorial : " + fact);
+        scan.close();
+    }
+}
+
+class Factorial {
+    public static void main(String [] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter number : ");
+        int num = scan.nextInt();
+        int fact = 1;
+
+        int i = 2;
+        while (i <= num) {
+            fact *= i;
+            i++;
+        }
+        
+        System.out.println("Factorial : " + fact);
+        scan.close();
+    }
+}
+
+how can i choose between for & while?
+-------------------------------------
+    for loop should be used when you want to execute statement for a finite number of times.
+    while loop should be used when you want to execute statements for in indefinite number of
+    times.
+
+write a program to enter numbers continuously until user press 0. findout the biggest
+and smallest value among them.
+
+10 mins.
+
+for(;;) {
+
+}
+
+while(true) {
+
+}
+
+do .. while:
+------------
+statements are executed repeatedly as long as the condition is true.
+this is called as exit-tested or bottom-tested loop.
+
+do {
+    st-1;
+    st-2;
+    ...
+    [break;]
+} while (condition);
+
+it is generally used to write menu-driven programs.
+
+what is the difference between break and continue?
+--------------------------------------------------
+whenever a break statement is encountered the control immediately comes out of the loop
+without executing the remaining iterations.
+whereas the continue statement will take you to the next iteration without executing the
+remaining statements in the current iteration.
+
+
+                                            arrays
+                                            ======
+linear collection of homogeneous data items stored under single name.
+0 based index.
+every array in java is an object.
+array is provide a special property (field) with the name "length", that return no. of cells
+in the memory.
+
+types of arrays:
+-----------------
+1) single dimension
+2) multi-dimension
+3) jagged 
+
+single dimension:
+-------------------
+declaring:
+----------
+    datatype [] arrayName;
+    (or)
+    datatype arrayName[];
+
+    just by declaring, no memory is allocated.
+
+eg:
+    int [] arr;
+
+allocating memory:
+------------------
+    arrayName = new datatype[size];
+eg:
+    arr = new int[5];
+
+    whenever we use "new" keyword, the memory is allocated dynamically and stored in a special
+    memory area known as "heap".
+
+declaring and allocating :
+----------------------------
+    datatype [] arrayName = new datatype[size];
+
+eg:
+    int [] arr = new int[5];
+
+
+class ArrayExample {
+    public static void main(String [] args) {
+        int [] arr = new int[5];
+
+        for(int i = 0; i < 5; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+}
+
+int     -   default value   -   0
+double  -                   -   0.0
+String  -                   -   null
+boolean -                   -   false
+
+
+write a program to find min, max of an array.
+
+enhanced for loop:
+------------------
+    it is used to traverse an array or a collection.
+
+    syntax:
+    -------
+        for(datatype variable : arrayName) {
+            ...
+        }
+
+write a program to find number of ZEROs, EVENs and ODDs in an array.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

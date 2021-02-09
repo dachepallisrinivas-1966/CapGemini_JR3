@@ -1,0 +1,21 @@
+package com.cg.tsw.ui;
+
+import java.util.Scanner;
+
+public class BigSmall {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+
+		while (true) {
+			System.out.print("Enter number [0 to stop] : ");
+			int num = scan.nextInt();
+			if (num == 0) {
+				break;
+			}
+		}
+		scan.close();
+
+	}
+
+}
