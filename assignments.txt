@@ -1,3 +1,7 @@
+All these assignments must be done in a separate project in the workspace
+name it as "Assignments".
+
+
 1) roots of quadratic equation
 2) accept marks in 3 subjects of a student. calculate the grade as per the
     following conditions.
@@ -76,6 +80,8 @@
 
 Day - 3
 ===========
+do all the below programs (15 to 24) using functions.
+
 15) binary search
 16) bubble sort
 

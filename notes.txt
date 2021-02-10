@@ -178,7 +178,7 @@ smallest element in the program.
         it is a name given to variables, class, method names, package etc.,
 
         variable, method names must follow camel notation 
-            first letter is lowercase.
+            first word is in lowercase.
             from the second word onwards use first letter of each word is in uppercase
             and rest in lower case.
 
@@ -190,7 +190,7 @@ smallest element in the program.
                 acceptData()
                 showMinMaxInArray()
         
-        class names must follow pascal notation.
+        class names, file name and project must follow pascal notation.
         (first letter of each word in uppercase and the rest in lowercase).
             eg:
                 ArrayIndexOutOfBoundsException
