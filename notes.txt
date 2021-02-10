@@ -135,9 +135,9 @@ JDK   (Java Development Kit)
     
     javac   -   java compiler
     java    -   interpreter
-    javadoc
+    javadoc -   to create HTML documentation of a project
     javap
-    jdb
+    jdb     -   java debugger
     appletviewer
 
 JRE   (Java Runtime Environment)
@@ -159,6 +159,9 @@ Features of Java:
         c. strong type checking.
 5. self-documented (open source)
     source code is visible to anyone.
+6. architectural neutral
+7. compiled and interpreted
+
 
 
 CODING STANDARDS / BEST PRACTICES
@@ -338,17 +341,25 @@ Eclipse IDE:
     Workspace, project are nothing folders in the o/s.
 
 
-What is a package?
-    It is a group of classes, interfaces and sub-packages.
-    package is also a folder in o/s.
+Package
+------------
+	It is a collection of classes, interfaces and sub-packages.
+	If a class is not part of any package, it is automatically placed in "default package".
+	purpose of a package is to solve name conflicts. 	
+    if two or more classes share the same name, they cannot be part of the same package 
+    as it leads to ambiguity.
+    package is represented as a folder in O/S.
 
+	if the class inside a package is public, we can make use of the class outside the package.
 
-    www.capgemini.com
+	whenever we have a public class, then the class name and file name must be the same.
 
-    com.cg.tsw.ui
-    com.cg.tsw.model
-    com.cg.tsw.view
-    com.cg.tsw.controller
+	A single file can have only one public class. It can have any no. of non-public classes inside a single file.
+	
+	Name of the package is the reverse order of the web domain of the company.
+    (www.capgemini.com)
+
+    com.cg.tsw.ui, com.cg.tsw.model, com.cg.tsw.view, com.cg.tsw.controller
 
 
                                 data types   
@@ -899,6 +910,9 @@ every array in java is an object.
 array is provide a special property (field) with the name "length", that return no. of cells
 in the memory.
 
+if we try to access an element with an invalid index, leads to an exception.
+"ArrayIndexOutOfBoundsException"
+
 types of arrays:
 -----------------
 1) single dimension
@@ -934,6 +948,10 @@ declaring and allocating :
 eg:
     int [] arr = new int[5];
 
+initialize an array:
+---------------------
+    int []  arr = {10,20,30,40,50}; 
+    
 
 class ArrayExample {
     public static void main(String [] args) {
@@ -955,7 +973,13 @@ write a program to find min, max of an array.
 
 enhanced for loop:
 ------------------
-    it is used to traverse an array or a collection.
+    there is no concept called "index".
+	Enhanced for loop offer better performance than classic for loop.
+	loop variable is not "int" unlike as in classic for loop.
+	type of the loop variable is same as the type of array.
+	We cannot process few elements in the array.
+
+    it is used to traverse an entire array or a collection in forward-only direction.
 
     syntax:
     -------
@@ -964,6 +988,318 @@ enhanced for loop:
         }
 
 write a program to find number of ZEROs, EVENs and ODDs in an array.
+
+
+Day-3
+================================================================================
+
+can we write multiple classes in a java file?
+yes
+
+can our class name and file name be different?
+yes
+
+is it mandatory to declare a class as public?
+no
+
+can we have multiple public classes in a java file?
+no
+
+can be the public class name and java file name are different?
+no
+
+what is the difference between a public class and non-public class?
+...
+
+
+linear search (sequential search) program.
+
+sorting program (ascending order)
+n = 5
+
+(0) 50  20  20  20  20  20  20
+(1) 20  50  35  27  27  27  27
+(2) 35  35  50  50  41  35  35
+(3) 41  41  41  41  50  50  41
+(4) 27  27  27  35  35  41  50
+
+i   j
+--- ---
+0   1
+0   2
+0   3
+0   4
+-----------
+1   2
+1   3
+1   4
+------------
+2   3
+2   4
+------------
+3   4
+------------
+n = 5
+
+i : 0 to 3
+    j : i+1 to 4
+
+i : 0 to n-2
+    j : i+1 to n-1
+
+    a[i] > a[j]
+        swap them
+
+
+double dimension array:
+-----------------------
+
+            studentData
+rollno      age     height      weight
+1           ..      ..          ...
+2
+3
+
+
+
+how do you declare?
+    int [][] studentData = new int[3][4];
+
+initialize?
+
+    int [][] studentData = {
+        {1, 25, 150, 60},
+        {2, 21, 160, 45},
+        {3, 19, 140, 36}
+    };
+
+every row in a double dimension array is treated as a single dimension array.
+
+the "length" property of a double dimension array, always return no. of rows.
+eg:
+    studentData.length => 3
+    studentData[0].length => 4
+    studentData[1].length => 4
+    studentData[2].length => 4
+
+Jagged array:
+-------------
+It is also a double dimension array, where each row contain different number of columns.
+
+eg:
+    1   2
+    3   4   5
+    6   7   8   9
+    10
+
+int [][] jarr = {
+    {1,2},
+    {3,4,5},
+    {6,7,8,9},
+    {10}
+}
+
+                                        Command Line Arguments
+                                        ----------------------
+
+public static void main(String [] args) {
+
+}
+
+we cannot define main method like this ..
+public static void main() {
+
+}
+it is treated as another method.
+
+
+command line arguments are used to give inputs (parameters) to the main() method.
+it is another way of accepting data.
+
+write a program to print all command-line arguments.
+
+write a program to accept two numbers and an arithmetic operation (ADD, SUB, MUL, DIV)
+using command line arguments and perform the operation and print the result.
+
+is int a primitive type ?	
+		yes`
+is String a primitive type?
+		no
+		String is a pre-defined class, it is a user-defined type.
+
+How do you convert data of String to primitive type int?
+    Integer -> parseInt(String form int)
+    eg: 
+        "10"    =>  Integer.parseInt("10") => 10
+        "5"     =>  Integer.parseInt("5") => 5
+        "ADD"   =>  
+
+    Double.parseDouble(String form double)
+
+        "10.5"  =>  Double.parseDouble("10.5") => 10.5
+    
+    for all illegal value, we get NumberFormatException.
+
+Defensive programming:
+----------------------
+    avoid run-time errors using our logic.
+
+
+                                            Functions
+                                            =========
+
+It is a sub program designed to perform a specific task that can be used repeatedly.
+A function can have 0 or more inputs (arguments / parameters)
+But a function can return 0 or 1 value only.
+
+In java, we call functions as "methods".
+
+Function components:
+-----------------------
+Function declaration    (function prototype)
+Function definition     (function code)
+Function call
+
+Note:
+In order to call a function in the main(), we should declare the function as static.
+(or)
+Create an object of the class, and access through the object.
+
+formal parameters (formal arguments):
+    paraameters given in the function definition.
+actual parameters (actual arguments):
+    parameters given in the function call.
+
+function calling:
+-----------------
+1) call-by-value    (sending values)
+        for all primitive types, the default mechanism is "call-by-value".
+2) call-by-reference (seding references)
+        for all objects, the default mechanism is "call-by-reference".
+
+
+    x = 10       (x)   --->     fn()    --> x++
+    x = 10        <------------------------------   call-by-value       
+    x = 11        <------------------------------   call-by-reference
+
+can you send array as parameter to function?
+yes
+
+can we return array from a function?
+yes
+
+write a function to return the reversed array of a given array.
+(or)
+write a function to accept an array and reverse the array itself and return the reveresed array.
+
+
+    static void show(int x, double y, String z) {
+        System.out.println(x + "\t" + y + "\t" + z);
+    }
+
+    public static void main(String [] args) {
+        show(5, 10.5, "Java");
+        show(5, 10.5);
+        show(5);
+        show();
+    }
+
+actual parameters (3)           formal parameters (3)
+actual parameters (2)
+actual parameters (1)
+actual parameters (0)
+
+rule:
+-----
+    no. of actual parameters = no. of formal parameters
+
+
+        sum of few numbers.
+
+
+        sum(10,20)      ==> 30
+        sum(1,2,3,4,5)  ==> 15
+        sum(3)          ==> 3
+
+        int sum(int [] arr) {
+
+        }
+
+
+                                            VarArgs
+                                            -------
+Variable Arguments
+    it represents indefinite number of arguments
+    it is represented with ... (three dots)
+    three dot symbol "ellipsis".
+
+    we can pass any number of arguments while calling this type of function.
+
+    Command Line Arguments can also be represeted as Variable Arguments.
+
+
+
+                                        Function Overloading
+                                        ---------------------
+when two or more functions are having the same name but with different set of parameters ,
+the it is said to be function overloading.
+
+int area(int a, int b) {
+
+}
+
+int area(int a, double b) {
+
+}       // allowed
+
+int area(double a, int b) {
+
+}   // allowed
+
+double area(int a, int b) {
+
+}   // NOT ALLOWED - return type is not considered
+
+
+                                        Recursion
+                                        ----------
+calling the same function being in itself.
+
+            int factorial(int  num) {
+                if (num == 0) {
+                    return 1;
+                } else {
+                    return num*factorial(num-1);
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -74,3 +74,37 @@
 14) what is the difference between for loop and enhanced for loop?
 
 
+Day - 3
+===========
+15) binary search
+16) bubble sort
+
+17) matrix addition
+18) matrix multiplication
+19) matrix transpose
+20) accept two matrices. check whether they are equal or not.
+21) accept a matrix. check whether it is symmetric matrix or not. (A = transpose of A)
+22) accept a matrix. print the sum of principle diagonal elements, upper triangular elements
+    and lower triangular elements.
+23) accept a matrix. check whether it is identity matrix or not.
+24) accept a matrix. print whether it is orthogonal matrix or not. ( A x transpose of A = I)
+
+25) write a function to calculate factorial of a given number,
+ and another function to calculate the exponential value when base and exponent.
+use these function to find the sum of the following series ...
+
+x + (x^2 / 2!) + (x^3 / 3!) + (x^4/4!) + .... + (x^n/n!) = ?
+
+you are not allowed to use any library methods.
+
+26) write a function return sum, average, min, max of an array passed as an argument.
+
+27) use function overloading.
+        array_copy(int[] dest, int[] src) : to copy all elements from src to dest.
+        array_copy(int[] dest, int[] src, int num) : to copy num elements from src to dest.
+
+28) write a recursive function to find the max element in the array.
+
+
+
+
