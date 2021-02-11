@@ -1429,6 +1429,10 @@ It should have same name as that of class.
 A class can have many constructors. this feature is called "constructor overloading".
 It cannot return any value, and should not be marked as void.
 
+
+if no constructor is defined, java itself insert a default constructor to the class internally.
+if at all you write atleast one constructor, java will not insert any constructor.
+
 types of contructors:
 -----------------------
 1) default constructors     (no-parameter constructor)
@@ -1441,8 +1445,9 @@ types of contructors:
 class  Student {
     private int rollNumber;
     private String name;
+    private static int feePaid;
 
-    public Student(int rollNumber, String name) {
+    public Student(int rollNumber, String name) {       // parameter constructor
         this.rollNumber = rollNumber;
         this.name = name;
     }
@@ -1452,12 +1457,160 @@ class  Student {
 
 class StundentApp {
     public static void main(String [] args) {
-        Student s1 = new Stundent();
+        Student s1 = new Student();     // it is expecting default constructor
         System.out.println(s1.getRollNumber() + "\t" + s1.getName());
-
     }
 }
 
+since the above class do not have a default constructor, we can create object by
+    Student s1 = new Stundent();
+
+Student s2 = new Student(2, "deepa");  // perfectly valid
+
+include the default constructor.
+
+    public Student() {
+        /* intentionally left blank */
+    }
+
+
+"static" keyword:
+-----------------
+
+It can be used in different ways.
+a) static data members	(when a data member is declared with "static" keyword)
+b) static methods		(when a  method is defined with "static" keyword)
+c) static block		(block means a group of statements enclosed within curly braces)
+d) static class		(when a  class is defined with "static" keyword - inner class)
+
+
+static data members:
+---------------------
+	data member that is declared with "static keyword" is also called "class variables".
+	data members that are declared "without static", are called "instance variables".
+	every object of a class have independent copies of instance variables (data members) 
+    and they all share the same copy of class variable.
+    it is used to store common data of all objects of the class.
+
+static methods:
+---------------
+	a static method can make use of other static members (data members or methods) directly.
+	"this" keyword cannot be used in static method.
+	
+    we can call a static method directly with the class name, not with any object.
+
+    className.staticMethodName();
+
+    class           methods
+                    --------
+    Scanner         nextInt()
+                    nextDouble()
+
+    create an object for the Scanner class
+    Scanner scan = new Scanner(System.in);
+
+    objectName.methodName()
+
+    scan.nextInt();
+
+    class           static method
+    ------          -------------
+    Integer         parseInt()
+    Double          parseDouble()
+
+            Integer.parseInt()
+            Double.parseDouble()
+
+    Math            pow()
+                    sqrt()
+                    PI          // static data member (or) static field
+
+                    Math.PI
+                    Math.sqrt()
+                    Math.pow()
+                    Math.abs()
+
+
+	PUBLIC STATIC members of a class can be accessed directly with class name. 
+    we do not need to have any object.
+
+static block:
+---------------
+	static {
+		st-1;
+		st-2;
+		......
+	}
+
+	a class can have only one static block.
+	static block gets executed whenever the class is accessed for the first time.
+	a class is said to be accessed if ....
+	i) memory for an object is allocated for it.	(new keyword)
+	ii) one of its static members are accessed.
+	iii) any of i) ii)  happens on any subclass of the current class.
+
+polymorphism:
+-------------------
+	poly means "many".
+	morph means "forms"
+
+	It is a behaviour of an entity.
+	different behaviours with the same name.
+
+	class	Human {
+
+		public Energy eat(IceCream  ic) {
+			Energy energy = 0;
+			while (ic is still left) {
+				energy += lick(ic);
+			}	
+			return energy;
+		}
+		
+		public Energy eat(Apple  apple) {
+			Energy energy = 0;
+			while (apple is still left) {
+				energy += chewAndSwallow(apple);
+			}	
+			return energy;
+		}
+	}
+
+	eat() is exhibiting polymorphism.
+
+
+	class	ArithmeticOperation {
+		multiply(int a, int b)  {
+			return a*b;
+		}
+		multiply(Complex a, Complex b) {
+			// different code
+		}
+		multiply(Matrix a, Matrix b) {
+			// different code
+		}
+		multiply(Polynomial a, Polynomial b) {
+			// different code
+		}	
+	}
+
+	multiply() is exhibiting polymorphism.
+
+	overloading:
+	----------------
+		when two are more methods are said to be overloaded when ....
+		i) they must share the same name
+		ii) they belong to the same class (or) to a super class and sub class
+		iii) they differ in no. of parameters (or) parameter types.
+
+		example: eat(), multiply()
+		
+	overriding:
+	--------------
+		two methods are said to be overridden when ...
+		i) they share the same signature	
+		  (signature means method name, return type, argument list)
+		ii) they belong to super class and sub class
 
 
 

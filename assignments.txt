@@ -117,6 +117,14 @@ you are not allowed to use any library methods.
 
 28) write a recursive function to find the max element in the array.
 
+Day - 4
+=====================================================
+29) add the following features to the ComplexNumber class.
 
+        multiply()
+        division()
+        isEqual()
+
+        
 
 
