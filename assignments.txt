@@ -1,5 +1,11 @@
-All these assignments must be done in a separate project in the workspace
+Points to be noted
+-------------------
+1. All these assignments must be done in a separate project in the same workspace
 name it as "Assignments".
+2. Proper Naming Conventions
+3. Proper Indentation
+4. Execution
+
 
 
 1) roots of quadratic equation

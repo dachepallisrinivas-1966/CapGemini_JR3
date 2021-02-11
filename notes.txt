@@ -1274,23 +1274,189 @@ calling the same function being in itself.
             }
 
 
+Day - 4
+------------------------------------------------------------------------------
+
+    int [] arr1 = {10,20,30,40,50};
+    int [] arr2 = arr1;             // valid 
+    System.out.println(arr1);       // values are not displayed. reference is displayed.
+    System.out.println(arr2);
+
+    for(int i = 0; i < 5; i++) {
+        arr1[i]++;
+    }
+
+    for(int val : arr1) {
+        System.out.println(val);
+    }                               // 11,21,31,41,51
+
+    for(int val : arr2) {
+        System.out.println(val);    // 11,21,31,41,51
+    }
 
 
+Arrays class: (java.util package)
+----------------------------------
+provide many util methods to simplify our programming.
+explore these methods.
+
+1) copyOf()
+2) binarySearch()
+3) sort()
+4) fill()
+
+whenever we == on arrays to check for equality, references are compared, not data.
+
+5) equals()
+6) deepEquals()
 
 
+                                OOPS (Object Oriented Programming System)
+                                =========================================
+It is a programming paradigm.
+
+1) monolithic   : Assembly language
+2) procedure oriented   :   COBOL
+3) structured   :   'C'
+4) object oriented 
+    +   data is given more importance than logic
+    +   object contain it's own data and related operations
 
 
+OOAD        (Object Oriented Analysis and Design)
+-------------------------------------------------
+    class diagram
+    use case diagram
+    sequence diagram
+
+    actor
+
+class   :  it is a user-defined datatype that represent an entity in terms of properties
+           (variables / fields / data members) and behaviours (methods).
+           it is a re-usable software component.
+
+           classes we are going to create also called as models, pojos, beans etc.,
+           POJO (plain old java object)
+
+object  :  it is the entity itself.
+
+Employee
+    id
+    name
+    dateJoined
+    salary
+
+state:
+    whenever an operation is done on the object, properties will change. this is called 
+    state is modified.
+
+Account
+    id : 101            name : srinivas         balance : 10000     (current statement)
+
+            operation (deposit - 5000)
+
+                                                balance : 15000     (new state)
+
+datatype    <---    value
+int = 50;
+
+datatype    <--     variable    <-- value
+
+Employee    <--     object         <--  data
 
 
+define a class:
+-----------------
+class   ClassName {
+    datatype dataMember1;
+    returnType method1() {
+
+    }
+    returnType method2() {
+
+    }
+}
+
+No memory is allocated when we define a class.
+
+declare an object:
+------------------
+className   objectName = new className();
+
+the "new" keyword allocate memory for an object.
+
+features:
+---------
+1) Encapsulation
+        nothing but data hiding.
+        providing setters (mutators) and getters (accessors) to access private data members
+        to other classes.
+        setters are used to provide initial value or to modify existing value of a data member.
+        getters are used to retrieve current value of data members.
 
 
+2) Abstraction
+        nothing but behaviour hiding.
+3) Data hiding:
+        make data members as private.
+        so that they are not accessible from outside of the class.
+        
 
+ComplexNumber
+    realPart
+    imaginaryPart
 
+Access Specifiers (Access modifiers)
+-------------------------------------
+1) default : which is taken when no specific access is given on members.
+    any member under default can be accessed only in the current package.
+2) private : members under this access can be used only within the class in which they
+             are declared.
+3) public  : members under this access can be used everywhere, wherever the package is visible.
+4) protected : members under this access can be used either within the class or any of it's
+             sub class.
 
+"this" reference:
+-----------------
+it refer to "implied object".
+implied object is the object is the one, on which the current method is called.
 
+Constructor
+---------------
+It is a special method which is automatically executed whenever an object is created.
+It is used to initialize data members.
+It should have same name as that of class.
+A class can have many constructors. this feature is called "constructor overloading".
+It cannot return any value, and should not be marked as void.
 
+types of contructors:
+-----------------------
+1) default constructors     (no-parameter constructor)
+2) parameter constructor    (parameterized / parametric constructor)
+3) copy constructor:
+    it takes object of the same class as parameter.
+    it is automatically executed whenever we are creating a new object by passing an
+    existing object as a parameter.
 
+class  Student {
+    private int rollNumber;
+    private String name;
 
+    public Student(int rollNumber, String name) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+    }
+
+    /* setters are getters */
+}
+
+class StundentApp {
+    public static void main(String [] args) {
+        Student s1 = new Stundent();
+        System.out.println(s1.getRollNumber() + "\t" + s1.getName());
+
+    }
+}
 
 
 
