@@ -9,13 +9,25 @@ public class ComplexNumberApp {
 		ComplexNumber c1 = new ComplexNumber(10, 9);
 		ComplexNumber c2 = new ComplexNumber(8,-6);
 		
+		System.out.println(c1);
+		// System.out.println(c1.toString());
+//		System.out.println(c1.hashCode());
+		
+		System.out.println(c2);
+		
+//		System.out.println(c2.toString());
+//		System.out.println(c2.hashCode());
+//		
+//		System.out.println(c1.getRealPart() + ", " + c1.getImaginaryPart());
+//		System.out.println(c2.getRealPart() + ", " + c2.getImaginaryPart());
+	
 		// ComplexNumber c3 = c1.add(c2);
-		ComplexNumber c3 = ComplexNumber.add(c1, c2);
-		System.out.println(c3.getRealPart() + ", " + c3.getImaginaryPart());
+//		ComplexNumber c3 = ComplexNumber.add(c1, c2);
+//		System.out.println(c3.getRealPart() + ", " + c3.getImaginaryPart());
 		
 		// ComplexNumber c4 = c1.diff(c2);
-		ComplexNumber c4 = ComplexNumber.diff(c1, c2);
-		System.out.println(c4.getRealPart() + ", " + c4.getImaginaryPart());
+//		ComplexNumber c4 = ComplexNumber.diff(c1, c2);
+//		System.out.println(c4.getRealPart() + ", " + c4.getImaginaryPart());
 		
 //		ComplexNumber c1 = new ComplexNumber();
 //

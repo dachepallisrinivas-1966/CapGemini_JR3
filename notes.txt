@@ -1596,8 +1596,8 @@ polymorphism:
 
 	multiply() is exhibiting polymorphism.
 
-	overloading:
-	----------------
+	overloading:  (compile-time polymorphism or early-binding)
+	-----------------------------------------------------------
 		when two are more methods are said to be overloaded when ....
 		i) they must share the same name
 		ii) they belong to the same class (or) to a super class and sub class
@@ -1605,12 +1605,103 @@ polymorphism:
 
 		example: eat(), multiply()
 		
-	overriding:
-	--------------
+	overriding:  (run-time polymorphism or late-binding)
+	-----------------------------------------------------
 		two methods are said to be overridden when ...
 		i) they share the same signature	
 		  (signature means method name, return type, argument list)
 		ii) they belong to super class and sub class
+
+        we can use @Override annotation to specify that the method is going to be overriding
+        the super class method.
+        
+        the compiler will give an error if the signature is not matching with super class 
+        method.
+
+
+
+java.lang.Object class:
+------------------------------
+	Every class in java whether is pre-defined or user-defined, inherited from java.lang.Object 
+    class.
+	It is called "universal super class" (cosmic class)
+
+	methods of java.lang.Object class:
+	---------------------------------------------
+	1) public String toString()
+		it converts an object into String.
+
+	the default implementation is to return the hashcode.
+	System.out.println(object)	: display the hashcode in hexa decimal system.
+	System.out.println(object.toString()) is same as previous statement.
+
+	But whenever we want to print the object, we want to display properies of an object. 
+    In such case, we must override toString() method.
+
+    2) int hashcode()
+        it return the hash code in decimal system.
+
+
+
+Inheritance
+---------------
+	creating a new class (sub class) from an existing class (super class).
+	types of inheritance:
+	----------------------------
+	1) simple		2) multi-level	3) hierarchical	4) multiple	5) hybrid
+	the keyword "extends" is used to derive a sub class from a super class.
+	java doesn't support multiple inheritance for classes that means a class can have only one superclass.
+	Inheritance represent an “is-a” relationship.
+
+	Pen
+		Reffil
+		Nib
+		Ink
+
+		write(paper)
+
+	Marker		is also a pen
+		write(white board)
+
+constructor phenomenon:
+----------------------------------
+	when an object is created, the constructor of that class is called.
+
+	when an object of sub class is created, super class constructor is called first and then the sub class constructor is called. This hold true for any levels of inheritance.
+
+	when a sub class object is created with
+
+	i) default constructor		then the super class default constructor is called.
+	ii) parameter constructor	then the super class default constructor is called.
+	iii) copy constructor		then the super class default constructor is called.
+
+"super" keyword:	("super" reference)
+----------------------------------------------------
+	1) it is used to call the constructor of super class from the constructor of sub class.
+	2) This is used exclusively call a parameter constructor or copy constructor of the super class from sub class constructor.
+	3) if super() has to be used, it must be the first statement in the code block.
+	4) this() and super() cannot be used at a time.	(mutually exclusive)
+	5) "super" can be used to call an overriding function of super class in the sub class.
+
+Note:
+-------
+	Inheritance will share only the definition but not the existence.
+
+
+Employee
+	empId, name, basic
+	setters, getters, constructors, toString
+
+Manager					(is also an employee)			[simple]
+	hra
+	
+
+ManagingDirector				(is also a manager)				[multi-level]
+	ta
+
+ContractEmployee				(is also an employee)			[hierarchical]
+	contractDuration
+
 
 
 

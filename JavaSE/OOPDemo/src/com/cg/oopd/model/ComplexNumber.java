@@ -83,8 +83,14 @@ public class ComplexNumber {
 		return result;
 	}
 	
-	
+	@Override	
+	public String toString() {
+		return this.realPart + ", " + this.imaginaryPart;
+	}
 	
 	
 }
+
+
+
 
