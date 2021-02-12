@@ -1429,6 +1429,25 @@ It should have same name as that of class.
 A class can have many constructors. this feature is called "constructor overloading".
 It cannot return any value, and should not be marked as void.
 
+this() is also used to call a constructor from another constructor of the same class.   
+
+public class Test {
+
+	public Test() {
+		this("hello, how are you?");
+		System.out.println("default constructor");
+
+	}
+	
+	public Test(String msg) {
+		System.out.println(msg);
+	}
+	
+	public static void main(String [] args) {
+		Test t = new Test();
+	}
+
+}
 
 if no constructor is defined, java itself insert a default constructor to the class internally.
 if at all you write atleast one constructor, java will not insert any constructor.
@@ -1641,33 +1660,60 @@ java.lang.Object class:
     2) int hashcode()
         it return the hash code in decimal system.
 
+    Stack and Heap memory
+    ------------------------
+    Student s = new Student();
+    variable s ->  in stack memory -> hashcode
+    object memory -> in heap memory -> data
 
 
-Inheritance
----------------
+
+Day - 5
+----------------------------------------------------------------------------
+
+Inheritance:
+
 	creating a new class (sub class) from an existing class (super class).
+    sub class can make use of all features of super class as well as any extra features that are
+    added to it.
+    it represent "is-A" relation ship.
+    it is mainly for code-reusability.
+
 	types of inheritance:
 	----------------------------
-	1) simple		2) multi-level	3) hierarchical	4) multiple	5) hybrid
-	the keyword "extends" is used to derive a sub class from a super class.
-	java doesn't support multiple inheritance for classes that means a class can have only one superclass.
-	Inheritance represent an “is-a” relationship.
+	1) simple		2) hierarchical	    3) multi-level  4) multiple	    5) hybrid
+	
+    the keyword "extends" is used to derive a sub class from a super class.
+	java doesn't support multiple inheritance for classes that means a class can have only one
+    superclass.
+	
+    Note:
+    ------
+	Inheritance will share only the definition but not the existence.
 
-	Pen
-		Reffil
-		Nib
-		Ink
 
-		write(paper)
 
-	Marker		is also a pen
-		write(white board)
+CASE STUDY:
+-------------------------------
+Person
+    name, age
+    setters, getters, constructors, toString
+Employee    (is a Person)       [simple]
+    salary
+    setters, getters, constructors, toString
+Manager		(is a Employee)		[multi-level]
+	allowance
+    setters, getters, constructors, toString
+	
+ContractEmployee	(is also an Employee)			[hierarchical]
+	contractDuration
 
 constructor phenomenon:
 ----------------------------------
 	when an object is created, the constructor of that class is called.
 
-	when an object of sub class is created, super class constructor is called first and then the sub class constructor is called. This hold true for any levels of inheritance.
+	when an object of sub class is created, super class constructor is called first and 
+    then the sub class constructor is called. This hold true for any levels of inheritance.
 
 	when a sub class object is created with
 
@@ -1678,52 +1724,230 @@ constructor phenomenon:
 "super" keyword:	("super" reference)
 ----------------------------------------------------
 	1) it is used to call the constructor of super class from the constructor of sub class.
-	2) This is used exclusively call a parameter constructor or copy constructor of the super class from sub class constructor.
+	2) This is used exclusively call a parameter constructor or copy constructor of the 
+        super class from sub class constructor.
 	3) if super() has to be used, it must be the first statement in the code block.
 	4) this() and super() cannot be used at a time.	(mutually exclusive)
 	5) "super" can be used to call an overriding function of super class in the sub class.
 
+class A {
+    public A() {
+        System.out.println("A");
+    }
+}
+class B extends A {
+    public B() {
+        System.out.println("B");
+    }
+    public B(String msg) {
+        System.out.println(msg);
+    }
+    public B(B obj) {
+        System.out.println("copy constructor");
+    }
+}
+class C extends B {
+    public C() {
+        System.out.println("C");
+    }
+}
+class Main {
+    public static void main(String [] args) {
+        B obj2 = new B(obj);
+    }
+}
+
+
+Abstract Polymorphism	(Abstraction)
+---------------------------------------------------------
+abstract means "incomplete or unclear". It is an idea but we don't know how to implement.
+abstraction means "behaviour hiding".
+abstraction is "disclosing only required details and hiding the background implementation".
+
+abstract class:
+--------------------
+	It is a class which should not have objects allocated.
+
+	School Automation
+		School	=> Domain
+		Teacher, Student, Principle	=> Domain Entities
+	
+		common properties	=>  
+
+		Person ==> name, age, phone, address, date of birth, weght, height, blood group
+
+		Teacher extends Person	    => salary, subject, 
+		Principle extends Person	==>	....
+		Student extends Person      ==> fee, class, section
+
+        In this scenario, we never need to create an object for Person.
+        so, Person class can be declared as an abstract.
+
+	to make a class abstract, it must be defined with an "abstract" keyword.
+	we cannot instantiate (create an object) an abstract class.
+
+abstract method:
+----------------------
+	It is a method which do not have any implementation (i.e., definition)
+
+   	eg:	abstract class Shape 
+			abstract 	area()	: 
+			abstract 	perimeter() :
+			abstract	volume();
+
+
+	    abstract class	Rectangle	extends	Shape {
+			@Override
+			area() {
+				...
+			}
+			@Override
+			perimeter() {
+				..
+			}
+		}
+
+		class	Cuboid	extends	Rectangle {
+			@Override
+			volume() {
+				....
+			}
+		}
+
+	1) an abstract method must be written only inside an abstract class.
+	2) but an abstract class need not contain an abstract method.
+	3) all sub classes of abstract class, must implement (override) all abstract methods. 
+       if not, the sub class must also be marked as "abstract".
+
+abstract class A {
+    abstract void show();
+}
+
+class B extends A {
+    @Override
+    protected void show() {               
+        System.out.println("B");
+    }
+}
+
+class Test {
+    public static void main(String [] args) {
+        B obj = new B();
+        obj.show();
+    }
+}
+
+error:
+    cannot reduce the visibility of the inherited method.
+
+Visibility Levels:
+---------------------------------------------
+private             (least visiblity)
+default             (it can be used in any class belong to the current package)
+protected           (it is visible to current class as wells as in any of
+                    sub classes)
+public              (every where)
+---------------------------------------------
+
+Referencing:
+------------
+
+	In inheritance, super class reference variable can hold sub class objects.
+	Vice Versa  is NOT TRUE.
+
+			                    Employee
+			                        |
+            --------------------------------------------
+	        |					                        |
+         Manager				                ContractEmployee
+	        |
+       Managing Director
+
+	Employee emp1 = new Employee();		// OK
+	Employee emp2 = new Manager();		// OK
+	Employee emp3 = new ContractEmployee();	// OK
+	Employee emp4 = new ManagingDirector();	// OK
+	
+	Manager m1 = new Manager();		// OK
+	Manager m2 = new ManagingDirector();		// OK
+	
+	Manager m3 = new ContractEmployee();	// Not OK
+	
+	ContractEmployee ce = new Employee();	// Not OK
+
+
+	Type Casting:
+	------------------
+	Converting one datatype to another.
+
+	2 types.
+
+	a) Narrowing	(demotion)		explicit
+	b) Broadening	(promotion)		implicit
+
+	primitve types:
+	-------------------
+	b) broadening:
+	    -----------------
+	int x = 45;
+	double d = x;		(implicit)	- broadening
+
+	double d2 = 67;		// OK
+	int y = '@';		// OK
+
+	char -> int -> double
+
+	a) narrowing: (explicit):
+	------------------------------
+	int x = 45.0;		// error
+	int x = (int)45.0;		// OK
+
+	char ch = (char)156;	// OK
+
+	user-defined datatype types:
+	-----------------------------------------
+
+	ContractEmployee ce1 = new Employee();		// Not OK
+	ContractEmployee ce2 = emp3;			// Not OK
+
+	ContractEmployee ce2 = (ContractEmployee)emp3	// OK
+	
+	ContractEmployee ce3 = emp4;			// Not OK
+	ContractEmployee ce2 = (ContractEmployee)emp4	// Not OK  - we get ClassCastException
+
+	Manager m1 = (Manager)emp2;			// OK
+	Manager m2 = (Manager)emp3;			// Not OK
+	Manager m3 = (Manager)emp4;			// OK
+
+	
+Dynamic Polymorphism:
+--------------------------------
+With all abstract functions, there will be multiple implementations. Here the dynamic polymorphism is implemented.
+
+final keyword:
+------------------
+1) final class : it cannot be inherited.
+2) final method : it cannot be overridden.
+3) final variable : value of which cannot be modified.
+
 Note:
 -------
-	Inheritance will share only the definition but not the existence.
+The abstract and final cannot appear at the same time since  they are mutually exclusive (It is called as “Definition Constradictory”)
 
+Best Practices:
+--------------------
+whenever we create a constant, it is recommended to mark it as "public static final".
+	final because ,it must be a constant.
+	static because a constant will have only value for all objects of the class.
+	public because however it cannot be modified.
 
-Employee
-	empId, name, basic
-	setters, getters, constructors, toString
+eg:
+	public class Circle {
+		private double radius;
+		public static final double PIE = 3.14;
 
-Manager					(is also an employee)			[simple]
-	hra
-	
-
-ManagingDirector				(is also a manager)				[multi-level]
-	ta
-
-ContractEmployee				(is also an employee)			[hierarchical]
-	contractDuration
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		/* setters and getters */
+	}	
 
 
 
