@@ -127,6 +127,33 @@ Day - 4
 
     modify the toString() such that output is displayed as complex number format.
 
+30) create a class with the name "Point".
+    x, y are data members.
+    default constructor, parameter constructor(s), copy constructor
+    include methods to 
+        i) calculate distance between two points
+        ii) midpoint of two points
+        iii) slope of two points
+        iv) collinear or not if three points are given
+        v) area of triangle formed by three given points 
+    min : 30 mins
+
+31) create a class with the name "Account".
+    accountNumber, fullName, balance are data members.
+    default constructor, parameter constructor(s)
+    include the following methods ...
+        i) able to deposit an amount to his/her account
+        ii) able to withdraw an amount 
+        iii) able to transfer funds between two accounts
+        iv) balance enquiry
+    generate account numbers auto-incremented manner
+    eg: account numbers are  1000, 1001, 1002, ...
+    make sure that minimum balance Rs. 1000 should be maintained always.
+
+
+
+
+
 
 
 

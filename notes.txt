@@ -1885,6 +1885,7 @@ Referencing:
 	a) Narrowing	(demotion)		explicit
 	b) Broadening	(promotion)		implicit
 
+
 	primitve types:
 	-------------------
 	b) broadening:
@@ -1904,7 +1905,8 @@ Referencing:
 
 	char ch = (char)156;	// OK
 
-	user-defined datatype types:
+
+	user-defined data types:
 	-----------------------------------------
 
 	ContractEmployee ce1 = new Employee();		// Not OK
@@ -1922,17 +1924,40 @@ Referencing:
 	
 Dynamic Polymorphism:
 --------------------------------
-With all abstract functions, there will be multiple implementations. Here the dynamic polymorphism is implemented.
+With all abstract functions, there will be multiple implementations. Here the dynamic 
+polymorphism is implemented.
 
 final keyword:
 ------------------
 1) final class : it cannot be inherited.
 2) final method : it cannot be overridden.
-3) final variable : value of which cannot be modified.
+3) final variable : value of which cannot be modified. (constants)
+
+class A {
+    public final void show() {
+        System.out.println("Final method");
+    }
+}
+class B extends A{
+    void show() {           // not allowed - since show() is a final method
+        System.out.println("overridng");
+    }
+}
+
+
+
+final class C {
+    ..
+}
+class D extends C {     // not allowed - since C is a final class
+
+}
+
 
 Note:
 -------
-The abstract and final cannot appear at the same time since  they are mutually exclusive (It is called as “Definition Constradictory”)
+The abstract and final cannot appear at the same time since  they are 
+mutually exclusive (It is called as “Definition Constradictory”)
 
 Best Practices:
 --------------------
@@ -1949,5 +1974,389 @@ eg:
 		/* setters and getters */
 	}	
 
+
+class               : entity
+abstract class      : semi-defined entity
+interface           : ROLE (responsibility)
+
+interfaces:
+-----------
+It is a user-defined datatype (like class) that represents a ROLE and can contain 
+only abstract methods and static final variables (till JDK 1.7)
+interface will not have properties.
+we cannot instantiate an interface.
+
+					    Living Being  (Entity)
+			        		        |
+	        |---------------------------------------------------------|
+	    Human  (Entity)							                Animal  (Entity)
+     |-----------------------------|						|---------------|
+Male			                Female					Male		      Female
+
+
+				Mother (role)	birth_to_baby(), feed_baby()
+				Father  (role)	protect_child()
+				Brother (role)
+				Sister  (role)
+
+one entity can play multiple roles. This is how we can achieve  multiple inheritance 
+using interfaces.
+
+class Human implements Mother, Sister {
+	..
+}
+
+class Human implements Father, Brother {
+	..
+}
+
+class Human implements Father {		//  if father is interface
+
+}
+
+class Human extends Father {			// if father is class
+
+}
+
+super class         <--- extends    --> sub class
+interface           <--- implements ---> sub class`
+interface           <--- extends ------> sub-interface
+
+why can't we use abstract classes instead of interfaces?
+
+one entity can play multiple roles.
+if we use abstract classes, we can't achieve this. because we cannot have two super classes 
+for a single class. that's why we must use interfaces.
+when multiple inheritance is not required, we can go with abstract classes. 
+
+abstract class
+    can it have normal methods ?
+    YES.
+    can it have abstract methods ?
+    YES
+interface
+    can it have normal methods ?
+    NO
+    it should have only abstract methods.
+
+Note:
+-------
+1) The keyword "extends" is used to derive a class from a class or an interface from
+   another interface.
+2) The keyword "implements" is used to derive a class from an interface.
+3) It is not possible to derive an interface from a class.
+4) A class cannot have many super classes.
+5) But a class can have more than one super interfaces, (multiple inheritance)
+6) We need not mark method declarations inside an interface as "public abstract". 
+   However there are automatically treated as public abstract.
+7) We can create one interface from multiple interfaces.
+
+    interface One {
+        ..
+    }
+
+    interface Two {
+        ...
+    }
+
+    interface Three extends One, Two {
+        // very much possible
+    }
+
+when do we use interfaces?
+1) interface works as an abstract bridge between two modules.
+2) interface brings only behaviourally similar entities under one hierarchy.
+
+	Rocket		Bird		AirPlane
+		all of the above entites can land(), takeoff(), fly()
+
+	only these behaviours are common nothing else.
+	properties are not common.
+	to bring them under one roof, we can create an interface.
+
+	interface	IFlyingObject {
+		void land();
+		void takeoff();
+		void fly();
+	}
+
+	class	Bird 	implements  IFlyingObject {
+		// provide implementations for all abstract methods.
+	}
+
+	class	Rocket 	implements  IFlyingObject {
+		// provide implementations for all abstract methods.
+	}
+
+	class	AirPlane 	implements  IFlyingObject {
+		// provide implementations for all abstract methods.
+	}
+
+
+ interface                      Abstract Class
+ ------------------             -------------------
+ no fields                          have fields
+ only public members                any type of members
+ 
+ represent Role                 represent Entity (semi-defined)
+ and one entity can 
+ have any number of roles
+
+
+enum:	(JDK 1.5)
+----------------------------
+
+"enum" in java is a user data type that contain fixed set of constants.
+"enum" stands for "enumeration".
+it is a user-defined datatype that represent possible values of a property.
+
+It can be used for day of the week (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY and SATURDAY) , 
+directions (NORTH, SOUTH, EAST and WEST), Season (WINTER, SPRING, SUMMER, FALL), gender (MALE, FEMALE)   etc. 
+
+The java enum constants are static and final implicitly. 
+
+Java Enums can be thought of as classes that have fixed set of constants.
+
+enum ensures type safety.
+
+
+
+Day-6
+========================================================================
+
+Painting Store ----------- EstimationApp
+
+ estimate the cost of painting an Hoarding
+ area * paintingRatePerUnit
+
+ estimate the cost of bordering a Hoarding
+ perimeter * borderingRatePerUnit
+
+ the Hoarding are not always rectangle in shape,
+ they cen be circular or traingular ..etc.,
+
+
+model : to store data 
+service : business logic (computations, validations)
+ui : application program
+
+
+ interface Hoarding
+ getArea()
+ getPerimeter()
+ |
+ |-CircularHoarding
+ |-RectangleHoarding class EstimationService{
+    public double estimateCost(Hoarding h){
+        h.getArea()*67.8;
+    }
+ }
+ 
+
+ 
+
+ static class
+
+ Not all classes can be static.
+
+ Java allows us to create a class inside another class
+ only such inner class can be marked as static, 
+ adn static inner classes are called nested classes.
+
+ class Demo{
+ class InnerClass{
+
+ }
+
+ static class NestedClass{
+
+ }
+ }
+
+
+ Static Block
+ 
+ class Demo{
+ static {
+ //called a static block
+ //a class can have one and only one static block.
+ //this is executed immediatly 
+ //when a class is accessed for first time.
+ }
+ }
+
+ Accessing a class means any one of the below,
+ 1. declare a refernce
+ 2. allocated an object
+ 3. call a static method
+ 4. refer a static field.
+ 5. any of the above on one of its sub-classes.
+
+
+ Day - 12
+ ------------------------------------------------------------------------
+
+ Java 8 enhanceents to an interface.
+
+ default methods
+
+ unlike method in a interface that are forced to be abstract,
+ if a method is marked with keyword 'default', then the
+ default method can have implementation
+
+ static methods 
+
+
+ Java Standard Libraries
+ ------------------------------------------
+
+ fully qualified clas name = package.className
+
+ java.lang
+ 
+ Object java.lang.Object
+
+ Wrapper Classes
+ java.lang.Integer
+ java.lang.Short
+ java.lang.Byte
+ java.lang.Double
+ java.lang.Boolean
+ java.lang.Flaot
+ java.lang.Character
+
+ class Patient {
+ private Integer childCount;
+ }
+
+ null//no info is provided 
+ 0//no children
+ 1,2 ...//have children
+
+ Boxing =
+ primitive variable into a wrapper object
+
+ int x=89;
+ Integer iobj = x; //auto-boxing
+
+ unBoxing =
+ wrapper object into primitive variable
+ 
+ Integer iobj = new Integer(109);
+ int x = iobj; // auto-unboxing
+
+
+ String s="10";
+ int x = Integer.pareInt(s);
+
+
+ System
+ public static fields
+ -------------------------
+ err : PrintStream standard error stderr
+ in : InputStream standard input stedin
+ out : PrintStream standard output stdout
+
+ public static methods
+ ------------------------
+
+ void exit(int); //abruptly end our application.
+ void gc(); //garbbage collector
+ String getEnvironmentVariable(String varName);
+ void setEnvironmentVariable(String varName,String value);
+
+
+ Strings
+ java.lang.String
+ java.lang.StringBuilder
+ java.lang.StringBuffer
+
+
+ String s1 = new String();
+ String s2 = new String("Apple");
+ String s3 = "Hello World";
+
+ String objects are immutable (can not be modified).
+ Java has a separate memory called StringPool to store string.
+
+ String s3 = "Hello World";
+
+ Do "Hello World" is ther in the StringPool?
+ if Yes? s3 will have the ref of "Hello World" assigned
+ if No? then "Hello World" is created in StringPool, and
+ s3 will have the ref of "Hello World" assigned
+
+ String s4 = "Hello World";
+ //both s3 an s4 will refer to the smae memory.
+
+ s3 = "Everyone! " + s3;
+
+ a new string "Evryone! Hello World" is created in StringPool
+ and s3 is redirected to refer it.
+
+ if want a mutable string (a modifiable string),
+ we will use StringBuffer or StringBuilder
+
+ java.lang.String
+ ---------------------------------
+ public java.lang.String(); 
+ public java.lang.String(char[]);
+ public java.lang.String(byte[]);
+ public java.lang.String(java.lang.StringBuffer);
+ public java.lang.String(java.lang.StringBuilder);
+
+ public int length();
+ public boolean isEmpty();
+ public char charAt(int);
+ public byte[] getBytes();
+ public boolean equals(java.lang.Object);
+ public boolean equalsIgnoreCase(java.lang.String);
+ public int compareTo(java.lang.String);
+ public int compareToIgnoreCase(java.lang.String); 
+ public boolean startsWith(java.lang.String);
+ public boolean endsWith(java.lang.String);
+ public java.lang.String substring(int);
+ public java.lang.String substring(int, int);
+ public java.lang.String concat(java.lang.String);
+ public java.lang.String replace(char, char);
+ public boolean matches(java.lang.String);
+ public java.lang.String[] split(java.lang.String);
+ public java.lang.String toLowerCase();
+ public java.lang.String toUpperCase();
+ public java.lang.String trim();
+
+ public static java.lang.String format(String, java.lang.Object...);
+ public static java.lang.String valueOf(..primitive_types...);
+
+
+ java.lang.StringBuffer
+ ---------------------------------------------------
+ public java.lang.StringBuffer();
+ public java.lang.StringBuffer(java.lang.String);
+ 
+ public synchronized int length();
+ public synchronized char charAt(int);
+ public synchronized java.lang.StringBuffer append(java.lang.Object);
+ public synchronized java.lang.StringBuffer delete(int, int);
+ public synchronized java.lang.StringBuffer replace(int, int, java.lang.String);
+ public synchronized java.lang.String substring(int);
+ public synchronized java.lang.String substring(int, int); 
+ public synchronized java.lang.StringBuffer insert(int, java.lang.Object);
+ public synchronized java.lang.StringBuffer reverse();
+ 
+ java.lang.StringBuilder
+ ---------------------------------------------------
+ public java.lang.StringBuilder();
+ public java.lang.StringBuilder(java.lang.String);
+ 
+ public int length();
+ public char charAt(int);
+ public java.lang.StringBuilder append(java.lang.Object);
+ public java.lang.StringBuilder delete(int, int);
+ public java.lang.StringBuilder replace(int, int, java.lang.String);
+ public java.lang.String substring(int);
+ public java.lang.String substring(int, int); 
+ public java.lang.StringBuilder insert(int, java.lang.Object);
+ public java.lang.StringBuilder 
 
 
