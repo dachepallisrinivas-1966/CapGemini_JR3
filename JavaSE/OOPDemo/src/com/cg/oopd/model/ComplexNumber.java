@@ -83,6 +83,14 @@ public class ComplexNumber {
 		return result;
 	}
 	
+	
+	@Override
+	public boolean equals(Object other) {
+		ComplexNumber o = (ComplexNumber) other;
+		return (this.realPart == o.realPart && this.imaginaryPart == o.imaginaryPart);
+	}
+
+	
 	@Override	
 	public String toString() {
 		return this.realPart + ", " + this.imaginaryPart;

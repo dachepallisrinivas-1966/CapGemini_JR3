@@ -1564,9 +1564,11 @@ static block:
 	a class can have only one static block.
 	static block gets executed whenever the class is accessed for the first time.
 	a class is said to be accessed if ....
-	i) memory for an object is allocated for it.	(new keyword)
-	ii) one of its static members are accessed.
-	iii) any of i) ii)  happens on any subclass of the current class.
+	1. declare a refernce
+    2. allocated an object
+    3. call a static method
+    4. refer a static field.
+    5. any of the above on one of its sub-classes.
 
 polymorphism:
 -------------------
@@ -2103,21 +2105,7 @@ when do we use interfaces?
  have any number of roles
 
 
-enum:	(JDK 1.5)
-----------------------------
 
-"enum" in java is a user data type that contain fixed set of constants.
-"enum" stands for "enumeration".
-it is a user-defined datatype that represent possible values of a property.
-
-It can be used for day of the week (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY and SATURDAY) , 
-directions (NORTH, SOUTH, EAST and WEST), Season (WINTER, SPRING, SUMMER, FALL), gender (MALE, FEMALE)   etc. 
-
-The java enum constants are static and final implicitly. 
-
-Java Enums can be thought of as classes that have fixed set of constants.
-
-enum ensures type safety.
 
 
 
@@ -2136,11 +2124,6 @@ Painting Store ----------- EstimationApp
  they cen be circular or traingular ..etc.,
 
 
-model : to store data 
-service : business logic (computations, validations)
-ui : application program
-
-
  interface Hoarding
  getArea()
  getPerimeter()
@@ -2152,10 +2135,31 @@ ui : application program
     }
  }
  
+enum:
+------
+
+"enum" in java is a user data type that contain fixed set of constants.
+"enum" stands for "enumeration".
+it is a user-defined datatype that represent possible values of a property.
+
+It can be used for day of the week (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY and SATURDAY) , 
+directions (NORTH, SOUTH, EAST and WEST), Season (WINTER, SPRING, SUMMER, FALL), gender (MALE, FEMALE)   etc. 
+
+The java enum constants are static and final implicitly. 
+
+Java Enums can be thought of as classes that have fixed set of constants.
+
+enum ensures type safety.
+
+methods:
+---------
+1) values()
+2) ordinal()
+3) name()
+
 
  
-
- static class
+static class
 
  Not all classes can be static.
 
@@ -2164,199 +2168,254 @@ ui : application program
  adn static inner classes are called nested classes.
 
  class Demo{
- class InnerClass{
+    class InnerClass{
 
+    }
+
+    static class NestedClass{
+
+    }
  }
 
- static class NestedClass{
 
- }
- }
-
-
- Static Block
- 
- class Demo{
- static {
- //called a static block
- //a class can have one and only one static block.
- //this is executed immediatly 
- //when a class is accessed for first time.
- }
- }
-
- Accessing a class means any one of the below,
- 1. declare a refernce
- 2. allocated an object
- 3. call a static method
- 4. refer a static field.
- 5. any of the above on one of its sub-classes.
-
-
- Day - 12
- ------------------------------------------------------------------------
-
- Java 8 enhanceents to an interface.
-
+Java 8 enhancements to an interface.
+------------------------------------
  default methods
 
  unlike method in a interface that are forced to be abstract,
  if a method is marked with keyword 'default', then the
  default method can have implementation
 
- static methods 
+ interface A {
+    public abstract void m1();
+    public abstract void m2();
 
 
- Java Standard Libraries
- ------------------------------------------
+   default void m3() {
+       // implementation code
+   }
 
- fully qualified clas name = package.className
+   static void m4() {
 
- java.lang
- 
- Object java.lang.Object
+   }
 
- Wrapper Classes
- java.lang.Integer
- java.lang.Short
- java.lang.Byte
- java.lang.Double
- java.lang.Boolean
- java.lang.Flaot
- java.lang.Character
-
- class Patient {
- private Integer childCount;
  }
 
- null//no info is provided 
- 0//no children
- 1,2 ...//have children
+ class B implements A {
+     @Overriding
+     void m1() {
 
- Boxing =
- primitive variable into a wrapper object
+     }
 
- int x=89;
- Integer iobj = x; //auto-boxing
+     @Overiding
+     void m2() {
 
- unBoxing =
- wrapper object into primitive variable
+     }
+
+     @Override
+     void m3() {
+         // sub class specific
+     }
+ }
+
+ B obj = new B();
+ obj.m1()
+ obj.m2()
+ obj.m3()
+
+ A.m4()     ==> since m4 is static method, we can call by using interface name.
+
+
+
+ 100 implementation classes 
+
+
+
+						                Built-In Packages
+						                ------------------
+                                        (Java SE Libraries)
+
+java.lang			(default package - because it is imported for every program)
+	Object          
+	System
+	Math
+	String
+	StringBuffer
+	StringBuilder
+	Exception
+	Throwable interface
+	Runnable interface
+	Thread
+	Wrapper classes - Integer, Double, Float, Long, Boolean
+
+
+java.time	(JDK 1.8)
+	LocalDate
+	LocalTime
+	LocalDateTime
+	DateTimeFormatter
+	Duration
+	Period
+
+java.util
+    Scanner
+
+java.io
+    BufferedReader
+
+to use any class, we need to specify fully qualified class name.(eg: packagename.classname) 
+or import them.
+
+java.lang is the default package. it is automatically imported for every program.
+
+java.lang.Object
+----------------------
+	It is the universal super class (cosmic class).
+
+	methods:
+	------------
+	public int hashCode()
+	public boolean equals(Object)
+	public String toString()
+
+
+	equals(Object):
+		if (obj1 == obj2)		means it compare hash codes.
+		if (obj1.equals(obj2))	return if magnitudes are equal, otherwise false.
+
+	they have return bit-wise comparision. but to have our own logic, we need to override this method.
+
+	"@Override" annotation:	It is an instruction given to source analyzer (i.e., compilers, document generator etc.,)
+				It is a compile-time check instruction. It is used to verify whether the overriding is done properly or not.
+				The compiler will give an error if it is not overridden properly.
+
+2) java.lang.System class:
+   -------------------------------
+
+	class variables			        object
+	-------------------				---------
+	public static InputStream		in
+	public static PrintStream		out
+	public static PrintStream		err
+
+	System.in	carries signal from keyboard to VDU.
+	System.out, System.err carries signal directly to VDU.
+
+
+	methods:
+	------------
+	public static void gc();		request for garbage collection.
+	public static void exit(int)	terminates the program then and there. int could be either a 0 or 1.
+    String getEnvironmentVariable(String varName);
+    void setEnvironmentVariable(String varName,String value);
+
+
+
+java.lang.Math
+-------------------
+	public static fields:
+	------------------------
+		E, PI
+    	
+	public static methods
+	----------------------------
+		double pow()
+		double sin(angle in radians)
+            Math.sin(30)    =>  ???
+            Math.sin(Math.toRadians(30))    =>  0.5
+
+        double cos(angle in radians)
+		double sqrt()
+
+		ceil() : return next integer
+            Math.ceil(11.2) => 12
+		floor() : return previous integer
+            Math.floor(11.9) => 11
+		round() 
+            Math.round(11.2) =>  11
+            Math.round(11.9) =>  12
+
+		abs()
+		toRadians()
+		toDegrees()
+
+java.lang.String
+---------------------
+	String is immutable	(not modifiable).
+
+	creating object:
+	---------------------
+	1) String	str;
+	2) String	str = new String();
+	3) String	str = "hello";
+	4) String	str = new String("hello");
+	5) String	str1 = str;
+	6) String	str1 = new String(str);
+
+
+	methods:
+	-------------
+	1) length()		2) toUpperCase()		3) toLowerCase()
+	4) indexOf(String)	5) lastIndexOf(String)		6) startsWith(String)
+	7) endsWith(String)	8) contains(String)		9) charAt(index)
+	10) substring(start_index [, end_index] )		11) split()
+	12) equals(String)	13) equalsIgnoreCase(String)	14) compareTo(String)
+	15) valueOf()		16) format()        17) replace(old_char, new_char)
+
+    "+" string concatenation operator
+
+
+String constant pool (String literal pool)
+------------------------------------------
+    This is a special memory used to store string constants.
+
+
+java.lang.StringBuffer and java.lang.StringBuilder:
+------------------------------------------------------------------
+	StringBuffer is thread-safe. (synchronized)
+	StringBuilder is not thread-safe.
+
+	They are mutable (modifiable).
+
+	a) capacity()
+	b) append()
+	c) insert()
+	d) replace()
+	e) delete()
+	f) reverse()
+
+Wrapper Classes                     static method
+    java.lang.Integer               parseInt(string-form-int)
+    java.lang.Short
+    java.lang.Byte
+    java.lang.Double                parseDouble(string-form-double)
+    java.lang.Boolean
+    java.lang.Float
+    java.lang.Character
+    java.lang.Long
+
+ Boxing:
+    primitive variable into a wrapper object
+
+    int x = 89;
+    Integer iobj = x;   //auto-boxing
+
+ unBoxing:
+    wrapper object into primitive variable
  
- Integer iobj = new Integer(109);
- int x = iobj; // auto-unboxing
+    Integer iobj = new Integer(109);
+    int x = iobj; // auto-unboxing
 
 
- String s="10";
- int x = Integer.pareInt(s);
+    String s="10";
+    int x = Integer.pareInt(s);
 
 
- System
- public static fields
- -------------------------
- err : PrintStream standard error stderr
- in : InputStream standard input stedin
- out : PrintStream standard output stdout
-
- public static methods
- ------------------------
-
- void exit(int); //abruptly end our application.
- void gc(); //garbbage collector
- String getEnvironmentVariable(String varName);
- void setEnvironmentVariable(String varName,String value);
 
 
- Strings
- java.lang.String
- java.lang.StringBuilder
- java.lang.StringBuffer
 
 
- String s1 = new String();
- String s2 = new String("Apple");
- String s3 = "Hello World";
-
- String objects are immutable (can not be modified).
- Java has a separate memory called StringPool to store string.
-
- String s3 = "Hello World";
-
- Do "Hello World" is ther in the StringPool?
- if Yes? s3 will have the ref of "Hello World" assigned
- if No? then "Hello World" is created in StringPool, and
- s3 will have the ref of "Hello World" assigned
-
- String s4 = "Hello World";
- //both s3 an s4 will refer to the smae memory.
-
- s3 = "Everyone! " + s3;
-
- a new string "Evryone! Hello World" is created in StringPool
- and s3 is redirected to refer it.
-
- if want a mutable string (a modifiable string),
- we will use StringBuffer or StringBuilder
-
- java.lang.String
- ---------------------------------
- public java.lang.String(); 
- public java.lang.String(char[]);
- public java.lang.String(byte[]);
- public java.lang.String(java.lang.StringBuffer);
- public java.lang.String(java.lang.StringBuilder);
-
- public int length();
- public boolean isEmpty();
- public char charAt(int);
- public byte[] getBytes();
- public boolean equals(java.lang.Object);
- public boolean equalsIgnoreCase(java.lang.String);
- public int compareTo(java.lang.String);
- public int compareToIgnoreCase(java.lang.String); 
- public boolean startsWith(java.lang.String);
- public boolean endsWith(java.lang.String);
- public java.lang.String substring(int);
- public java.lang.String substring(int, int);
- public java.lang.String concat(java.lang.String);
- public java.lang.String replace(char, char);
- public boolean matches(java.lang.String);
- public java.lang.String[] split(java.lang.String);
- public java.lang.String toLowerCase();
- public java.lang.String toUpperCase();
- public java.lang.String trim();
-
- public static java.lang.String format(String, java.lang.Object...);
- public static java.lang.String valueOf(..primitive_types...);
 
 
- java.lang.StringBuffer
- ---------------------------------------------------
- public java.lang.StringBuffer();
- public java.lang.StringBuffer(java.lang.String);
- 
- public synchronized int length();
- public synchronized char charAt(int);
- public synchronized java.lang.StringBuffer append(java.lang.Object);
- public synchronized java.lang.StringBuffer delete(int, int);
- public synchronized java.lang.StringBuffer replace(int, int, java.lang.String);
- public synchronized java.lang.String substring(int);
- public synchronized java.lang.String substring(int, int); 
- public synchronized java.lang.StringBuffer insert(int, java.lang.Object);
- public synchronized java.lang.StringBuffer reverse();
- 
- java.lang.StringBuilder
- ---------------------------------------------------
- public java.lang.StringBuilder();
- public java.lang.StringBuilder(java.lang.String);
- 
- public int length();
- public char charAt(int);
- public java.lang.StringBuilder append(java.lang.Object);
- public java.lang.StringBuilder delete(int, int);
- public java.lang.StringBuilder replace(int, int, java.lang.String);
- public java.lang.String substring(int);
- public java.lang.String substring(int, int); 
- public java.lang.StringBuilder insert(int, java.lang.Object);
- public java.lang.StringBuilder 
 
 

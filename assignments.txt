@@ -146,9 +146,37 @@ Day - 4
         ii) able to withdraw an amount 
         iii) able to transfer funds between two accounts
         iv) balance enquiry
-    generate account numbers auto-incremented manner
+    generate account numbers auto-incremented manner.
     eg: account numbers are  1000, 1001, 1002, ...
     make sure that minimum balance Rs. 1000 should be maintained always.
+
+32) Can we have static constructors? Explain with an example program. 
+
+33) Can static methods be overloaded? Explain with an example program.
+
+34) Can static methods be overloaded? Explain with an example program.
+
+35) What is the difference between method overloading and overriding?
+
+36) accept a string. check whether it is palindrome or not.
+
+37) accept a string. print the no. of vowels and consonants in it.
+
+38) accept a string. print the no. of uppercase alphabets, lowercase alphabets, digits and spaces
+    in the string.
+
+39) accept a string. print the abbreviated form of it.
+    eg: world health organization
+    output: w.h.o
+
+40) accept few strings in an array. sort these strings in alphabetical order.
+    do not use sort() library method.
+
+41) search a string in set of available strings.
+
+for programs 37 to 41, use String class only. Do not use StringBuilder or StringBuffer.
+
+
 
 
 
