@@ -2573,6 +2573,21 @@ b) try-with-resources
     the resource must be Closable.
     (resource must be inherited from Closable interface)
 
+static import: (JDK 1.5)
+------------------------
+    Math
+        sqrt()
+        abs()
+        pow()
+
+    int a, b;
+    double hypotenuse = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
+
+    (or)
+    import static java.lang.Math.sqrt;
+    import static java.lang.Math.pow;
+
+    double hypotenuse = sqrt(pow(a,2) + pow(b,2));
 
 
 java.time package (JDK 8)
@@ -2599,8 +2614,126 @@ java.time package (JDK 8)
     LocalDateTime
 
     DateTimeFormatter
+        format()
+        ofPattern(formatString)
     Duration
     Period
+        between(localDate1, localDate2)
+        getDays()
+        getMonths()
+        getYears()
+
+    ZoneId
+        of()
+
+    DateTimeFormatter                                        
+        .ofPattern(String pattern);
+
+            d           day                             
+            dd          day with leading zeros          
+            ddd         day in words
+
+            M           month
+            MM          month with leading zeros
+            MMM         Three lettered Month name
+            MMMM        comple month name
+
+            yy , yyyy   Year
+
+            h,hh        hour in 12 hr format
+            H,HH        hour in 24 hr format
+
+            mm          min
+
+            ss          sec
+
+
+
+                                   Regular Expressions
+						           --------------------
+                                    (java.util.regex)
+
+A regular expression defines a search pattern for strings. The short form for regular expression 
+is regex. 
+The search pattern can be anything from a simple character, a fixed string or a complex 
+expression containing special characters describing the pattern. 
+The pattern defined by the regex may match one or several times or not at all for a 
+given string.
+Regular expressions can be used to search, edit and manipulate text.
+It is mainly for validations.
+
+
+	.	any single character
+	\d	single digit from 0 - 9
+	\D	single character except digit
+	\s	space
+	\S	single character except space
+	[ ]	single character of given choice or range
+		eg: 	[A-Z]           any uppercase alphabet
+			    [abcdA-E]       a,b,c,d,A,B,C,D,E
+			    [0-9]           any digit
+	[^ ]	single character except within the range
+		eg:	[^ 1-5]         any digit other than 1,2,3,4,5
+
+occurance indicaters:
+	
+	?	0 to 1 time
+	*	0 to any no. of times
+	+	1 to any no. of times
+	{ n }	exactly 'n' times.
+	{ , m}	max. 'm' times and min. is '0'.
+	{n, m}	min. 'n' times and max. is 'm' times.
+
+eg:
+
+	mobile number	"\d{10}"
+	but in java, we must say "\\d{10}"
+
+	but first digit cannot be 0. so , it must be given as ...	"[1-9]\\d{9}"
+
+	vehicle number	eg: AP31 CK 9916
+				        AP31CK   1
+        [1-9]
+
+		[A-Z]{2} \d{2} [A-Z]{2} \s\d{, 3}
+
+	aadhar id		eg: 8414 6320 8422
+		\d{4} \s \d{4} \s \d{4}
+
+
+java.util.regex package:
+------------------------------
+
+a) Pattern class:		to represent regular expression.
+-----------------------
+	methods:
+	-------------
+	i)	public static 	Pattern 	compile(String   regexPattern)
+			it checks whether any small part of pattern is matching or not.
+	ii) public static   Matcher 	matches(pattern, String)
+			it checks whether the entire string should exactly match the pattern.
+    iii) String [] split(String)
+            will extract the String based on the pattern specified.
+
+
+                            Generics
+							--------
+These are called as ADT	(abstract data types)
+
+when there is a logic which is indepedent of datatypes, then we can use ADT. 
+eg: Sorting on int's, float's, double's or char's are same.
+generics are implemented using angular bracktes. < >. The imaginary datatype is represented as T. eg: <T>.
+if we have two imaginary datatypes then <T1, T2>
+
+generics do not support primitive types.
+T can be Book, Car, ComplexNumber, Employee etc.,
+but not with int, char, float, double.
+if it is inevitable, we may use Wrapper classes.
+
+
+
+                                            
+
 
 
     
