@@ -6,9 +6,11 @@ public class ComplexNumberApp {
 
 	public static void main(String[] args) {
 		
+				
 		ComplexNumber c1 = new ComplexNumber(10, 9);
 		ComplexNumber c2 = new ComplexNumber(10, 9);
 		
+	
 		
 		// ComplexNumber c1 = new ComplexNumber(10, 9);
 		// ComplexNumber c2 = new ComplexNumber(8,-6);
@@ -18,10 +20,10 @@ public class ComplexNumberApp {
 //		System.out.println(c1.hashCode());
 		
 		System.out.println(c2);
-		
-		System.out.println(c1 == c2);		// bit-wise comparision
-		
-		System.out.println(c1.equals(c2));	// call overrided method
+//		
+//		System.out.println(c1 == c2);		// bit-wise comparision
+//		
+//		System.out.println(c1.equals(c2));	// call overrided method
 		
 		
 //		System.out.println(c2.toString());

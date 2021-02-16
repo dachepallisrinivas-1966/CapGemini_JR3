@@ -2384,6 +2384,18 @@ java.lang.StringBuffer and java.lang.StringBuilder:
 	e) delete()
 	f) reverse()
 
+StringTokenizer (java.util)
+    to split the string into words based on the delimiter given.
+
+    StringTokenizer(string, delimiter, boolean returnDelims)
+
+    hasTokens()
+    nextToken()
+
+    Since it is a legacy class, we can use split() of String class, which offer better
+    performance.
+
+
 Wrapper Classes                     static method
     java.lang.Integer               parseInt(string-form-int)
     java.lang.Short
@@ -2411,6 +2423,187 @@ Wrapper Classes                     static method
     int x = Integer.pareInt(s);
 
 
+Day - 7
+===============================================================================
+
+Exception Handling
+--------------------------------
+
+    Exception is an object
+    that represents a situation
+    where the application broke down.
+
+                java.lang.Throwable (i)
+                        |
+                        |
+            ---------------------------------
+            |                               |
+            java.lang.Error         java.lang.Exception
+                                            |
+                                            |
+                                    java.lang.RuntimeException
+
+
+
+    1) try : contain the code where the exception can be generated.
+    2) catch : contain statements that are to be executed when the specified exception occurred.
+            
+            the most relevant exception classes mention first.
+            least relevant exception mention next.
+
+    a try block must follow an immediate catch block (or) a finally block.
+
+            try {
+                ..
+            } finally {
+                ...
+            }
+
+    a try can have many catch blocks.
+    a try block can have another try block within it.
+
+    3) finally : contain the code to be executed whether an exception or occurred or not.
+
+
+    UnChecked Exceptions
+
+        all exception classes that are
+        dereived from RuntimeException class are
+        identified as UnChecked.
+
+        unchecked exceptions are 
+        NOT INFORMED BY
+        THE COMPILER. 
+
+        we are not supposed to handle UnChecked Exceptions
+        because they can be avoided through 
+        "Defensive programming".
+
+            Employee emp;
+            emp = new Employee();
+            emp.setName("Lavanya"); //NullPointerException is avoided.
+
+                public void processHike(Employee emp){
+                    if(emp!=null){
+                        emp.setBasic(emp.getBasic()+10000); // NullPointerException is avoided
+                    }
+                }
+
+        
+        Checked Exceptions
+
+            all exception classes that are NOT
+            dereived from RuntimeException class are
+            identified as Checked exceptions.
+        
+            if you not handle checked exceptions, the compiler will give errors.
+
+            if a method is supposed to raise
+            checked exception, the compiler will
+            forces to handle checked exceptions
+
+            checked exceptions must be handled, they cannot be avoided.
+
+            eg:
+                download a file, IOException
+                database connection broken.   SQLException
+
+                try{
+                    ....the code that may raise an exception     
+                } catch(Exception exp){
+                    ..do the alternate or display a user understandable message.
+                }
+
+
+        user Defined Excepitons
+
+            1. create a class which should be derived from java.lang.Exception
+            2. write a constructor that takes a String parameter.
+            3. call the super class constructor by passing this String to it.
+
+            create a checked exception
+            
+            class MyCheckedException extends Exception {
+                  
+                MyCheckedException(String errMsg){
+                    super(errMsg);
+                }
+            }
+
+            create an unchecked exception
+
+            1. create a class which should be derived from java.lang.RuntimeException
+            2. write a constructor that takes a String parameter.
+            3. call the super class constructor by passing this String to it.
+
+            class MyUnCheckedException extends RuntimeException {
+                  
+                MyUnCheckedException(String errMsg){
+                    super(errMsg);
+                }
+            }
+
+            "throw" keyword is used to raise an exception
+                throw new MyCheckedException("error message");
+
+            "throws" keyword is used to tranfer the exception
+            from a method to its caller method.
+
+
+    String getMessage()         (java.lang.Throwable)
+	void printStackTrace()      (java.lang.Throwable)
+
+
+
+JDK 7 Enhancements:
+---------------------------------
+a) multi-catch exception
+
+    try {
+	    statement(s)
+    } catch (Exception-1   |  Exception-2  |  Exception-3    obj) {
+	    statement(s)
+    }
+
+b) try-with-resources
+    try (open the resources like scanner, any file, any database connection ..) {
+
+    }
+
+    the resource must be Closable.
+    (resource must be inherited from Closable interface)
+
+
+
+java.time package (JDK 8)
+-------------------------
+    LocalDate
+        default format is yyyy-MM-dd.
+
+        now() : static method that return system date.
+        of(year, month, day)
+        parse(string-form-date)
+
+        getDayOfMonth()
+        getDayOfYear()
+        getMonthValue()
+        getYear()
+
+        plusDays()
+        plusMonths()
+        plusYears()
+
+        now(), of(), parse() are known as "Factory method", which will return object of the same class.
+
+    LocalTime
+    LocalDateTime
+
+    DateTimeFormatter
+    Duration
+    Period
+
+
+    
 
 
 
