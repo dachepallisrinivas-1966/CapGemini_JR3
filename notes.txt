@@ -2878,6 +2878,7 @@ Map:
     values() : return all values
     containsKey()
     containsValue()
+    entrySet() : entry means combination of key and value
     
 
     implementation classes:
@@ -2885,6 +2886,14 @@ Map:
         LinkedHashMap
         TreeMap
         HashTable
+
+
+java.util.Collections class:
+----------------------------
+1) sort()
+2) binarySearch(list, key)
+3) fill(list, object)
+
 
 
 

@@ -44,13 +44,6 @@ public class LinkedListApp {
 		
 		ll.clear();
 		System.out.println(ll);
-		
-		
-		
-		
-
-		
-
 	}
 
 }
