@@ -176,7 +176,12 @@ Day - 4
 
 for programs 37 to 41, use String class only. Do not use StringBuilder or StringBuffer.
 
+42) What is the difference between Vector and ArrayList?
+43) What is the difference between iterator and enhanced for?
 
+44) An example program on PriorityQueue.
+
+45) What is the difference between HashTable and HashMap?
 
 
 
