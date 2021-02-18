@@ -3006,9 +3006,72 @@ exceptions are handled in UI layer.
 one user defined exception throughout the project.
 
 
+                                        IOStreams   (java.io)
+                                        ---------
+                                    (Input Output Streams)  
+stream :   flow of data from onpe point to another point.
+
+java.io.File : used to convert the physical file in your file system to a java object.
+    methods:
+    1) exists()
+    2) isFile()
+    3) isDirectory()
+    4) File[] listFiles()
+    5) getName()
+    6) length()
 
 
 
+IOStreams are divided into 2 categories.
+1) text stream      (character steams)
+        used to store plain text.
+
+        Reader class
+            FileReader
+                int read()  : it will read one character at a time.
+            BufferedReader
+                String readLine() : it will read one line at a time
+        Writer class
+            FileWriter
+            PrintWriter
+
+2) binary stream    (byte stream)
+        used to store objects, images, videos and audios.
+
+        InputStream class
+            FileInputStream
+            ObjectInputStream
+                readObject()
+        OutputStream class
+            FileOutputStream
+            ObjectOutputStream
+                writeObject()
+
+    Serialization       : storing an object into a file.
+    De-Serialization    : retrieving an object from the file.
+
+    To perform Serialization, the class should permit us.
+    
+    The class whose objects are to be stored in a file, must be inherited from
+    java.io.Serializable interface.
+
+    Serializable is a null interface, means is does not contain methods.
+    It is also called as Marker Interface.
+
+    transient:
+        it is a keyword (modifiers) that indicated the property should NOT be serialized.
+
+
+    public class Person implements Serializable {
+        private String name;
+        private String email;
+        private transient String ATMPassword;
+    }
+
+
+
+
+  
 
 
 

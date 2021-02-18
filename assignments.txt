@@ -194,6 +194,11 @@ Day - 9
 -----------------------------
 46) What is the difference between Comparator and Comparable?
 
+47) number of characters, words and lines in a text file
+
+48)  Display only non-blank lines in a text file.
+
+
 
 
 
