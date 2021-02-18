@@ -2362,6 +2362,8 @@ java.lang.String
 	12) equals(String)	13) equalsIgnoreCase(String)	14) compareTo(String)
 	15) valueOf()		16) format()        17) replace(old_char, new_char)
 
+    18) join()  - JDK 1.8
+
     "+" string concatenation operator
 
 
@@ -2384,7 +2386,14 @@ java.lang.StringBuffer and java.lang.StringBuilder:
 	e) delete()
 	f) reverse()
 
-StringTokenizer (java.util)
+StringJoiner (jdk 1.8)
+    used to join group of statments.
+
+    StringJoiner(delimiter)
+    StringJoiner(delimiter, prefix, suffix)
+    merge()
+
+StringTokenizer (java.util)  
     to split the string into words based on the delimiter given.
 
     StringTokenizer(string, delimiter, boolean returnDelims)
@@ -2394,6 +2403,8 @@ StringTokenizer (java.util)
 
     Since it is a legacy class, we can use split() of String class, which offer better
     performance.
+
+
 
 
 Wrapper Classes                     static method
@@ -2566,12 +2577,17 @@ a) multi-catch exception
     }
 
 b) try-with-resources
-    try (open the resources like scanner, any file, any database connection ..) {
+
+    try(declare closable resourceses here....){
+                    ........................
+    }catch(....){
 
     }
 
-    the resource must be Closable.
-    (resource must be inherited from Closable interface)
+    the closable resource will be clsoe automatically.
+
+    a Resource has to implement java.lang.Closable interface
+    to be recognized as closable.
 
 static import: (JDK 1.5)
 ------------------------
@@ -2893,6 +2909,113 @@ java.util.Collections class:
 1) sort()
 2) binarySearch(list, key)
 3) fill(list, object)
+
+    java.lang.Comparable interface:
+    --------------------------------
+    it contain only one abstract method
+    
+    public int compareTo(T object)
+
+    The class should know how do you want to sort.  (intenally)
+    The class must implement java.lang.Comparable interface.
+
+
+
+    Functional Interface:  (jdk 1.8)
+    --------------------------------
+        It is an interface that contain only one abstract method.
+        it can be marked with @FunctionalInterface annotation.
+        so that compiler will not allow you to add any extra methods later.
+
+    Comparator (java.util) 
+    -----------------------
+    int compare(T object1, T object2)
+
+        These are also used to apply sorting behaviour externally on a class.
+        Create any class which should be inherited from Comparator interface.
+        override the compare() by writing our own sorting logic.
+        if we want to implement multiple sorting strategies we can use this.
+
+    How does a collection (Set) identify duplicates?
+        if two objects return true when the equals() method is applied, 
+        they are considered as duplicates. In such case the later one is ignored.
+
+    Student s1 = new Student(1, "srinivas", 18);
+    Student s2 = new Student(1, "srinivas", 18);
+
+    Set<Student> studentSet = new HashSet<>();
+    studentSet.add(s1);
+    studentSet.add(s2);
+
+    System.out.println(s1 == s2);       // false
+    System.out.println(s1.equals(s2));  // false
+
+    System.out.println(student.size());     // 2
+
+    What is contract between equals() and hashcode()?
+    --------------------------------------------------
+        if two objects are same as per equals() method the hashcodes must be same.
+
+
+
+                                    Multi Layered Architecture
+                                    --------------------------
+1) presentation layer (UI)
+2) DAO layer (Data Access Objects)
+3) service layer
+
+Coupling : dependence
+           Loosely Coupled is recommended.
+Cohesion : relevance
+           Cohesion should be high
+
+UI -> service layer -> dao layer -> Repository (Collection/DB)
+UI <- service layer <- dao layer <- Repository (Collection/DB)   
+
+
+                                    Book Store Management
+                                    ---------------------
+You should be able to 
+    + add a new book to the store
+    + delete an unwanted book
+    + modify book details
+    + retrieve a book
+    + rertieve all books
+
+model (beans / pojo)
+    contain data
+service
+    validations on the model
+    +
+    to call corresponding methods of DAO layer
+
+    
+    interface
+    implementation classes
+
+dao
+    database (collections) related operation
+
+    interface
+    implementation classes
+ui
+    input/output related operations
+
+
+exceptions are handled in UI layer.
+one user defined exception throughout the project.
+
+
+
+
+
+
+
+
+
+
+
+            
 
 
 
