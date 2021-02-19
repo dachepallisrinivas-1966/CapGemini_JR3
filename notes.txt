@@ -3069,6 +3069,86 @@ IOStreams are divided into 2 categories.
     }
 
 
+                                        Multi Threading
+                                        ---------------
+Multi-Tasking / Multi-Processing:
+---------------------------------
+1. capability to execute two or more individual processes (task) at a time by an O/S.
+2. Every process has it's own heap & stack memory.
+
+Multi-Threading:
+----------------
+1. In the same application, two related or non-related sub processes run parallely.
+2. each sub process is called a thread.
+3. All threads will have same heap but different stacks.
+   It means data can be exchanged between threads.
+4. resources are commonly maintained.
+
+5. Java is by default, Multi-Threaded.
+
+
+java.lang.Runnable interface
+-----------------------------
+        public abstract void run()
+
+java.lang.Thread class methods:
+----------------------------
+0. Thread(Runnable)
+1. getName()
+2. setName(String)
+3. getPriority()    - 1 to 10.  default priority is 5  
+            (MIN_PRIORITY, NORM_PRIORITY, MAX_PRIORITY)
+4. setPriority(int)
+5. start() : will call run() method
+6. static sleep(int milliseconds)
+7. static currentThread()
+8. isAlive()
+9. getId()
+10. run() : it will contain the task 
+11. join() : parent thread will wait until the child thread is finished it's process.
+12. setDaemon(boolean)
+10. stop(), suspend(), resume(), pause()        : deprecated methods
+
+
+Daemon Thread:
+--------------
+Daemon thread is abruptly terminated when no other threads are running.
+
+Synchronization:
+----------------
+It can be applied on an object or even a code block.
+No other thread will disturb when one thread doint it's job.
+
+
+Thread Life Cycle
+----------------------
+1) new born state
+2) runnable state
+3) running state
+4) blocked state
+5) dead state
+
+                                Thread Pool
+                                -----------
+A thread pool is a colletion of worker threads.
+it minimizes the overhead due to thread creation. Thread objects use a significant amount of 
+memory. allocating and deallocating many thread objects creates a memory management overheader.
+In this case we can use a Thread Pool. 
+Mostly used Thread pool is known as "FixedThreadPool". It is a type of pool always has a specified
+number of threads running, tasks are submitted to this pool via an internal queue.
+
+It follow Executable Service Pattern.
+
+java.util.concurrent.ExecutorService
+    execute(Runnable)
+java.util.concurrent.Executors
+
+
+
+
+
+
+
 
 
   

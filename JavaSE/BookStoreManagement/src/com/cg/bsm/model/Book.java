@@ -1,10 +1,11 @@
 package com.cg.bsm.model;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /*
  * Represents a book in a book store.
  */
-public class Book implements Comparable<Book> {
+public class Book implements Serializable, Comparable<Book> {
 
 	private String bcode;
 	private String title;

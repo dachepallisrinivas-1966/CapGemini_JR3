@@ -46,7 +46,6 @@ public class BookDAOIOStreamImpl implements IBookDAO {
 		String bcode = null;
 		if (book != null) {
 			bcode = book.getBcode();
-			System.out.println(bcode + "hello");
 			books.put(bcode, book);
 		}
 		return bcode;

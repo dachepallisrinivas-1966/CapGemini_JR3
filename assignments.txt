@@ -199,6 +199,11 @@ Day - 9
 48)  Display only non-blank lines in a text file.
 
 
+Day - 10
+-----------------------------
+49) What is the difference between Multi-Tasking and Multi-Threading?
+
+
 
 
 
