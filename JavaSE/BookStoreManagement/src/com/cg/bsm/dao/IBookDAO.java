@@ -11,5 +11,5 @@ public interface IBookDAO {
 	Book get(String bcode) throws BookStoreException;;
 	List<Book> getAll() throws BookStoreException;;
 	boolean update(Book book) throws BookStoreException;
-	// void persist()throws BookStoreException;
+	void persist() throws BookStoreException;
 }

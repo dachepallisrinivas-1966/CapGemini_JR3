@@ -75,11 +75,11 @@ public class BookStoreManagementUI {
 		}
 
 		scan.close();
-//		try {
-//			bookService.persist();
-//		} catch (BookStoreException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			bookService.persist();
+		} catch (BookStoreException e) {
+			e.printStackTrace();
+		}
 
 	}
 

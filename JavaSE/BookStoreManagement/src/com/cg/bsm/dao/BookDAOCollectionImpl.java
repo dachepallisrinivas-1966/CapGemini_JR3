@@ -59,10 +59,10 @@ public class BookDAOCollectionImpl implements IBookDAO {
 		return isDone;
 	}
 
-//	@Override
-//	public void persist() throws BookStoreException {
-//		/* no implementation is required */
-//	}
+	@Override
+	public void persist() throws BookStoreException {
+		/* no implementation is required */
+	}
 	
 	
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 /*
  * Represents a book in a book store.
  */
-public class Book {
+public class Book implements Comparable<Book> {
 
 	private String bcode;
 	private String title;
@@ -70,8 +70,6 @@ public class Book {
 		return output.toString();
 	}
 
-	
-	/*
 	@Override
 	public int compareTo(Book book) {
 		String firstBCode = this.bcode;
@@ -104,5 +102,5 @@ public class Book {
 		
 		return flag;		
 	}
-*/
+
 }
