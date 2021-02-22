@@ -3144,36 +3144,204 @@ java.util.concurrent.ExecutorService
 java.util.concurrent.Executors
 
 
+                                    Lambda Expressions (JDK 1.8)
+                                    ----------------------------
+
+it allows functonality to be passed as an argument to the function.
+it is a replacement of Anonymous class that implements a functional interface.
+(eg: Comparable, Runnable)
+
+components of lambda expressions:
+1) a comma-separated list of formal parameters enclosed in paranthesis
+2) we can omit paranthesis if it is a single parameter
+3) the arrow token ( -> ) is known as lambda operator
+4) a body which consists of a single expression, or statement block.
 
 
+Interface Arithmetic {
+    int add(int a, int b);
+    int diff(int a, int b);
+}
 
 
+class ArithmeticImpl implements Arithmetic {
+    @Override 
+    public int add(int a, int b) {
+        return a+b;
+    }
+    @Override
+    public int diff(int a, int b) {
+        return a-b;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        ArithmeticImpl obj = new ArithmeticImpl();
+        System.out.println(obj.add(10, 5));
+        System.out.println(obj.diff(10, 6));
+    }
+}
 
 
+using Anonymous class:
+----------------------
+Interface Arithmetic {
+    int add(int a, int b);
+    int diff(int a, int b);
+}
 
-  
+public class Test {
+    public static void main(String[] args) {
+        ArithmeticImpl obj = new ArithmeticImpl(new Arithmetic() {
+            @Override 
+            public int add(int a, int b) {
+                return a+b;
+            }
+            @Override
+            public int diff(int a, int b) {
+                return a-b;
+            }
+        })
+        System.out.println(obj.add(10, 5));
+        System.out.println(obj.diff(10, 6));
+    }
+}
 
 
+SDLC ?
+    software development life cycle
 
+    1. requirement gathering
+    2. designing (OOAD - class digrams, use case diagrams, sequence diagrams)
+    3. coding
+    4. testing
+    5. deployment  (delivering the final product to client)
 
+software architects
+    client satisifaction is important
 
+                    
+                    
+                                TDD (Test Driven Development)
+                                -----------------------------
+testing first coding next
+coding & testing done parallely
 
-            
+write all possible test cases first
+then based on these test cases, one should develop the program.
+every test case should be passed. 
 
+testing libraries:
+------------------
+    JUNIT is a testing framework
 
+    framework = libraries + run time environment
 
-
-                                        
-
-
-
-
-
-
-
-
+    any library is available in the form of jar file.
     
+    junit 4
+    junit 5  (as per our syllabus)
 
+    junit 5 uses testing engine "Jupiter"
+
+how do you get these libraries ?
+    
+    1) download junit related jar files from junit.org
+       and place these jar files in a separate folder ("lib" folder)
+       add this lib folder to the classpath of the project
+    
+    (or)
+    
+    2) eclipse IDE is offering built-in support for junit.
+
+    (or)
+
+    3) we can use build tools like MAVEN, GRADLE etc.,
+
+    Eclipse IDE support maven and gradle tools.
+    maven project 
+        pom.xml         -   xml format - (dependeny entries)
+    
+    gradle project      (our )
+        build.gradle    -   groovy script - (dependency entries)
+
+    depedencies of library
+
+    central repositories
+        maven central Repository- all jar files related to various libraries`
+
+    download necessary jar files related to specified library.
+
+
+dependencies {
+    testImplementation 'org.junit.jupiter  :   junit-jupiter-api   :   5.4.2'
+}
+
+testImplementation          =>  scope   (this library is available during unit testing only)
+org.junit.jupiter           =>  groupid
+junit-jupiter-api           =>  artifactid
+5.4.2                       =>  version
+
+
+setUp methods
+tearDown methods
+
+
+@BeforeEach     :   method under this annotation is executed before each test case is executed
+@AfterEach      :   method under this annotation is executed after each test case is executed
+@BeforeAll      :   method under this annotation is executed only once before the first 
+                    test case is executed.
+                    method should be declared as static.
+@AfterAll       :   method under this annotation is executed only once after the last 
+                    test case is executed.
+                    method should be declared as static.
+
+@ParameterizedTest
+@CsvSource      : comma-separated value list
+
+
+@Disabled       : method under this annotation is skipped during unit testing
+
+
+
+int subtract(int ... a)
+    2 subtracts
+
+    what are various possibities 
+
+        two numbers are equals => result is 0
+        if first number is big => result is +ve
+        if first number is small => result is -ve
+        
+test case is nothing but a function, annotated with @Test
+@DisplayName("message") => this message is displayed in the test results.
+
+
+assertion methods:
+-------------------
+1) assertEquals(expected, actual)
+2) assertThrows(expected-type, execute)
+3) assertNull(actual)
+4) assertTrue()
+5) assertFalse()
+6) assertArrayEquals(expected, actual, message)
+7) assertIterableEquals(expected, actual)
+8) assertNotEquals(expected, actual)
+9) assertNull(actual)
+10) assertSame(expected, actual)
+11) assertTimeout(timeout, executable, supplier)
+12) fail()
+
+https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html
+
+Test Suite:     (AllTests.java program)
+-----------
+collection of test classes.
+when you run, all test cases in a specfied package are executed.
+
+@RunWith(JUnitPlatform.class)
+@SelectPackages("in.tp.tddd.service")
 
 
 
