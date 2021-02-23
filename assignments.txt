@@ -204,6 +204,63 @@ Day - 10
 49) What is the difference between Multi-Tasking and Multi-Threading?
 
 
+Day - 12
+-------------------------------
+50) write an example program on concurrentMap
+51) write an example program on concurrentHashMap
+52) write an example program on concurrentSkipListMap
+53) write an example program on copyOnWriteArrayList
+
+54)                             CASE STUDY
+
+An Event Management Company "Pride Moments" want you to develop an application
+to keep track of their events.
+Each event should have an id, title, dateScheduled, location, cost
+Requirements are as follows.
+a) It should be able to add a new event
+b) Should be able to remove an event
+c) List all the events in the ascending order of dateScheduled
+d) List all the events in the alphabetical order of location
+e) List all the events of a particular location
+f) List all the events of a particular dateSecheduled
+write a menu-driven application.
+Events should be persisted.
+
+follow multi-layered architecture.
+
+55) add test cases for the service layer.
+    write as many test cases as you can.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
