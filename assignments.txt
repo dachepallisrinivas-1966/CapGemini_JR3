@@ -222,7 +222,7 @@ b) Should be able to remove an event
 c) List all the events in the ascending order of dateScheduled
 d) List all the events in the alphabetical order of location
 e) List all the events of a particular location
-f) List all the events of a particular dateSecheduled
+f) List all the events of a particular dateScheduled
 write a menu-driven application.
 Events should be persisted.
 
@@ -230,6 +230,60 @@ follow multi-layered architecture.
 
 55) add test cases for the service layer.
     write as many test cases as you can.
+
+
+Steps for 54 and 55:
+---------------------
+1. create a new java project
+2. create the packages (exception, model, dao, service, ui)
+3. create user defined exception (EventManagementException)
+4. create the model (Event)
+5. create the DAO - Interface (IOStreamDAO), Implemenation class (IOStreamDAOImpl)
+                    List<Event> listAllEvents(String location)
+                    List<Event> listAllEvents(LocalDate dateScheduled)
+
+6. create the Service - Interface, Implementation class 
+        validations 
+        call DAO methods
+        comparators - DateScheduledComparator, LocationComparator
+
+    public class DateScheduledComparator implements Comparator<Event>{
+
+        @Override
+        public int compare(Event) o1, Event o2) {
+            LocalDate firstDate = o1.getDateScheduled();
+            LocalDate otherDate = o2.getDateScheduled();
+            ...
+        }
+        
+    }
+
+
+7. write the main program.
+
+
+8. create gradle project - put necessary entries in build.gradle
+9. copy all packages from previous project to src/main/java of gradle project
+10. src/test/java
+        test class
+        include test cases for add()
+
+            testAddEvent(Event event) {
+                Event e = new Event("E1", " ... ", " ..", " ..." , ...);
+                String expected = "E1";
+                String actual = service.add(e);
+                assertEquals(expected, actual);
+            }
+
+            testAddEvent which handle exception also.
+
+            if it succeeds it should return id
+            if it fails it should return exception
+
+
+
+
+
 
 
 Day - 13
