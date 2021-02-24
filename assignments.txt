@@ -232,6 +232,21 @@ follow multi-layered architecture.
     write as many test cases as you can.
 
 
+Day - 13
+----------------------------------------------------------------------
+56) create a table with the following fields.
+
+    sales - itemno, itemname, purdate, qty
+    insert atleast 3 rows.
+    modify any row.
+    delete any row.
+    delete remaining rows.
+    remove the table permantly.
+
+15 mins.
+
+
+
 
 
 

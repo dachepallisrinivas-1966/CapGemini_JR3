@@ -3479,7 +3479,7 @@ pgAdmin :   It is a tool where you can work with Postgre graphically also.
 
 SQL commands - Categories
 --------------------------
-DDL (Data definition language)      -   CREATE / ALTER / DROP
+DDL (Data definition language)      -   CREATE / ALTER / DROP / TRUNCATE 
 DML (Data manipulation language)    -   INSERT  / UPDATE / DETELE
 DRL (Data retrieval language)       -   SELECT
 TCL (Transaction control language)  -   COMMIT / ROLLBACK
@@ -3516,6 +3516,88 @@ structure of the table : column names, data types etc.,
 how to see the structure of the table?
 --------------------------------------
 \dS    tableName
+
+
+
+Day - 13
+--------------------------------------------------------------
+INSERT:
+    to add new rows.
+syntax:
+    INSERT  INTO   tablename [ (column-list)]
+    VALUES  (value-list)
+
+date and character literals must be enclosed within single quotes.
+
+INSERT INTO sales
+VALUES (101, 'mouse', 300, 2);
+
+INSERT INTO sales
+VALUES (102, 'speakers', 650, 1);
+
+INSERT INTO sales (itemno, itemname)
+VALUES (103, 'web cam');
+
+INSERT INTO sales (itemno, unitrate, qty)
+VALUES (105, 500, 8);
+
+
+SELECT:
+    to retrieve rows.
+syntax:
+    SELECT  column-list/*
+    FROM    tablename;
+
+SELECT *
+FROM    sales;
+
+
+DELETE:
+    to delete a row.
+syntax:
+    DELETE  FROM   tablename
+    [WHERE  condition];
+
+DELETE  FROM sales
+WHERE itemno = 104;
+
+UPDATE:
+    to modify data in an existing row.
+syntax:
+    UPDATE  tablename
+    SET  col-1 = value-1 [, col-2 = value-2, ...]
+    [WHERE  condition];
+
+UPDATE   sales
+SET  unitrate = 800, qty = 6
+WHERE itemno = 103;
+
+UPDATE   sales
+SET   itemname = 'micro phone'
+WHERE itemno = 105;
+
+
+TRUNCATE TABLE:
+    to delete all rows from the table.
+    data cannot be retrieved back.
+    but the table remains in the database.
+syntax:
+    TRUNCATE  TABLE  tablename;
+
+TRUNCATE  TABLE sales;
+
+DROP  TABLE:
+    to remove the table permanantly from the database.
+syntax:
+    DROP   TABLE  tablename;
+
+DROP TABLE sales;
+
+
+
+
+
+
 
 
 
