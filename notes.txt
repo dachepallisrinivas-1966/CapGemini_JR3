@@ -3594,6 +3594,191 @@ syntax:
 DROP TABLE sales;
 
 
+                                        Integrity Constraints
+                                        ---------------------
+These constraints can be given on a column (or) on combination of columns.
+These are verified automatically by the Postgre whenever a row is INSERTed/UPDATEed/DELETEed.
+One column can have a single constraint or multiple constraints also.
+
+1) NOT NULL
+2) UNIQUE
+3) PRIMARY key
+4) REFERENCES  (FOREIGN KEY)
+5) CHECK (condition)
+6) DEFAULT  value
+
+Primary Key:
+------------
+1. It identify each row uniquely.
+2. A Primary is a single column or combination of columns.
+3. It should not allow values.
+4. It should not allow duplicate values.
+5. A table can have ONLY ONE primary key.
+5. It create internaly an INDEX on the primary key column. This index is automatically used
+   whenever we are performing a search opeation on this column.
+
+Foreign Key:
+------------
+1. It establishes relation from a child table to a parent table.
+2. Foreign key is a single column or combination of columns.
+3. It allow null values.
+4. it allow duplicate values.
+5. A table can have many foreign keys.
+6. Every foreign key should be defined as a PRIMARY KEY or UNIQUE KEY in it's parent table.
+
+
+Constraints can be given in two ways.
+1) column-level specification   (along with column definition)
+        is used to specify a constraint on a single column
+2) table-level specification    (after the last column specification)
+        is used to specify a constraint on a single column or on combination of columns.
+        we cannot define NOT NULL constraint as table level specification.
+
+every constraint should be given a unique name (CODING STANDARD)
+it is generally in the form of tablename_columnname_constraintshortcut (CODING STANDARD)
+
+create a table departments with the following columns.
+    deptno (p), dname, location 
+
+CREATE  TABLE  departments
+(deptno     int     CONSTRAINT   departments_deptno_pk  PRIMARY KEY,
+ dname      varchar(20)  CONSTRAINT departments_dname_nn    NOT NULL,
+ location   varchar(20)
+);
+
+(or)
+
+CREATE  TABLE  departments
+(deptno     int,
+ dname      varchar(20)  CONSTRAINT departments_dname_nn    NOT NULL,
+ location   varchar(20),
+ CONSTRAINT   departments_deptno_pk  PRIMARY   KEY  (deptno)
+);
+
+
+create a table employees with the following columns.
+    empno (p), ename (nn), doj (it should not be a future date), salary (min is 5000),
+    deptno (f)
+
+CREATE  TABLE  employees
+(empno  int  CONSTRAINT  employees_empno_pk  PRIMARY  KEY,
+ ename  varchar(20) CONSTRAINT employees_ename_nn  NOT NULL,
+ doj    date   CONSTRAINT  employees_doj_chk  CHECK  (doj <= current_date),
+ salary float  CONSTRAINT  employees_salary_chk CHECK (salary >= 5000),
+ deptno int  CONSTRAINT  employees_deptno_fk  REFERENCES departments(deptno)
+);
+
+
+ALTER TABLE:
+------------
+    to modify the structure of the table ...
+    + add a new column
+    + removing a column
+    + change the data type of a column
+    + change the size of a column
+    + add a contraint (using table level specifications)
+    + remove a constraint (using table level specifications)
+    + rename a column
+
+syntax:
+    ALTER  TABLE   tablename
+    [ ADD | ALTER | DROP | RENAME ]  (column specification);
+
+CREATE TABLE test
+(empno int,
+ ename varchar(5)
+);
+
+ALTER TABLE test
+ADD COLUMN salary  float;
+
+How to add multiple columns at a time?
+ALTER TABLE test
+ADD COLUMN c1 int, ADD COLUMN c2 int;
+
+ALTER TABLE test
+ALTER COLUMN ename TYPE varchar(6);
+
+ALTER TABLE test
+DROP COLUMN c1;
+
+How to remove multiple columns at once?
+...
+
+ALTER TABLE test
+ADD CONSTRAINT test_empno_pk PRIMARY KEY(empno);
+
+ALTER TABLE test
+DROP CONSTRAINT test_empno_pk;
+
+ALTER TABLE test
+ADD CONSTRAINT test_salary_chk CHECK (salary >= 10000);
+
+ALTER TABLE test
+DROP CONSTRAINT test_salary_chk;
+
+ALTER TABLE test
+RENAME COLUMN salary TO sal;
+
+
+SELECT:
+-------
+SELECT 2*3+4;
+
+SELECT 5/10;
+
+bonus is 10% of the salary.
+
+SELECT empno, ename, doj, salary, deptno, salary*10/100
+FROM  employees;
+
+monthly salary of all employees?
+(salary + allowance)
+
+SELECT empno, ename, salary, allowance, salary+allowance as "Monthly Salary"
+FROM employees;
+
+"Montly Salary" is called as column alias.
+
+NULL:
+-----
+    when a column lacks value, then it is said to be NULL.
+    a NULL is not same as 0.
+    it is either unavailable, unpredicted or undetermined.
+    any arithmetic operation performed with NULL value leads to NULL result.
+
+NULLIF(value-1, value-2)
+    it replace value-1 in the expression if value-2 is null.
+
+SELECT empno, ename, salary, allowance, NULLIF(0, salary)+allowance as "Monthly Salary"
+FROM employees; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

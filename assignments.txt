@@ -243,7 +243,9 @@ Day - 13
     delete remaining rows.
     remove the table permantly.
 
-15 mins.
+57) create tables of "Invoice Report" Case Study
+
+
 
 
 
