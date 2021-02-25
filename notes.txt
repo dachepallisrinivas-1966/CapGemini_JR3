@@ -3475,7 +3475,11 @@ SQL     (Structured Query Langauge)
 6. clauses must be written in separate lines for readability (CODING STANDARDS)
 7. keywords must be in uppercase and identifiers must be in lowercase.
 
-pgAdmin :   It is a tool where you can work with Postgre graphically also.
+pgAdmin  :   It is a tool where you can work with Postgre graphically also.
+psql     :   command shell of PostGre SQL
+postgres :   default database supplied during installation
+postgres :   default user name
+             password for this user is installation password.
 
 SQL commands - Categories
 --------------------------
@@ -3487,12 +3491,30 @@ TCL (Transaction control language)  -   COMMIT / ROLLBACK
 
 psql data types:
 ----------------
-varchar
+char        : to store fixed length strings
+              spaces are added at the end.
+varchar     : to store varying length strings.
+               
 int
 float
-date
+date        : special values - 'today'
+              valid formats - YYYY/MM/DD, DD-MM-YYYY
+time        : special values - 'allballs'  - 00:00:00s
+timestamp
 serial      -   generate auto-incremented values
 money
+
+
+ename       char(30)    
+
+    ravi..........  (4 + 26 spaces) =   30 bytes    
+    sudha.........  (5 + 25 spaces) =   30 bytes
+    uma...........  (3 + 27 spaces) =   30 bytes
+
+ename       varchar(30)
+    ravi                            =   4 bytes
+    sudha                           =   5 bytes
+    uma                             =   3 bytes
 
 
 psql offer slash commands (\)
@@ -3810,15 +3832,18 @@ SQL Operators:
         wild card searching
         %   replace 0 or more unknown characters
         _   replace 0 or 1 unknown characters
+4) ILIKE
+    performs case insensitive search
 
-4) IS NULL
+5) IS NULL
 
 Negation Opertors:
 ------------------
 1) NOT IN   (value-1, value-2, ...)
 2) NOT BETWEEN  value-1 AND value-2
 3) NOT LIKE     'character-pattern'
-4) IS NOT NULL
+4) NOT ILIKE     'character-pattern'
+5) IS NOT NULL
 
 
 SELECT  empno, ename, salary, deptno
@@ -3896,17 +3921,27 @@ library functions
 3) sqrt(n)
 4) sin(n)
 5) pi()
+6) round()
+7) trunc()
+8) ceil()
+9) floor()
 
-6) upper(s)
-7) lower(s)
-8) initcap(s)
-9) length(s)
 
-10) sum(col)
-11) avg(col)
-12) min(col)
-13) max(col)
-14) count(col)
+10) upper(s)
+11) lower(s)
+12 initcap(s)
+13) length(s)
+
+14) sum(col)
+15) avg(col)
+16) min(col)
+17) max(col)
+18) count(col)
+
+19) now()
+20) extract()
+21) age(latest_date, earliest_date)
+
 
 SELECT sum(salary), avg(salary), min(salary), max(salary)
 FROM employees;
@@ -3916,6 +3951,46 @@ FROM employees;
 
 SELECT count(*)
 FROM employees;
+
+SELECT NOW();
+return current date and time
+
+SELECT NOW()::DATE;
+return current date only
+
+SELECT NOW()::TIME
+return current time only
+
+SELECT NOW() - INTERVAL '1 YEAR';
+substract 1 year from current date.
+ 
+SELECT NOW() - INTERVAL '10 YEARS';
+
+SELECT NOW() - INTERVAL '10 MONTHS';
+
+SELECT NOW() - INTERVAL '10 DAY';
+
+SELECT NOW() + INTERVAL '10 DAYS';
+
+SELECT NOW() + INTERVAL '10 MONTHS';
+
+SELECT NOW()::DATE + INTERVAL '10 MONTHS';
+
+SELECT (NOW()::DATE + INTERVAL '10 MONTHS')::DATE;
+truncate the time portion from the result.
+
+SELECT EXTRACT(YEAR FROM NOW());
+
+SELECT EXTRACT(MONTH FROM NOW());
+
+SELECT EXTRACT(DAY FROM NOW());
+
+SELECT EXTRACT(CENTURY FROM NOW());
+
+SELECT first_name, last_name, gender, country_of_birth, date_of_birth, 
+AGE(NOW(), date_of_birth) AS age
+FROM persons;
+
 
 GROUP BY:
 ---------
@@ -3930,9 +4005,6 @@ FROM employees
 GROUP BY deptno
 ORDER BY SUM(salary) DESC;
 
-SELECT deptno, SUM(salary)
-FROM employees
-GROUP BY deptno;
 
 Note:
 -----
@@ -3940,91 +4012,112 @@ The column that is not surrounded by any aggregate function in the select column
 must be included in the group by clause.
 
 
+Day - 14
+-----------------------------------------------------------------------------
 
+HAVING clause:
+--------------
+    this is used to filter rows after grouping.
 
+SELECT deptno, SUM(salary)
+FROM employees
+GROUP BY deptno
+HAVING SUM(salary) > 10000;
 
+SELECT deptno, SUM(salary)
+FROM employees
+WHERE deptno > 50
+GROUP BY deptno
+HAVING SUM(salary) > 10000;
 
+What is the difference between WHERE and HAVING ?
+-------------------------------------------------
+WHERE clause is used to filter rows before grouping.
+HAVING clause is used to filter rows after grouping.
 
+WHERE clause do not permit to use aggregate functions.
+HAVING clause support aggregate functions.
 
+WHERE clause is no way related to GROUPing.
+HAVING clause should always be used along with GROUP BY clause.
 
 
+                                LIMIT, OFFSET, FETCH
+                                --------------------
 
+LIMIT is not a standard SQL clause.
 
+to return top 3 earners.
+SELECT empno, ename, salary
+FROM employees
+ORDER BY salary DESC NULLS LAST
+LIMIT 3;
 
 
+to return all rows start from 6 to 15.
+SELECT *
+FROM persons
+OFFSET 5 LIMIT 10;
 
+to return all rows start from row 20 till the last row.
+SELECT *
+FROM persons
+OFFSET 20;
 
+instead of LIMIT clause, we can use FETCH.  (it is an SQL standard)
+------------------------------------------
+FETCH FIRST
 
+to display from row 6 to 15.
+SELECT *
+FROM persons
+OFFSET 5 FETCH FIRST 10 ROW ONLY;
 
 
 
+creating database:
+------------------
+syntax:
+    CREATE  DATABASE   databaseName;
 
+CREATE DATABASE emdb;
 
 
+to list all databases:
+----------------------
+\l
 
+how to connect to a particular database?
+----------------------------------------
+\c databaseName;
 
+\c emdb;
 
+deleting database:
+------------------
+syntax:
+    DROP  DATABASE  databaseName;
 
+DROP  DATABASE emdb;
 
+SEQUENCE:
+---------
+It is also database object (like table, view, index).
+It is used to generate series and these values can be used to supply data into field
+during insert command.
 
+SERIAL datatype:
+----------------
+It is a data type of PSQL. (int type)
+When a column is assigned serial type, internally a sequence is created.
+using the sequence, values are generated and they are inserted into the column whose datatype
+is serial.
+the sequqnce name is automatically takes as "tablename_columnname_seq"
+(eg: t1_empno_seq)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                        JOIN
+                                        ----
 
 
 

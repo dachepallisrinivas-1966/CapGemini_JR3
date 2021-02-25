@@ -299,6 +299,54 @@ Day - 13
 
 57) create tables of "Invoice Report" Case Study
 
+58) create  tables for "Order Processing System" Case Study.
+
+    custmast
+    ---------
+    custno      (ai) (i) (p)
+    custname    (v) (nn)
+    address     (v)
+    phone       (v) (u)   
+
+    fields like phone number, aadhar number, pincode we should not use int type.
+    char or varchar only should be used as per the standard.
+    because we never perform any arithmetic operation with thse fields.
+    aadhar  - char(12)
+    pincode - char(6)
+    phone   - varchar(10)
+
+    itemmast
+    --------
+    itemno      (ai) (i) (p)
+    itemname    (v)  (nn)
+    unitrate    (f)  (must be non-zero and non-negative)
+    opstock     (i)
+
+
+    ordermast
+    ---------
+    orderno     (ai) (i)  (p)
+    orderdate   (d)  default is system date
+    custno      (i) (f) 
+    ordervalue  (f) 
+
+    insert atleast 5 rows in each table.
+
+
+    30 mins.            11:30
+
+    
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
