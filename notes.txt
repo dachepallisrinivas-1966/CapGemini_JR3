@@ -3762,6 +3762,22 @@ FROM employees;
 
 "Montly Salary" is called as column alias.
 
+concatenated columns:
+---------------------
+two or more columns can be concatenated by using concatenation operator ( || ).
+
+SELECT  empno, first_name || ' ' || last_name 
+FROM    employees;
+
+column aliases:
+---------------
+It is a new name given for a column used in the output of select statement.
+It is generally used for derived or computational columns.
+
+SELECT  empno, first_name || ' ' || last_name AS "Full Name"
+FROM    employees;
+
+
 NULL:
 -----
     when a column lacks value, then it is said to be NULL.
@@ -3921,10 +3937,10 @@ library functions
 3) sqrt(n)
 4) sin(n)
 5) pi()
-6) round()
-7) trunc()
-8) ceil()
-9) floor()
+6) round(n)
+7) trunc(number, decimal_places)
+8) ceil(n)
+9) floor(n)
 
 
 10) upper(s)
@@ -4303,6 +4319,12 @@ ON E.deptno = D.deptno;
 SELECT * 
 FROM employee_full_details;
 
+To list all views:
+------------------
+\dv
+
+
+
 
                                         INDEX
                                         -----
@@ -4332,6 +4354,69 @@ ON  employees(doj);
 
 DROP  INDEX  employees_doj_index;
 
+To list all indexes:
+---------------------
+\di
+
+gradle dependency:
+------------------------
+implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.15'
+
+
+                                            JDBC
+                                (Java Data Base Connectivity)
+                                -----------------------------
+                                        (java.sql)
+
+JDBC API:       
+---------
+    API contain collection of interfaces, abstract classes.
+    It is all about specifications.
+
+JDBC Implementations:
+---------------------
+    offered by database vendors.
+    Oracle Implementation for JDBC
+    MySQL Implementation for JDBC
+    Postgre SQL Implementation for JDBC
+
+JDBC Drivers
+------------
+    collection of jar file(s) that contain implementation classes for JDBC API.
+
+    It should be available to your project if we want to integrate our java program with
+    postgre sql. so that we can store data of java program to postgre database. similarly
+    we can get data from postgre into java program.
+
+    1) download postgre jdbc driver from internet, put the driver in a special folder
+       "lib" folder, and make this lib folder available to classpath.
+
+    (or)
+
+    2) create a gradle project, add the postgre dependency in build.gradle then the jdbc driver
+       related jar(s) are automatically downloaded from internet.
+
+Types of JDBC Drivers:
+----------------------
+we will use Type-4 Driver also known as "Thin Driver".
+
+
+steps to write jdbc program:
+-----------------------------
+1. load the jdbc driver class   (Java 8 - This step is optional)
+2. connect to database and open the connection
+3. create a statement object
+4. execute statement
+5. close the connection
+
+
+Connection interface
+    getMetaData()
+DriverManager class
+    getConnection(String url, String userName, String password)
+DatabaseMetaData class
+    getDatabaseProductName()
+    getDatabaseProductVersion()
 
 
 
@@ -4340,3 +4425,6 @@ DROP  INDEX  employees_doj_index;
 
 
 
+
+
+                                
