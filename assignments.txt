@@ -330,12 +330,26 @@ Day - 13
     custno      (i) (f) 
     ordervalue  (f) 
 
-    insert atleast 5 rows in each table.
-
-
-    30 mins.            11:30
-
     
+    orderdetails
+    ------------
+    orderno     (i) (f)
+    itemno      (i) (f)
+    qty         (i)     (qty should be non-zero non-negative)
+    orderno+itemno      (p)
+
+    insert atleast 5 meaningful rows in each table.
+
+
+
+
+
+
+  
+
+
+
+
 
 
 

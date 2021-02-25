@@ -4119,6 +4119,222 @@ the sequqnce name is automatically takes as "tablename_columnname_seq"
                                         JOIN
                                         ----
 
+It is used to retrieve data from multiple related tables.
+They should have common column.
+
+display empno, ename, salary, dname of all employees.
+
+SELECT  E.empno, E.ename, E.salary, D.dname, E.deptno
+FROM    employees E, departments D;
+WHERE   E.deptno = D.deptno;
+
+condition given in WHERE clause is known as "Join Condition".
+
+There are 2 types.
+1) equi-join
+    if the join condition is given based on equality
+2) non-equi join
+    if the join condition is given on any other operator except equality
+
+
+inner join
+    display all matching rows
+outer join
+    display all matching and non-matching rows.
+
+    LEFT OUTER JOIN         : all matching rows AND missing rows from LEFT table
+    RIGHT OUTER JOIN        : all matching rows AND missing rows from RIGHT table
+    FULL OUTER JOIN         : all matching rows AND missing rows from both the tables.
+
+SELECT  E.empno, E.ename, E.salary, D.dname, E.deptno
+FROM    employees E
+JOIN    departments D
+ON   E.deptno = D.deptno;
+
+SELECT  E.empno, E.ename, E.salary, D.dname, D.deptno
+FROM    employees E
+RIGHT  OUTER JOIN    departments D
+ON   E.deptno = D.deptno;
+
+SELECT  E.empno, E.ename, E.salary, D.dname, D.deptno
+FROM    employees E
+FULL  OUTER JOIN    departments D
+ON   E.deptno = D.deptno;
+
+
+Rule:
+-----
+Minimum number of join conditions = no. of tables to be joined - 1
+
+SELECT  empno, ename, dname, country
+FROM employees E
+JOIN departments D 
+ON E.deptno = D.deptno
+JOIN countries C
+ON D.loc = C.loc;
+
+Note:
+-----
+if the join condition is invalid, or completely eliminated the result is known as
+CARTESIAN PRODUCT.
+
+SELECT  E.empno, E.ename, E.salary, D.dname, E.deptno
+FROM    employees E, departments D;
+
+
+                                    SET OPERATORS
+                                    -------------
+UNION
+INTERSECT
+EXCEPT
+
+set operators are used to get the results out of two queries.
+
+SELECT DISTINCT deptno FROM employees
+UNION
+SELECT deptno FROM departments;
+
+
+SELECT DISTINCT deptno FROM employees
+INTERSECT
+SELECT deptno FROM departments;
+
+SELECT DISTINCT deptno FROM employees
+EXCEPT
+SELECT deptno FROM departments;
+
+SELECT deptno FROM departments
+EXCEPT
+SELECT DISTINCT deptno FROM employees;
+
+
+                                SUB QUERY
+                                ---------
+sub query is also called as  "inner query" or "sub select".
+the sub query is exceuted first, then the result is passed to "main query" or "outer query".
+with this result, main query is executed.
+
+display the ename, salary, dname who is earning highest salary.
+
+
+SELECT E.ename, E.salary, D.dname
+FROM employees E, departments D
+WHERE E.deptno = D.deptno
+AND E.salary = (SELECT MAX(salary) FROM employees);
+
+(or)
+
+
+SELECT E.ename, E.salary, D.dname
+FROM employees E
+JOIN departments D
+ON E.deptno = D.deptno
+WHERE E.salary = (SELECT MAX(salary) FROM employees);
+
+
+                                    Correlated SubQuery
+                                    -------------------
+Takes one row from the main query.
+use this row to qualify the sub query.
+Correlated subquery is executed as many rows as the main query contain.
+
+if the condition of subquery contain a column of the main query then it is identified as
+correlated sub query.
+
+Display all employees whose salary is more than the average salary of their department.
+
+101     ramu        5000        10
+102     kumar       6000        10
+103     ramana      7000        10
+104     devi        4000        10
+
+SELECT empno, ename, salary, deptno
+FROM employees E
+WHERE salary < (SELECT avg(salary)
+                FROM    employees
+                WHERE deptno = E.deptno);
+
+
+                                VIEWS
+                                -----
+It is a virtual table.
+It is like a window.
+It does not contain any data on it's own.
+It is stored as select statement only.
+
+Insert, Update and Delete operation on simple view, affects the base table only.
+DML Operations are NOT POSSIBLE on complex view.
+
+There are 2 Types.
+1) simple view
+    if the view is created on a single table
+    if the view doesnot contain GROUP BY
+
+2) complex view
+    if the view is created on multiple tables
+    if the view contain GROUP BY clause.
+
+CREATE  VIEW   viewName
+AS
+SELECT statement;
+
+CREATE  VIEW    costly_employees
+AS
+SELECT * 
+FROM employees
+WHERE salary > 8000;
+
+SELECT *
+FROM costly_employees;
+
+DROP VIEW costly_employees;
+
+
+
+
+CREATE VIEW employee_full_details
+AS
+SELECT empno, ename, salary, dname
+FROM employees E
+JOIN departments D
+ON E.deptno = D.deptno;
+
+
+SELECT * 
+FROM employee_full_details;
+
+
+                                        INDEX
+                                        -----
+It is meant for faster searching.
+For all primary keys, unique keys an index is generated automatically.
+Querying on index columns help to retrive data in much faster way.
+
+
+50,00,000 rows in a table.
+bank statement (last 3 months)
+
+transactionId   (p)
+accountnumber               index for it
+trandate                    index for it
+
+
+SELECT *
+FROM transactions
+WHERE accountnumber = 10123400
+AND trandate BETWEEN now() and now() - interval '3 months';
+
+we have to create index on accountnumber + trandate
+so that searching become faster.
+
+CREATE  INDEX  employees_doj_index
+ON  employees(doj);
+
+DROP  INDEX  employees_doj_index;
+
+
+
+
 
 
 
