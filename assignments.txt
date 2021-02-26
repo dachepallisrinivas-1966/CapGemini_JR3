@@ -341,6 +341,21 @@ Day - 13
     insert atleast 5 meaningful rows in each table.
 
 
+Day - 15
+-------------------------------------------------------------
+JDBC
+
+59) update a record using Statement Interface
+60) delete a record using Statement Interface
+61) What is the difference between Statement and PrepareStatement?
+
+62) java program to display empno, ename, dname of all employees.
+63) program to display the department-wise average salary.
+
+
+
+
+
 
 
 

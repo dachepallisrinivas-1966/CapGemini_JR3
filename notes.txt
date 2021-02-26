@@ -4366,7 +4366,7 @@ implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.15'
                                             JDBC
                                 (Java Data Base Connectivity)
                                 -----------------------------
-                                        (java.sql)
+                                    (java.sql, javax.sql)
 
 JDBC API:       
 ---------
@@ -4410,13 +4410,46 @@ steps to write jdbc program:
 5. close the connection
 
 
+Day - 15
+-----------------------------------------------------------------------
+
 Connection interface
     getMetaData()
+    createStatement() : return a Statement object
+    prepareStatement(sql) : return a PreparedStatement object
+    prepareCall()
+    setAutoCommit(boolean) : default is true
 DriverManager class
     getConnection(String url, String userName, String password)
 DatabaseMetaData class
     getDatabaseProductName()
     getDatabaseProductVersion()
+
+Statement interface
+    executeQuery(sql)  : SELECT 
+    execute(sql)       : mainly for batch update
+    executeUpdate(sql) : INSERT, UPDATE, DELETE
+PreparedStatement interface
+    executeQuery()  : SELECT 
+    execute()       : mainly for batch update, DDL commands
+    executeUpdate() : INSERT, UPDATE, DELETE
+Callable interface
+    is mainly to work with stored procedures, stored functions in the database.
+ResultSet interface
+    contain the data returned by the database as a result of executing SELECT statement.
+    next()  
+
+
+What is the difference between Statement and PrepareStatement?
+
+
+
+
+    
+    
+
+
+
 
 
 
