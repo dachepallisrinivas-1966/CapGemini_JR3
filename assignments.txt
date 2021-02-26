@@ -352,6 +352,10 @@ JDBC
 62) java program to display empno, ename, dname of all employees.
 63) program to display the department-wise average salary.
 
+64) program to demonstrate CallableStatement interface to find out the number of 
+    departments in the departments table.
+    make use of stored function get_department_count() that we created earlier.
+
 
 
 

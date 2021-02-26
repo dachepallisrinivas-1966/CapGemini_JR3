@@ -4443,6 +4443,38 @@ ResultSet interface
 What is the difference between Statement and PrepareStatement?
 
 
+PL/pgSQL
+--------
+Creating Stored Function:
+-------------------------
+CREATE OR REPLACE FUNCTION get_department_count()
+RETURNS int
+language plpgsql
+AS
+$$
+DECLARE
+    dept_count integer;
+BEGIN
+    SELECT COUNT(*)
+    INTO dept_count
+    FROM departments;
+
+    RETURN dept_count;
+END;
+$$;
+
+to see the list of functions:
+-----------------------------
+\df
+
+
+executing function:
+-------------------
+SELECT    get_department_count();
+
+
+
+
 
 
     
