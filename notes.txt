@@ -4474,10 +4474,52 @@ SELECT    get_department_count();
 
 
 
+                        Implementing JDBC in BookStoreManagement project
+                        ------------------------------------------------
+1. create a gradle new  project
+2. add postgre depedency
+3. comment out all existing dependency
+4. gradle refresh project, so that jars are downloaded.
+
+5. copy all programs of src/main/java from previous project to this gradle project
+    model, dao (we don't need collection impl, iostream impl), service, ui
+
+6. dao package
+   -----------
+    keep IBookDAO.java as it is.
+
+    We are going to use "Single Ton Design Pattern" to obtain the database connection.
+    for the entire project we will maintain only one db connection.
+
+        
+        create a new folder "res" at project level -> create a new file "jdbc.properties"
+            list all the properties. (key-value pair)
+
+            db.unm=postgres
+            db.pwd=<your_password>
+            db.url=jdbc:postgres://localhost:5432/postgres
+
+        create a new package "util" -> create a new class "ConnectionProvider"
 
 
+        create a new interface IQueryMapper.java, that contain constants 
+        (sql commands)
 
+        create BookDAOJDBCImpl.java (contain jdbc logic)
+
+
+7. service layer -> BookServiceImpl.java -> constructor
+
+        public BookServiceImpl() throws BookStoreException {
+		// bookDao = new BookDAOCollectionImpl();
+		// bookDao = new BookDAOIOStreamImpl();
+	
+    	bookDao = new BookDAOJDBCImpl();
+		
+	}
     
+8. ui layer is same.
+
     
 
 
