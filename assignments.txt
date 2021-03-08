@@ -357,6 +357,60 @@ JDBC
     make use of stored function get_department_count() that we created earlier.
 
 
+Day - 16
+------------
+create a new github repo.
+push the BookStoreManagement project into it.
+
+
+Day - 17
+-----------
+
+EventManagement
+    create the gradle project
+    add the postgre dependency
+    create necessary packages (exception, model, dao, service, ui)
+    copy files from exception package, model, ui package
+    write the dao jdbc implementation
+    modify the service implementation
+    write few test cases.
+
+    create a new git repo and push the local project into it.
+    create a jenkins job and build the project.
+
+
+Day - 18
+---------------------------------------
+
+create an Entity class "Product" with following fields.
+    productId
+    name
+    category
+    unitRate
+
+Category is Enum, the contain 
+    GROCERY, COSMETIC, DESERT
+
+
+    insert program
+    update the unitRate of a given product
+    delete a product
+    retrieve a product when id is given.
+
+
+Day - 19
+---------------------
+create a sequence in psql such that it should start with 1000 and incremental value is 1.
+use this sequence to provide primary key values in jpa program.
+
+
+    
+
+
+
+
+
+
 
 
 

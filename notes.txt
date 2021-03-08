@@ -4520,9 +4520,591 @@ SELECT    get_department_count();
     
 8. ui layer is same.
 
+
+Day - 16
+------------------------------------------------------------------------
+
+                                    DevOps
+                                    ------
+                            (DEVelopment & OPerationS)
+Developers:
+-----------
+   Develop the product as per given SRS (System Requirement Specification)
+   we will be having TWO systems
+   a) Developer Workstation      b) Development Server
+
+Testing:
+--------
+   Test the product (to check if the developed product is on par with SRS)
+
+   Development Server ←←← Tester Workstation
+   Tester Workstation →→→ Testing Server
+
+   After building the project, it is moved to the production server.
+   user can access only once if product is there in the production server.
+
+Operations:
+-----------
+   is to monitor the server communication or product shifts in various servers in various stages.
+
+   Development
+   Testing
+   Production
+
+DevOps:
+-------
+   It is a work culture where a collection of tools replace manual interventions and smoothen 
+   the process of software development until production stage.
+   Collaborate over code among developers.
+
+   Source Code Management                    Git
+
+   Code Quality Analysis                     SonarLint, SonarQube, PMD etc.,
+
+   Testing (Automation Tests)                JUnit, Spring-Test, Selenium
+
+   Build and Management dependencies         Ant, Maven, Gradle
+
+   CI/CD                                     Jenkins
+   (Continuous Integration over Continuous Development and Deployment)
+
+   Container Management                      Docker
+        
+
+
+                                        GIT
+                                        ---
+SCM	(Source Code Management)
+---------------------------------
+1) SVN	(sub version) - paid software
+	It is a central repository management tool.
+
+2) GIT	- open source, free ware.
+	fast and more secured than SVN.
+	offer better branching and merging strategy than SVN.
+	It is a distributed management tool.	
+
+GitHub	-	It is a central repository.
+(Google Drive - It is there in cloud. It can be used from your computer, laptop, mobile etc.,)
+
+What is Git?
+-------------
+It is a software used to push the data into various centeral repos. (The central repo can be GitHub or
+BitBucket etc.,)
+Git commands are same irrespective of your central repo.
+Git has no full form. It was implemented by Linus Torvalds (author of Linux) in 2005.
+So, the commands are similar to Linux.
+we can install git in any operating system.
+
+GIT-CLI     (command line interface)
+
+What is Git-GUI?
+----------------
+It is a GUI tool to work with Git. But command-line is most important.
+
+
+where to download?
+------------------
+git-scm.com/downloads
+click download. 2.25.1 for windows.
+right click -> Run as administrator 
+don't change the path.
+
+How to check?
+---------------
+right click on windows desktop, we get options ...
+Git GUI Here, Git Bash Here
+
+Git Bash - for command mode. if we click this option, we will go to command mode.
+$ prompt appears, where we can type git commands.
+
+steps:
+------
+
+1) $ git status		
+  this command is used to verify the status of the current folder.
+  we get a fatal error.
+  we have to initialize it.
+
+2) to initialize the empty repository,
+   $ git  init
+   this command create a folder ".git".
+   it contains git related configuration files.
+   go to explorer, we can see few folders and files in this folder.
+
+3) $ git status
+   we don't get any error now.
+
+4) we need to configure our user name and email with the git. It is a one-time process.
+   $ git  config  --global   user.name  "dachepalli srinivas"
+   $ git  config  --global   user.email  "dachepallisrinivas@gmail.com"
+
+
+   --global	(for current user)
+   --system	(for all users)
+
+5) $ git  config  --list
+   we can see the configuration details. (user.name, user.email and so on)
+
+Day - 17
+----------------------------------------------------------------------------
+                                SONAR
+                                GRADLE
+gradle download 6.8.3 (click binary only)     
+                                JENKINS
+
+
+                                            Design Patterns
+                                            ---------------
+
+Reference :
+https://www.javatpoint.com/creational-design-patterns
+
+
+Design patterns, as name suggest, are solutions for most commonly (and frequently) occurred 
+problems while designing a software. 
+
+These patterns are mostly “evolved” rather than “discovered”. 
+
+A lot of learning, by lots of professional, have been summarized into these design patterns. 
+None of these patterns force you anything in regard to implementation; 
+they are just guidelines to solve 
+    a particular problem – in a particular way – in particular contexts. 
+
+Code implementation is your responsibility.                                            
+
+1. Creational Design Patterns
+-----------------------------
+Creational patterns often used in place of direct instantiation with constructors. 
+They make the creation process more adaptable and dynamic.
+
+a) Builder	:
+   ----------
+   Builder design pattern is an alternative way to construct complex objects and should be used 
+   only when we want to build different types of immutable objects using same object building 
+   process.
+
+b) Prototype:
+   ----------
+   Prototype design pattern is used in scenarios where application needs to create a large number 
+   of instances of a class, which have almost same state or differ very little.
+
+c) Factory:
+   --------
+   Factory design pattern is most suitable when complex object creation steps are involved. 
+   To ensure that these steps are centralized and not exposed to composing classes.
+
+d) Abstract factory:
+   -----------------
+   Abstract factory pattern is used whenever we need another level of abstraction over a 
+   group of factories created using factory pattern.
+
+e) Singleton:
+   ----------
+   Singleton enables an application to have one and only one instance of a class per JVM.
+
+2. Structural Design Patterns
+-----------------------------
+Structural design patterns show us how to glue different pieces of a system together in a 
+flexible and extensible fashion.    
+
+a) Adapter:
+   --------
+   An adapter convert the interface of a class into another interface clients expect. 
+   It lets classes work together that couldn’t otherwise because of incompatible interfaces.
+
+   interface Test {
+       void t1()
+       void t2()
+       void t3()
+       ....
+
+       void t100()
+   }
+   class TestAdapter implements Test {
+       void t1() {
+
+       }
+       void t2() {
+
+       }
+       void t3() {
+
+       }
+       ....
+
+       void t100() {
+
+       }
+   }
+
+
+class MyTestAdapter extends TestAdapter {
+    void t1() {
+        System.out.println("t1 implementation");
+    }
+}
+
+public static void main(String [] args) {
+    MyTestAdapter obj = new MyTestAdapter();
+    obj.t1();
+}
+
+
+b) Bridge:
+   -------
+   Bridge design pattern is used to decouple a class into two parts – 
+    abstraction and it’s implementation – 
+   so that both can evolve in future without affecting each other. 
+   It increases the loose coupling between class abstraction and it’s implementation.
+
+c) Composite:
+   ----------
+   Composite design pattern helps to compose the objects into tree structures to represent 
+   whole-part hierarchies. 
+   Composite lets clients treat individual objects and compositions of objects uniformly.
+
+d) Decorator:
+   ----------
+   Decorator design pattern is used to add additional features or behaviors to a particular 
+   instance of a class, while not modifying the other instances of same class.
+
+e) Facade:
+   -------
+   Facade design pattern provide a unified interface to a set of interfaces in a subsystem. 
+   Facade defines a higher-level interface that makes the subsystem easier to use.
+
+                            interfaceSuper
+
+    interface1              interface2          interface3
+
+f) Flyweight:
+   ----------
+   Flyweight design pattern enables use sharing of objects to support large numbers of 
+   fine-grained objects efficiently. 
+   A flyweight is a shared object that can be used in multiple contexts simultaneously. 
+   The flyweight acts as an independent object in each context.
+
+g) Proxy:
+   ------
+   In proxy design pattern, a proxy object provide a surrogate or placeholder for another object 
+   to control access to it. 
+   Proxy is heavily used to implement lazy loading related usecases where we do not want to 
+   create full object until it is actually needed.
+
+    class Department {
+        deptNumber
+        deptName
+        List<Employee> employees;
+    }
+
+    list department details
+    10          sales               [Show Employees]
+    20          wages               [Show Employees]
+
+3. Behavioral Design Patterns:
+------------------------------
+Behavioral patterns abstract an action we want to take on the object or class that takes the 
+action. 
+By changing the object or class, we can change the algorithm used, the objects affected, or 
+the behavior, while still retaining the same basic interface for client classes.
+
+a) Chain of responsibility:
+   ------------------------
+   Chain of responsibility design pattern gives more than one object an opportunity to handle 
+   a request by linking receiving objects together in form of a chain.
+
+b) Command:
+   --------
+   Command design pattern is useful to abstract the business logic into discrete actions which 
+   we call commands. 
+   These command objects help in loose coupling between two classes where one class (invoker) 
+   shall call a method on other class (receiver) to perform a business operation.
+
+c) Interpreter:
+   ------------
+   Interpreter pattern specifies how to evaluate sentences in a language, programatically. 
+   It helps in building a grammar for a simple language, so that sentences in the language can 
+   be interpreted.
+
+d) Iterator:
+   ---------
+   Iterator pattern provides a way to access the elements of an aggregate object sequentially 
+   without exposing its underlying representation.
+
+e) Mediator:
+   ---------
+   Mediator pattern defines an object that encapsulates how a set of objects interact. 
+   Mediator promotes loose coupling by keeping objects from referring to each other explicitly, 
+   and it lets us vary their interaction independently.
+
+f) Memento:
+   --------
+   Memento pattern is used to restore state of an object to a previous state. It is also known 
+   as snapshot pattern.
+
+g) Observer:
+   ---------
+   Observer pattern defines a one-to-many dependency between objects so that when one object 
+   changes state, all its dependents are notified and updated automatically. 
+   It is also referred to as the publish-subscribe pattern.
+
+h) State:
+   ------
+   State pattern allows an object to alter its behavior when its internal state changes. 
+   The object will appear to change its class. There shall be a separate concrete class per 
+   possible state of an object.
+
+i) Strategy:
+   ---------
+   Strategy pattern is used where we choose a specific implementation of algorithm or task in 
+   run time – out of multiple other implementations for same task.
+
+j) Template method:
+   ----------------
+   Template method pattern defines the sequential steps to execute a multi-step algorithm and 
+   optionally can provide a default implementation as well (based on requirements).
+
+k) Visitor:
+   --------
+   Visitor pattern is used when we want a hierarchy of objects to modify their behavior but 
+   without modifying their source code.
+
+
+
+                                        Module - 2
+                                        ----------
+Day - 18
+----------------------------
+
+OOAD                                    OOP                         RDBMS
+----                                    ---                         -----
+Entity definition                       Class                       Table
+Entity                                  Object                      Record / Row / Tuple
+Property                                Field / Data ember         Field / Column / Attribute
+
+Relations
+
+1)  Is A
+        Generalization                  Abstraction                 ---
+        Realization                     Inheritance                 Joins
+
+    Has A   (Associations)
+        Composition                     class  Address {            Single table having both
+            An entity posesses              - no id -               employee and address related
+            another entity.             }                           columns.
+            The posessed entity
+            will not have an            class  Employee {
+            identity.                       int empId;
+                                            ...
+            eg: Employee has an             Address address;
+                Address.                }
+
+        Aggregation
+            One-To-One                  class BankAccount {             BankAccounts
+                Employee,                   Long accnum;                JOIN Employees
+                SalaryAccount               ...                         ON accnum;
+                                        }                                   (or)
+                                        class  Employee {               Employee 
+                                            int empId;                  JOIN BankAccounts
+                                            BankAccount salAccount;     ON empId;
+                                        }
+
+            One-To-Many                 class Department {              Departments
+                Department, Employee        int deptNum;                JOIN Employees
+            Many-To-One                     Set<Employee> emps;         ON deptNum;
+                Employee, Department    }
+                                        
+                                        class Employee {                
+                                            int empId;
+                                            Department dept;
+                                        }
+            
+            Many-To-Many                class Project {                 Projects
+                Employee, Project           int projId;                 Join Proj_Emps
+                                            Set<Employee> team;         On projId
+                                        }                               And
+                                        class Employee {                Employees
+                                            int empId;                  JOIN Proj_Emps
+                                            Set<Project> projects;      On empId;
+                                        }                               
+        
+        Dependency                        
+            a component depends functionally                            -- NA --
+            on another component.
+
+            A UI depends on a Service.
+            A Service depends on a DAO
+            etc.,
+
+
+ORM (Object Relational Mapping) tools:
+-----------------------------------------
+    Hibernate       (ORM Framework)
+    TopLink
+    EclipseLink
+    iBatis
+    MyBatis
+    OpenJPA
+
+ORMs follow specifications of JPA and JTA.
+
+
+
+
+
+    An API -> provide methods for CRUD
+              query language    -   HQL     (Hibernate Query Language)
+
+              SQL   -   tables
+                    SELECT    empno, ename, salary
+                    FROM employees;
+
+              HQL   -   classes / properties
+
+                    SELECT  empId, empName  FROM Employee;
+
+            JPQL    -   (Java Persistence Query Language)
+                    JPA with Hibernate / Toplink / other ...
+
+JPA     (Java Persistence API)
+    javax.persistence
+JTA     (Java Transaction API)
+
+Dialect:
+--------
+
+    JPA -> Hibernate -> Any database product like Oracle/MySQL/SQLServer/PostgreSQL
+    In each database product, SQL Commands may not be the same.
+    JPA provide serveral dialects, each dialect can generate relevant SQL commands specific
+    to the targeted database product. (in our case PostgreSQL95Dialect)
+
+    Application -> JPA -> Hibernate/anyotherimpl -> JDBC -> DB
+    Application -> Hibernate -> JDBC -> DB
+
+hbm2ddl.auto property:
+----------------------
+    update : if the table is not there, it is created.
+             it the table is present, it make use of the existing table.
+    create:  creates the schema, destroying previous data.
+    validate: validate the schema, makes no changes to the database.
+    create-drop: drop the schema when the EntityManagerFactory is closed explicitly, 
+                typically when the application is stopped.
+none: does nothing with the schema, makes no changes to the database
+    
+
+What is the difference between Model and Entity?
+    Model means it is not associated with any database.
+    Entity means it is associated with a database.
+    Entity classes are inherited from java.io.Serializable interface.   (Coding Standard)
+    Entity classes are marked with @Entity annotation.
+    It should have a field marked with @Id. (primary key)
+
+
+ORMs can work either using XML (configuration) or annotations (conventions)
+(Convention over Configuration)
+
+important annotations:
+--------------------------
+@Entity
+@Table
+@Id
+@Column
+@GeneratedValue
+@Transient
+
+
+persistence.xml -> EntityManagerFactory -> EntityManager -> Entity
+
+methods of EntityManager class:
+-------------------------------
+1) persist()
+2) merge()
+3) remove()
+4) find()
+5) getTransaction()
+6) close()
+
+methods of EntityTransaction class:
+-----------------------------------
+1) commit()
+2) begin()
+3) rollback()
+
+
+Day - 19
+----------------------------------------------
+JPQL    (Java Persistence Query Language)
+    we will entities, properties instead of tables and columns.
+
+TypedQuery interface:
+---------------------
+    1) getResultList()
+
+parameters:
+----------
+    1) ordinal parameters  
+            ?1
+            ?2
+    2) named parameters
+            :parameter_name
+
+primary key generation strategies:
+----------------------------------
+1) AUTO         : jpa will decide and taken care of generating value for @Id column
+2) IDENTITY     : if your database support auto-incremented values
+3) TABLE        : separate table is created to keep track of auto-incremented values.
+                  this is used when only your database product does not offer 
+                  auto-incremented values.
+                  this is not at all recommended.
+4) SEQUENCE     : if your database supports it
+
+
+Composition:
+---------------
+@Embeddable
+@Embedded
+
+
+Composite Key:
+--------------
+if a key is made up of combination of columns.
+
+@EmbeddedId
+
+embedded entity class must be inherited from Serializable interface.
+
+                                    
+
+
+
     
 
 
+    
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    
+
+        
+
+
+
+                        
 
 
 
