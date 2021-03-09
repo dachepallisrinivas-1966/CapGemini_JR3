@@ -5024,6 +5024,8 @@ methods of EntityManager class:
 4) find()
 5) getTransaction()
 6) close()
+7) createQuery()
+8) createNamedQuery()
 
 methods of EntityTransaction class:
 -----------------------------------
@@ -5040,6 +5042,7 @@ JPQL    (Java Persistence Query Language)
 TypedQuery interface:
 ---------------------
     1) getResultList()
+    2) getSingleResult()
 
 parameters:
 ----------
@@ -5074,8 +5077,126 @@ if a key is made up of combination of columns.
 
 embedded entity class must be inherited from Serializable interface.
 
-                                    
 
+Aggregation (Associations):
+----------------------------
+uni-directional, bi-directional
+
+1) one-to-one   (1:1)
+2) one-to-many  (1:M)
+3) many-to-one  (M:1)
+4) many-to-many
+
+@OneToOne
+@JoinColumn
+
+
+Cascading:
+----------
+    if we INSERT a parent row, child row(s) should be INSERTed.
+    if we UPDATE a parent row, child row(s) should be UPDATEd.
+    if we DELETE a parent row, child row(s) should be DELETEd.
+    if we SELECT a parent row, child row(s) should be SELECTed.
+
+Cascading Strategies:
+----------------------
+    INSERT, MERGE, REMOVE, SELECT, PERSIST, 
+    ALL, NONE
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    (or)
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    (or)
+    @OneToOne(cascade = CascadeType.ALL)
+
+    
+
+
+
+
+one-to-one:
+-----------
+Employee   -> 1:1 -> Laptop
+
+employees3                  laptops
+----------                  --------
+emp_id  (p)                 laptop_id      (p)
+first_name                  brand
+last_name
+laptop_id  (f)
+
+
+
+Day - 20
+--------------------------------------------------------------
+one-to-one bidirectional
+
+Employee -> Laptop
+Laptop -> Employee
+
+Employee 
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinColumn(name = "laptop_id")
+Laptop
+    @OneToOne(mappedBy="laptop")
+
+
+One-To-Many relationship
+-------------------------
+Course -> Student       (1:M)
+In each course, we can have many students.
+on many side, we have to use a collection
+
+Student -> Course       (M:1)
+courses
+--------
+c_id        c_name              
+1           oracle          
+2           java            
+
+
+students
+---------
+s_id        s_name      c_id
+1           raghu       1
+2           divya       2
+3           pravan      1
+4           sudha       2
+
+oracle              raghu, pravan
+java                divya, sudha
+
+Fetching strategies:
+-----------------------
+Eager loading
+Lazy loading        
+
+One-To-One                  :   default is ????
+One-To-Many / Many-To-One   :   default is Lazy Loading
+
+public class Course {
+    ...
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="course", fetch = FetchType.EAGER)
+	private Set<Student> students;
+}
+
+
+Many-To-Many relationship:
+-----------------------------
+Course -> Student       (M:N)
+Student -> Course       (N:M)
+
+Many-To-Many relationship is NOT AT ALL RECOMMENDED.
+It should be divided into TWO relationships (One-To-Many and Many-To-One)
+
+Course > course_students        (1 : M)
+course_students -> Student      (M : 1)
+
+
+Named Queries:
+---------------
+we defined queries in the entity class itself. each query is given a name.
 
 
     
