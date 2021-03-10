@@ -5129,6 +5129,11 @@ laptop_id  (f)
 
 Day - 20
 --------------------------------------------------------------
+
+                            GIT BRANCH Concept
+                            ------------------
+Hands on is done.
+
 one-to-one bidirectional
 
 Employee -> Laptop
@@ -5199,6 +5204,159 @@ Named Queries:
 we defined queries in the entity class itself. each query is given a name.
 
 
+Realization (Inheritance):
+--------------------------
+Employee    (empId, ename)
+    Manager extends Employee        (bonus)
+    ContractEmployee extends Employee   (duration)
+
+Inheritance Strategies:
+-------------------------
+1) SINGLE TABLE
+
+        An additional column known as Discriminator Column.
+        eg: emp_type
+        Each entity should provide a Discriminator Value.
+        (it may be an integer or string)
+        
+        all_employees
+
+        empId   ename       bonus       duration        emp_type
+        1       Srinivas                                    E
+        2       Divya       1500                            M
+        3       Tanish                  45                  C
+
+        @DiscriminatedColumn
+        @DiscriminatedValue
+
+SELECT e FROM Employee e        =>  1,2,3
+SELECT m FROM Manager m         =>  2
+SELECT c FROM ContractEmployee  =>  3
+
+
+2) JOINED TABLE
+3) TABLE PER CLASS
+
+
+Multi-Layered Architecture (BookStoreManagement)
+------------------------------------------------
+1. Collection Implementation
+2. IOStream implementation
+3. JDBC implementation
+
+
+4. JPA-Hibernate implementation
+--------------------------------
+1. create a new gradle project
+        remove the pre-written programs (src/main/java, src/test/java)
+        add dependencies postgre, jpahibernate dependencies
+        refresh the gradle project
+        check whether jar files or added or not.
+
+2. src/resources/java
+        META-INF -> persistence.xml
+
+3. src/main/java
+        util    : JPAUtil.java
+        exception : BookStoreException
+        entity : contain all the classes that are written in model package
+                    of the jdbc implementation
+                 add the necessary annotations
+                 @Entity, @Table, @Id, @Column
+        dao     :
+                EntityManager em;
+                
+                
+                Contructor() {
+                    em = JPAUtil.getEntityManager();
+                }
+
+
+                add(Book book) {
+                    EntityTransaction txn = em.getTransaction();
+                    txn.begin();
+                    em.persist();
+                    txn.commit();
+                }
+
+                delete(Long bcode) {
+                    Book b = em.find(Book.class, bcode);
+                    if (b != null) {
+                        EntityTransaction txn = em.getTransaction();
+                        txn.begin();
+                        em.remove(b);
+                        txn.commit();
+                    }
+
+                }
+        service
+                change the JDBCDAOImplementation to JPAHibernateImplementation
+                
+        ui
+                will not change
+
+class -> talking to db -> entity
+class -> model
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            Git Branch
+                                            ----------
+
+1) git branch		(or)	git branch --list
+* master
+
+2) git checkout -b develop		(to create a new branch and enter into the branch)
+switched to new branch develop
+
+
+3) git push origin develop
+
+go to github. we can clearly see a new branch "develop" is created.
+
+
+4) git checkout master
+you will be moved to master branch.
+
+
+5) git branch -d develop
+(to delete the branch in local repo)
+you should not be currently at "develop" branch
+
+(or)
+
+git branch -D develop
+to delete the branch in local repo even though you are currently at "develop" branch
+
+6) git push origin --delete develop
+to remove the "develop" branch from the remote repo.
     
 
 
