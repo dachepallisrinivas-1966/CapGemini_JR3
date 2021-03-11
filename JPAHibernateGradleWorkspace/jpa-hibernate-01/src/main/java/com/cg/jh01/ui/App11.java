@@ -5,7 +5,7 @@ import javax.persistence.EntityTransaction;
 
 import com.cg.jh01.entity.Student;
 import com.cg.jh01.entity.StudentIdentity;
-import com.cg.jh02.util.JPAUtil;
+import com.cg.jh01.util.JPAUtil;
 
 public class App11 {
 

@@ -3,7 +3,7 @@ package com.cg.jh01.ui;
 import javax.persistence.EntityManager;
 
 import com.cg.jh01.entity.Employee;
-import com.cg.jh02.util.JPAUtil;
+import com.cg.jh01.util.JPAUtil;
 
 public class App2 {
 

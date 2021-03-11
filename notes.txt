@@ -5299,34 +5299,6 @@ class -> talking to db -> entity
 class -> model
 
 
-
-
-
-
-
-
-    
-
-
-
-
-
-
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
                                             Git Branch
                                             ----------
 
@@ -5359,31 +5331,137 @@ to delete the branch in local repo even though you are currently at "develop" br
 to remove the "develop" branch from the remote repo.
     
 
+Core Java       -   10
+JPA + Hibernate -   2
+                ---------
+                    12
+                ---------
 
+
+Day - 22
+-----------------------------------------------------------------
+
+                                        Spring 5
+                                        --------
+                                        (spring.io)
+Struts, JSF   other JAVA EE frameworks.
+
+What is Spring?
+    It is a development platform.
+
+pre-requiste?
+    POJO    (plain old java object)
+    class
+
+Coupling and Cohesion
+    Service ->  CollectionImpl
+                IOStreamImpl
+                JDBCImpl
+                JPAImpl
+
+    Dao -> IOStreamImpl
+    Service -> constructor -> service = // new CollectionImpl();
+                                            new IOStreamImpl()
+
+    Dao -> JDBCImpl
+    Service -> constructor -> service = // new CollectionImpl();
+                                        // new IOStreamImpl()
+                                        new JDBCImpl()
+    Dao -> JPAImpl
+    Service -> constructor -> service = // new CollectionImpl();
+                                        // new IOStreamImpl()
+                                        // new JDBCImpl()
+                                        new JPAImpl()
+
+    Coupling
+        tightly coupled
+        loosely coupled
+
+
+
+
+
+
+multi-layered Architecture
+    maintainability
+
+JPA Hibernate Framework
+    db configurations : src/java/resources -> META-INF/peristance.xml
     
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-    
-
-        
-
-
-
+    configuration       vs          convention               vs       programmatic
+    (xml)            (annotations)
+    xml configuration   vs  annotation based configuration   vs  java based configuration
                         
+    uniformity
+
+    Runtime engine
+
+IoC and DI:
+-----------
+IoC     stands for Inversion of Control 
+IoC is a design pattern.
+
+    Don't call us. We will call you.
+
+Spring Container will create objects. Program can make use of these objects.
+Object life cycle is maintained by the Spring Container.
+
+
+DI      dependency injection 
+        is a way of implementing IoC pattern.
+
+service -> layer depend on dao layer
+
+container will create an object with all necesary dependent objects.
+
+
+
+dependencies
+        related to some service related stuff.
+
+BeanCreationException:
+    When Container cannot create a bean, it will return this exception.
+
+Note:
+    Spring Container create by default only one instance for a bean.
+    (SingleTon)
+    the same instance is returned every time we use context.getBean()
+
+bean scopes:
+--------------
+1) singleton        (default)
+        scope = "singleton"
+2) prototype        (for each call of getBean(), container will return a new object)
+        scope = "prototype"
+3) request      (available in web applications)
+4) session      (available in web applications)
+5) application  (available in web applications)
+
+
+
+init-method = "method1"
+destroy-method = "method2"
+
+Destroy method is not called for beans of scope "prototype". This is because the context doesn't
+keep track of the prototype scope objecrs (if it does, it will cause a memory leak as spring
+doesn't know when to dispose it).
+
+autowiring:
+-----------
+1) byName       (based on the object name, the bean to be autowired is identified)
+2) byType       (based on the class name, the bean to be autowired is identified)
+    possible exceptions:
+    --------------------
+        UnsatisifiedDependencyException
+        NoUniqueBeanDefinitionException
+3) constructor
+
+SpEL    (Spring Expression Language)
+--------------------------------------
+${keyName}
+    it will collect the value for the particular key, and assign it to a property of the bean
+
+PropertyPlaceHolderConfigurer - pre-defined class to read property files.
 
 
 
@@ -5395,4 +5473,36 @@ to remove the "develop" branch from the remote repo.
 
 
 
-                                
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+

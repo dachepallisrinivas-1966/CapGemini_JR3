@@ -420,5 +420,8 @@ use this sequence to provide primary key values in jpa program.
 Day 21
 -----------------------------------------------------
 
-write a program to remove a course given by . by doing so, students enrolled of that particular
+1) write a program to remove a course given by . by doing so, students enrolled of that particular
 course also removed.
+
+2) JPA-Hibernate implementation - Multi Layered Architecture - 
+    modify the earlier BookStoreManagement project to use jpa + hibernate + postgre + gradle

@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 
 import com.cg.jh01.entity.Employee2;
 import com.cg.jh01.model.Address;
-import com.cg.jh02.util.JPAUtil;
+import com.cg.jh01.util.JPAUtil;
 
 public class App9 {
 
