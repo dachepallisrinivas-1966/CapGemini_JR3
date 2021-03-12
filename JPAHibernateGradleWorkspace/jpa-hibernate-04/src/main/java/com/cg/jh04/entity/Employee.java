@@ -13,22 +13,25 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="employees4")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="emp_type", discriminatorType = DiscriminatorType.CHAR)
-@DiscriminatorValue(value = "E")
+//@Entity
+//@Table(name="employees4")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name="emp_type", discriminatorType = DiscriminatorType.CHAR)
+//@DiscriminatorValue(value = "E")
 
 //@Entity
 //@Table(name="all_employees_table")
 //@Inheritance(strategy=InheritanceType.JOINED)
 
+@Entity
+@Table(name="employees4")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Employee implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="emp_no")
 	private Long empNumber;
 	
@@ -42,7 +45,8 @@ public class Employee implements Serializable {
 		/* Default constructor */
 	}
 
-	public Employee(String empName, Double empSalary) {
+	public Employee(Long empNumber, String empName, Double empSalary) {
+		this.empNumber = empNumber;
 		this.empName = empName;
 		this.empSalary = empSalary;
 	}

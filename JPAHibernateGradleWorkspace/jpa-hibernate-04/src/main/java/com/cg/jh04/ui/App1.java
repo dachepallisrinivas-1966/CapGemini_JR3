@@ -13,9 +13,9 @@ public class App1 {
 	public static void main(String[] args) {
 		EntityManager em = JPAUtil.getEntityManager();
 		
-		Employee emp = new Employee("Srinivas", 50000.0);
-		Manager mgr = new Manager("Divya", 65000.0, 10000.0);
-		ContractEmployee cemp = new ContractEmployee("Ramana", 25000.0, 45);
+		Employee emp = new Employee(1L, "Srinivas", 50000.0);
+		Manager mgr = new Manager(2L, "Divya", 65000.0, 10000.0);
+		ContractEmployee cemp = new ContractEmployee(3L, "Ramana", 25000.0, 45);
 		
 		EntityTransaction txn = em.getTransaction();
 		txn.begin();

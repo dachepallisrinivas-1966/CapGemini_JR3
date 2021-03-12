@@ -3,14 +3,14 @@ package com.cg.jh04.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-@Entity
-@DiscriminatorValue(value = "M")
+import javax.persistence.Table;
 
 //@Entity
-//@Table(name="only_managers_table")
+//@DiscriminatorValue(value = "M")
+
+@Entity
+@Table(name="manager4")
 public class Manager extends Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,8 +23,8 @@ public class Manager extends Employee implements Serializable {
 		
 	}
 
-	public Manager(String empName, Double salary, Double allowance) {
-		super(empName, salary);
+	public Manager(Long empNumber, String empName, Double salary, Double allowance) {
+		super(empNumber, empName, salary);
 		this.allowance = allowance;
 	}
 

@@ -3,14 +3,14 @@ package com.cg.jh04.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-@Entity
-@DiscriminatorValue(value = "C")
+import javax.persistence.Table;
 
 //@Entity
-//@Table(name="only_contract_employees_table")
+//@DiscriminatorValue(value = "C")
+
+@Entity
+@Table(name="contract_employees4")
 public class ContractEmployee extends Employee implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -22,8 +22,8 @@ public class ContractEmployee extends Employee implements Serializable {
 		/* default constructor */
 	}
 
-	public ContractEmployee(String empName, Double salary, Integer duration) {
-		super(empName, salary);
+	public ContractEmployee(Long empNumber, String empName, Double salary, Integer duration) {
+		super(empNumber, empName, salary);
 		this.duration = duration;
 	}
 
