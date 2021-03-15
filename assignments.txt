@@ -425,3 +425,12 @@ course also removed.
 
 2) JPA-Hibernate implementation - Multi Layered Architecture - 
     modify the earlier BookStoreManagement project to use jpa + hibernate + postgre + gradle
+
+
+Day - 24
+-----------------------------------------------------
+Simple Interest application     using spring boot web mvc gradle  jstl
+
+
+
+

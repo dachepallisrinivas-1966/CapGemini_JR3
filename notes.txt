@@ -5217,7 +5217,7 @@ Inheritance Strategies:
         An additional column known as Discriminator Column.
         eg: emp_type
         Each entity should provide a Discriminator Value.
-        (it may be an integer or string)
+        (it may be an integer or string or char)
         
         all_employees
 
@@ -5235,8 +5235,35 @@ SELECT c FROM ContractEmployee  =>  3
 
 
 2) JOINED TABLE
+
+    employee4
+    empId       ename       
+    1           srinivas 
+    2           divya
+    3           tanish   
+
+    manager4
+    empId       bonus
+    2           1500
+
+    contract_employees4
+    empId       duration
+    3           45
+
 3) TABLE PER CLASS
 
+    employee4
+    empId       ename
+    1           srinivas
+
+    manager4
+    empId       ename       bonus
+    2           divya       15500
+
+    contract_employee4
+    empId       ename       duration
+    3           Tanish      45
+    
 
 Multi-Layered Architecture (BookStoreManagement)
 ------------------------------------------------
@@ -5552,7 +5579,7 @@ ModelAndView (org.springframework.web.servlet.ModelAndView) class:
 
     methods:
     --------
-    setViewName(view-name)
+    setViewName(logical-view-name)
     addObject(objectName, value)
 
 JSP Scripting Elements:
@@ -5590,7 +5617,7 @@ exception
 JSTL:
 -----
 we need to add the jstl library   (core library)
-
+1) core tags
 <c:out 
 <c:if
 <c:for
@@ -5602,7 +5629,129 @@ to iterate an array or a collection
 <c:choose
 <c:set
 
+2) form tags
 
+----------------------------------------------------------------------------------
+
+Day - 24
+
+                                    Spring Boot
+                                    -----------
+What is Spring Boot?
+    It is a spring module (or spring project).
+    Makes it easy to create spring-powered, production grade applications.
+    takes an opinionated view of spring platform.
+
+Why Spring Boot?
+    Convention over Configuration
+    Spring Boot taken away all the XML based configurations and provided annotations for using 
+    the spring framework.
+    Standardization for Microservices
+    Integrated Server for Development (Tomcat/Jetty server with the compiled jar using Maven/Gradle.)
+    Cloud support
+    widen support for 3rd party library like NO SQL DB, Distributed Cache etc.,
+
+
+    Spring Boot = (Spring Framework - XML Configuration) + Integrated Server 
+
+Spring Boot Project Creation
+    1) Eclipse
+        install a plug in           (Spring Tools 4)
+    2) STS                          (Spring Tool Suite 4) - we will work with this IDE
+    3) spring.io                    (Spring Initializer)
+
+Features of spring boot?
+    Spring CLI - allows you to use Groovy for writing spring application and 
+                 avoids boiler-plate code.
+    Spring Initializer  (start.spring.io)
+    Spring Actuator -   health and metrics of your application
+    Starter Dependency  
+    Auto-Configuration  
+    Logging and Security
+
+
+jasper:
+    to use jsp as view engine.
+
+@SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan
+
+
+Http request methods:
+-------------
+    GET     :   to get some information from the server
+    POST    :   to send data to the server
+    DELETE  :   to delete any resource from server
+    PUT     :   to modify any resource in the server
+
+    PATCH
+
+    @RequestMapping(url="/", method = RequestMethod.GET)
+    @RequestMapping(url="/", method = RequestMethod.POST)
+
+Spring Boot offer the following annotations
+
+@GetMapping(url="")
+@PostMapping(url="")
+@DeleteMapping(url="")
+@PutMapping(url="")
+
+
+
+QueryString: (using Request Parameter)
+------------
+    url ? var-1 = value-1 & var-2 & value-2 & ...
+
+    var-1, var-2 are known as request parameters
+
+    @RequestParam(name="someName", required=true/false, defaultValue="someValue")
+
+
+
+@ModelAttribute
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What Spring Boot brings to the table?
+
+
+
+One of the main objective of Spring Boot is to provide a unified echosystem of libraries & standards to all the
+developers (teams) using microservices methodologies
+Integrated Server for Development
+Spring Boot attaches a Tomcat/Jetty server with the compiled jar using Maven/Gradle.
+Cloud support
+Spring Boot provides cloud support for configuration, tools and clients. It is also compatible with Cloud Native
+and works seamlessly with Cloud Foundry, Pivotal etc.,
+Adapt & Support for 3rd Party Libraries
+Spring boot has taken a significant step and widen support for 3rd party library, Open source library like
+No-SQL DB, Distributed Cache etc.,
+
+(Spring Framework - XML Configuration) + Integrated Server = Spring Boot
+
+
+
+@SpringBootApplication = 
 
 
 
