@@ -431,6 +431,48 @@ Day - 24
 -----------------------------------------------------
 Simple Interest application     using spring boot web mvc gradle  jstl
 
+Day - 25
+-----------------------------------------------------
+Visitor Example
+
+input page:
+-------------
+First Name :  <text box>
+Last Name  :  <text box>
+Date of Birth : <text box>
+[[ Register ]]
+
+output page:
+-------------
+Hello Srinivas Dachepalli
+You are 54 years old.
+
+validations:
+------------
+date of birth should not be a future date.
+
+model, service , exception, jsps, controller
+add a link in the header
+
+
+2) 
+Create Spring Boot Web Data JPA application for "BookStoreManagement"
+
+List All Books | Add Book | Delete Book
+
+Book Entity
+    bookId, title, price, datePublished, publisher
+Publisher Enum
+    contain all the publisher names.
+
+
+
+
+
+
+
+
+
 
 
 

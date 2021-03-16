@@ -17,4 +17,5 @@
 		<a href="home">Home</a> |
 		<a href="greet">Greet</a> |
 		<a href="emp">Employee</a> |
+		<a href="tasks">Task List</a> |
 	</nav>

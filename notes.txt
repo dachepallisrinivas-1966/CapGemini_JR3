@@ -5710,6 +5710,55 @@ QueryString: (using Request Parameter)
 @ModelAttribute
 
 
+Day - 25
+-------------------------------------------
+@Scope("request")
+    data stored in the associated bean is available only to the
+    current request.
+    whenever user made a new request, the bean is destroyed.
+    
+@Scope("session")
+    data stored in the associated bean is available across multiple
+    request of the current user.
+    when the user is logged out, the session is closed and hence the bean
+    is destroyed.
+
+@Scope("application")
+    data stored in the associated bean is available across different users
+    of application.
+    the bean is destroyed only when the application is undeployed from the
+    server or server shutdown.
+
+    
+Spring Data  (JPA)
+-------------------
+how to talk to database.
+
+pre-defined interface
+JPARepository : support all features of CrudRepository as well as additional
+        features such as Pagination etc.,
+        provide pre-defined methods to perform database related operations.
+        we can as well write custom find methods, custom queries.
+
+CrudRepository
+
+What is the difference between CrudRepository and JPARepostory?
+
+DAOs must be annotated with @Repository.
+
+@DateTimeFormat
+@Enumerate
+
+Bean validations    (javax.validation package)
+--------------------------------------------------
+@NotEmpty
+@NotNull
+@Min
+@Max
+@Pattern
+@Email
+@Past
+@Future
 
 
 
@@ -5717,41 +5766,6 @@ QueryString: (using Request Parameter)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-What Spring Boot brings to the table?
-
-
-
-One of the main objective of Spring Boot is to provide a unified echosystem of libraries & standards to all the
-developers (teams) using microservices methodologies
-Integrated Server for Development
-Spring Boot attaches a Tomcat/Jetty server with the compiled jar using Maven/Gradle.
-Cloud support
-Spring Boot provides cloud support for configuration, tools and clients. It is also compatible with Cloud Native
-and works seamlessly with Cloud Foundry, Pivotal etc.,
-Adapt & Support for 3rd Party Libraries
-Spring boot has taken a significant step and widen support for 3rd party library, Open source library like
-No-SQL DB, Distributed Cache etc.,
-
-(Spring Framework - XML Configuration) + Integrated Server = Spring Boot
-
-
-
-@SpringBootApplication = 
 
 
 
