@@ -5762,6 +5762,184 @@ Bean validations    (javax.validation package)
 
 
 
+Day - 26
+-----------------------------------------------------------------
+docs.spring.io      official documentation
+
+Independent application
+-------------------------
+Spring Boot MVC Application
+jsp as view
+controllers
+service
+model / entity / pojo / bean / DTO  (data transfer object)
+
+
+Full Stack Web Development
+----------------------------
+front end = React Application       (view)
+    send urls
+    localhost:8090/emps
+
+back end = Spring Boot Application + JPA Hibernate + PostGre
+            (model + RestController)
+    8090 - embedded tomcat server
+
+
+                            Web Services
+                            -------------
+establish communication between TWO different applications.
+
+1) SOAP (simple object access protocol) web services:
+
+        data exchange is done using xml format
+        work on a special protocol known as SOAP protocol.
+
+    <employee>
+        <empId>101</empId>
+        <firstName>Srinivas</firstName>
+        <lastName>Dachepalli</lastName>
+    </employee>
+
+
+    <employees>
+         <employee>
+            <empId>101</empId>
+            <firstName>Srinivas</firstName>
+            <lastName>Dachepalli</lastName>
+        </employee>
+         <employee>
+            <empId>102</empId>
+            <firstName>Srinivas</firstName>
+            <lastName>Dachepalli</lastName>
+        </employee>
+    </employees>
+
+2) REST (Representational State Transfer) ful webservice:
+    it work on http protocol.
+    it support various data formats - JSON (default), XML, HTML, PlainText and many...
+
+
+    JSON (Java script object notation)
+    is a new way of exhanging data between two different applications.
+    it is light weight.
+    every modern technology support JSON widely.
+
+    {
+        "empId" : "101",
+        "firstName" : "Srinivas",
+        "lastName" : "Dachepalli"
+    }
+
+
+    array of JSON objects:
+    -----------------------
+    [
+        {
+            "empId" : "101",
+            "firstName" : "Srinivas",
+            "lastName" : "Dachepalli"
+        },
+        {
+            "empId" : "102",
+            "firstName" : "Srinivas",
+            "lastName" : "Dachepalli"
+        },
+        {
+            "empId" : "103",
+            "firstName" : "Srinivas",
+            "lastName" : "Dachepalli"
+        }
+    ]
+
+To create RESTful services, we can use ...
+    1) JAX-RS library
+    2) Spring Boot REST (sping boot module)
+
+
+Http Verbs  (Http Request Methods):
+-----------------------------------
+1) GET  -   Idempotent
+2) POST -   Not Idempotent
+3) DELETE - Idempotent
+4) PUT      (to update entire record)
+5) PATCH   (to update few fields)   
+
+
+ResponseEntity
+
+Http Status Codes:
+------------------
+404 - requested resource not found
+500 - internal server error
+200 - OK
+
+
+@RestController     =   @Controller + @ResponseBody
+
+We will create API 
+    - that will contain End-Point URLS.
+
+
+html support only two request methods - GET / POST
+
+RESTful Client tools - like POSTMAN, Insomnia etc.,
+    support - GET / POST / DELETE / PUT / PATCH
+
+localhost:8090/emps?empId=5                         (request parameters)
+localhost:8090/emps?salary=10000&desg=manager       (request parameters)
+localhost:8090/emps/5                               (url segments)
+localhost:8090/depts/emps/managers                  (url segments)
+
+
+@PathVariable           to transfer data from a url segments
+                        to method parameter
+
+@RequestBody
+
+CORS        (Cross-Origin Resource Sharing)
+@CrossOrgin
+
+
+creating global exception handlers:
+--------------------------------------
+it is available for all rest controllers in the application.
+
+@RestControllerAdvice
+public class ExceptionAdvicer {
+
+    @ExceptionHandler(EmployeeException)
+    public ResponseEntity<String> method1() {
+
+    }
+
+    @ExceptionHandler(ArithmeticException)
+    public ResponseEntity<String> method2() {
+
+    }
+}
+
+EmployeeAPI:
+---------------
+1) localhost:8090
+2) localhost:8090/emps              (GET)
+3) localhost:8090/emps/1            (GET)
+4) localhost:8090/emps              (POST)
+5) localhost:8090/emps/2            (DELETE)
+6) localhost:8090/emps              (PUT)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

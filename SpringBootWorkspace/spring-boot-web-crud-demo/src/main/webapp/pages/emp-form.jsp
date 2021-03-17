@@ -21,7 +21,7 @@
 		</div>
 		<div>
 			<form:label path="joinDate">Join Date:</form:label>
-			<form:input path="joinDate" />
+			<form:input path="joinDate" type="date"/>
 			<form:errors path="joinDate" />
 		</div>
 		<div>
