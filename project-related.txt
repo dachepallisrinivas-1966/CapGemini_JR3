@@ -1,0 +1,23 @@
+Diagrams
+----------
+1. class Diagrams
+2. use case Diagrams
+3. sequence diagrams
+
+4. ER diagrams
+
+Use Rational Rose or any other tool to draw all these diagrams.
+
+Model
+    Subscriber      validation related 
+    UI operations
+Entity
+    Subscriber      jpa+hibernate annotations
+    DB operations
+
+
+Mokito
+    in service, we don't actual dao
+    we have to  mock the dao.
+
+    

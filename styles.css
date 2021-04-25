@@ -1,0 +1,35 @@
+* {
+    margin : 0px;
+    padding : 0px;
+}
+h2 {
+    color : #0000ff;
+    font-size: 60px;
+    font-family: Arial;
+    text-align: center;
+    text-shadow: 5px 5px 5px #ff0000;
+    text-decoration: line-through;
+    
+}
+p {
+    color : green;
+    font-size : 20px;
+    text-transform: uppercase;
+    text-align: justify;
+    text-indent: 50px;
+
+}
+
+.common {
+    font-style: italic;
+    
+    color : yellow;
+    background-color: maroon;
+}
+#highlight {
+    font-weight:bold;
+}
+.bordered {
+    border-color: red;
+    border-width: 25px;
+}

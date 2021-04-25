@@ -2453,7 +2453,9 @@ Exception Handling
                                             |
                                             |
                                     java.lang.RuntimeException
-
+    
+    Exception classes that are derived from Exception class - CHECKED
+    Exception classes that are derived from RuntimeException class - UNCHECKED
 
 
     1) try : contain the code where the exception can be generated.
@@ -2507,7 +2509,7 @@ Exception Handling
             dereived from RuntimeException class are
             identified as Checked exceptions.
         
-            if you not handle checked exceptions, the compiler will give errors.
+            if you do not handle checked exceptions, the compiler will give errors.
 
             if a method is supposed to raise
             checked exception, the compiler will
@@ -3380,6 +3382,101 @@ BinaryOperator<T>   T       apply(T,T)
                                     Streams
                                     -------
                                 (java.util.Stream)
+
+Stream is a flow of data from a data source.
+where data source can be an array or any other collection.
+streams once consumed we cannot be use it again.
+
+1) java.util.stream.Stream.of(array);
+    create a stream taken array as a data source.
+2) java.util.Collection::stream()
+    create a stream taken any collection like list,set as a data source.
+
+stream() and parallelStream() ?
+    stream() will operate on one core.
+    parallelStream() will operate on multiple cores. (hardware related)
+
+
+java.util.stream.Stream methods:
+    forEach(Consumer)                   :   terminal operation
+    reduce(BinaryOperator)              :   terminal operation
+    collect()                           :   terminal operation
+    filter(Predicate)                   :   intermediate operation
+    map(Functional transformer)         :   intermediate operation
+    sorted(BinaryOperator)              :   intermediate operation   
+    flatMap(Functional transformer)     :   intermediate operation
+
+
+StreamAPIDemo.java          (vam-repo)       
+    books.stream().forEach(System.out::println);
+
+    books.stream().forEach( (b) -> {
+        b.setPrice(b.getPrice()*2);
+    });
+    books.stream().forEach(System.out::println);
+
+
+int [] a = {1,2,3,4,5};
+Stream s = Stream.of(a);
+BinaryOperator<Integer> bo = (a,b) -> a+b;
+s.reduce(o);        // return Optional<Integer> = 15
+    ((((1+2)+3)+4)+5) = 15
+
+to see a latest published book :
+    Optional<Book> latestPublishedBook = books.stream().reduce( (b1,b2) -> b1.getDateOfPublished().isAfter(b2.getDateOfPublished()) ? b1 : b2));
+    System.out.println(latestPublishedBook.get());  
+
+to see list of books whose price is less than 4000 :
+    books.stream().filter( b -> b.getPrice() <= 4000).forEach(System.out::println);
+
+to convert list into set :
+    Set<book> bookSet = books.stream().collect(Collectors.toSet());
+    System.out.println(bookSet);
+
+
+    List<Book> lessPricedBooks = books.stream()
+                                    .filter( b -> b.getPrice() <= 4000)
+                                    .collect(Collectors.toList());
+        System.out.println(lessPricedBooks)
+map :
+    int [] a = {1,2,3,4,5};
+    Stream.of(a).map( n->n*n ).forEach(System.out::println);        // 1,4,9,16,25
+    Stream.of(a).map( n->"Hello"+n).forEach(System.out.println);
+    
+    List<String> bookNames = books.stream().map( b -> b.getName()).collect(Collectors.toList());
+    System.out.println(bookNames);
+    (or)
+    List<String> bookNames = books.stream().map(Book::getName).collect(Collectors.toList());
+    System.out.println(bookNames);
+
+sorted :
+    using comparable :
+    books.stream().sorted().forEach(System.out::println);   
+    
+    using comparator :
+    books.stream().sorted( (b1,b2) -> b1.getDateOfPublished().compareTo(b2.getDateOfPublished()))
+            .forEach(System.out::println);
+
+flatMap :
+    if we have an array of arrays (stream of streams), and we want to flaten that into a 
+    single array (or stream), flatMap is used.
+
+    add a property is called authors.
+    private String[] authors;
+    add another constructor that takes authors along with other properties.
+    generate getters and setters for authors.
+    regenerate hashcode, equals and toString methods.
+
+    in the main program, create book objects using the newly added constructor and provide
+    authors of each book along with other details.
+
+    books.stream().map(Book::getAuthors)
+        .flatMap(b -> Stream.of(b.getAuthors()))
+        .distinct()
+        .forEach(System.out::println);
+
+
+
 
 List<Employee>  employeeList = new ArrayList<>();
 employeeList.add(new Employee(....));
@@ -5929,75 +6026,233 @@ EmployeeAPI:
 6) localhost:8090/emps              (PUT)
 
 
+-----------------------------------------------------------------------------------------
+                                    PASSWORD ENCRYPTION 
+                                IN application.properties
+-----------------------------------------------------------------------------------------
+1. jasypt - java simplified encryption library 
+	download the jar file from (https://github.com/jasypt/jasypt)
+	extract it in any location.
 
+2. to encrypt oracle hr account password (eg: hr)
+   type the following command.
 
+E:\softwares\jasypt-1.9.3\lib>java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="hr" password=SimplePassword algorithm=PBEWithMD5AndDES
 
+(we are using MD5 - Message Digest Algorithm 5 and
+		DES - Data Encryption Standard)
 
+once we enter the above command, we will get the following information.
 
+----ENVIRONMENT-----------------
 
+Runtime: Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.221-b11
 
 
 
+----ARGUMENTS-------------------
 
+algorithm: PBEWithMD5AndDES
+input: hr
+password: SimplePassword
 
 
 
+----OUTPUT----------------------
 
+tHi+6DCrAt4BBn9otFdDRg==
 
 
+3. the encrypted password is 
+	tHi+6DCrAt4BBn9otFdDRg==
 
+we are using "SimplePassword" as key.
 
+4. 
+	add the jasypt dependency in pom.xml
 
+5. modify the application.properties file ...
+server.port=8090
 
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521/XE
+spring.datasource.username=hr
+# observe the below line
+spring.datasource.password=ENC(tHi+6DCrAt4BBn9otFdDRg==)
 
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.format_sql=true
 
+# observe the below line, SimplePassword is the key we used earlier in step - 2.
+jasypt.encryptor.password=SimplePassword
 
 
+6. run spring boot application.
 
 
+-----------------------------------------------------------------------------------------
 
 
-    
 
 
+Mocking with JUnit-5
+--------------------------
+Mocking - It help us in testing functionality of class in ISOLATION.
 
+It does not require database connection, communicating to external servers or
+going over network to test a functionality.
 
+Mock object simulate real service by taking in actual input and returning back
+expected output.
 
+It is a popular open source testing framework in Java.
+The framework allows the creation of test double objects (mock objects) for
+unit tests. 
+It uses java reflection in order to create mock objects.
 
+Mockito Benifits :
+------------------
+    1.  It save developers from writing test doubles or mock objects on their 
+        own.
+    2.  It has support for exception handling.
+    3.  It has support for stubbing methods. It help us in returning configured
+        response.
+    4.  It can also check order of method calls and number of times method 
+        being called.
+    5. Annotation suport.
 
+Fake Objects :
+--------------
+    1.  are usually light weight objects used only for testing. They have 
+        working implementation, but not as actual production object.
+    2.  Fake objects have functional implementation, but in very basic form.
+        for example, instead of actual production database we can mimic an
+        in-memory database or haspmaps or list etc.,
 
+Dummy objects :
+---------------
+    1.  It does not have any business logic.
+    2.  It is an object that is used only for code to compile.
+    3.  For eg., an object is passed as a parameter to a constructor. It is 
+        passed just to make code compile.
 
+Stub objects :
+--------------
 
 
 
-    
 
+                            Jenkins Deployment          
+                            ------------------
+login to Jenkins
+manage jenkins -> global tool configuration -> 
+gradle section -> click add gradle button
+    name : defaultgradle
+    GRADLE_HOME : <<specify_gradle_home_directory>>
+click "Save" button
 
 
+create a gitrepo
+push your project into git repo.
 
+in jenkins -> add new item
+name : <<job_name>>
+select "Free Style Project"
+click "OK"
 
+select git under source code management
+provide the git repo url.
 
+under build section -> add build step -> invoke gradle script
 
+select the gradle name you configured.
+click "save"
+click "build now"
 
+gradle tasks : clean build
 
 
+sonarqube integration in jenkins:
+1. manage jenkins -> manage plugins -> available tab
+search for "sonarqube scanner"
+select "sonarqube scanner" (in the "available" tab)
+click "install without restart"
 
+2. manage jenkins -> global tool configuration
+under "SonarQube Scanner" section
+click "Add SonarQube Scanner"
+name : defaultSonar
+click "install automatically"
+leave the install from maven central drop down box as it is.
+click "save" button
 
 
 
 
+customer   -> contract
 
 
+class Customer {
+    customerId
+    customerName
+    ...
 
 
+    @OneToMany
+    private Set<Contract> contracts;
 
+    setter and getters
+    setContracts(), getContracts()
+}
 
+class Contract {
+    ...
+    @ManyToOne
+    @JoinColumn()    
+    private Customer customer;
+}
 
-    
 
+customer will have contract
 
 
+if i give customerid, the and all contracts should be displayed
 
+ICustomerService.java
+    Set<Contract> getAllContractsByCustomerId()
+
+CustomerServiceImpl.java
+    public Set<Contract> getAllContractsByCustomerId() {
+        ...
+    }
+}
+
+
+
+/contracts/{customerId}
+
+@OneToMany
+@ManyToOne
+
+--------------------------------------
+targini
+pacakage -> subscriptions
+---------------------------------------
+
+
+Common Questions?
+    FetchType.LAZY?
+    identity column?
+    generation strategies?
+    @Join column?
+    various inheritance methods in jpa?
+    what is multi-layered architecture?
+
+    difference between list and set?
+    what is stream?
+    what are stream operations?
+
+    what are the advantages of spring boot?
 
 
 

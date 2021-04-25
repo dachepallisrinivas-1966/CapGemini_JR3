@@ -30,7 +30,7 @@ public class EmployeeAPI {
 		return new ResponseEntity<>(empService.findAll(), HttpStatus.OK); 
 	}
 	
-	@GetMapping("/{empId}")
+	@GetMapping("/{empId:[0-9]{1,4}}")
 	public ResponseEntity<Employee> findById(@PathVariable("empId") Long employeeId) {
 		ResponseEntity<Employee> response = null;
 		System.out.println("find-by-empid");

@@ -1,0 +1,47 @@
+configure jenkins for gradle
+---------------------------------
+Mukesh otwani
+
+
+install gradle 6.3
+-------------------
+
+
+1. jenkins should be up and running.
+2. click "Manage Jenkins"  -> Global Tool Configuration -> 
+	Gradle -> Gradle Installations -> 
+		name : GRADLE_HOME
+		GRADLE_HOME : e:\software\Gradle\gradle-5.2.1
+	don't check "install automatically"
+
+	click "Save"
+3. click "New Item"
+	Enter an item name : GradleProjectName
+	click "Free Style Project"
+
+	click "Build"  tab
+	Build -> Add Build Step -> choose Invoke Gradle script
+	"invoke Gradle" select this radio button
+	Gradle Version : GRADLE_HOME		(don't choose "default" option)
+
+	Tasks : clean test
+	
+	click "Advanced" button
+	Build File : give_the_project_path\build.gradle
+
+4. "General" Tab
+	Description : Gradle project using jenkins
+
+5. click "Build Now" button
+
+
+
+
+Jenkins
+--------
+user name : admin
+pwd : admin123
+
+
+
+
